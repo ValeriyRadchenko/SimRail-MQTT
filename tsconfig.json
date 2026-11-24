@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "noEmit": true,
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "types": ["node"]
+  },
+  "include": ["server/src", "tools"],
+  "ts-node": {
+    // Type errors raised inside ts-node's ESM loader print as "[Object: null prototype]" on
+    // Node 22+, so ts-node only transpiles; type checking is `npm run typecheck` (and the editor).
+    "transpileOnly": true
+  }
+}

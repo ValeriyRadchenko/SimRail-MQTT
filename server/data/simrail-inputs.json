@@ -1,0 +1,6568 @@
+{
+  "source": "https://wiki.simrail.eu/en/MQTT/fields",
+  "fetchedAt": "2026-11-24",
+  "inputs": [
+    {
+      "category": "Physics_Input_163",
+      "name": "alerter_l",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Alerter button (left)\n-1 = released\n1 = pressed",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "alerter_r",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Alerter button (right)\n-1 = released\n1 = pressed",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "battery_breaker",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Battery breaker switch\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "battery_switch",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Battery switch\n0 = disabled\n1 = enabled",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "cabin_activation",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Cabin activation switch\n0 = deactivate\n1 = activate",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "cabin_light",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Cabin lights switch\n0 = disabled\n1 = TL\n2 = PL",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "compressor1",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Compressor 1\n0 = disabled\n1 = automatic\n2 = manual\n-1 = small compressor",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "compressor2",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Compressor 2\n0 = disabled\n1 = automatic\n2 = manual",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "control_mode",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Control mode\n0 = manual\n1 = automatic\n2 = test",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "coupler_switch",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Coupler switch on the right side of the cabin\n0 = None\n1 = Front\n2 = Back",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "dashboard_light_l",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Dashboard light switch (left side)\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "dashboard_light_r",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Dashboard light switch (right side)\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "decrease_shunting_power_button",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Decrease shunting power button on the right side of the cabin\n0 = released\n1 = pressed",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "defrosting",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Defrosting switch below the dashboard\n0 = windscreen heating disabled\n1–3 = heating modes",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "dim_headlights",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Dim headlights switch\n0 = disabled\n1 = enabled",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "dim_top_headlights",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Dim top headlights switch\n0 = disabled\n1 = enabled",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "direction_controller",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Drive direction handle\n1 = forward\n0 = neutral\n-1 = reverse",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "disruption_of_protection",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Unlock protections button\n0 = released\n1 = pressed",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "driving_mode",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Driving mode switch\n0 = parking\n1 = coast\n2 = drive\n3 = start",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "driving_through_speed_limit_button",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Driving through speed limit button\n0 = released\n1 = pressed",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "ed_brake",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Electrodynamic brake lever\n0 = increase electrodynamic braking force (moves to 1 when released)\n1 = maintain braking force\n2 = decrease electrodynamic braking force (moves to 1 when released)",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "emergency_drive",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Diagnostic drive switch below the dashboard\n0 = drive\n1 = emergency drive\n2 = excitation current\n3 = rotor current\nBug: overlaps with 2 switches in the cabin",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "frequency_switch",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Frequency switch\n0 = 50 Hz\n1 = 75 Hz",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "grounding_disconnector",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Grounding disconnector switch\n0 = disabled\n1 = front\n2 = back\n3 = both",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "headlight_individual_fl",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Signal light (front left) switch\n0 = disabled\n1 = white\n2 = red",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "headlight_individual_fr",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Signal light (front right) switch\n0 = disabled\n1 = white\n2 = red",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "headlight_individual_rl",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Signal light (rear left) switch\n0 = disabled\n1 = white\n2 = red",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "headlight_individual_rr",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Signal light (rear right) switch\n0 = disabled\n1 = white\n2 = red",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "horn_l",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Horn button on the very left of dashboard\n0 = released\n1 = pressed",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "horn_pedal",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Horn pedal\n0 = released\n1 = pressed",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "horn_r",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Horn button on the right of dashboard\n0 = released\n1 = pressed",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "increase_shunting_power_button",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Increase shunting power button on the right side of the cabin\n0 = released\n1 = pressed",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "init_main_switch_rq",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Init main switch request\n0 = default position\n1 = close main switch (returns to 0 after release)",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "instrument_light",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Instrument backlight\n0 = disabled\n1 = TL\n2 = PL",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "local_brake",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Local brake handle\n0.0–1.0 where 0 = no braking, 1.0 = fully engaged local brake",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "main_brake",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Main brake\n0 = fill\n1 = assimilation\n2 = disabled\n3 = release (moves to 4 when released)\n4 = driving/maintaining\n5 = braking (moves to 4 when released)\n6 = emergency braking",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "main_controller",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Main throttle controller\n0 = quick power increase\n1 = increase power (moves to 2 when released)\n2 = maintain power\n3 = decrease power (moves to 2 when released)\n4 = quick power decrease",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "motors_disabled",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Motor disconnector switch below the dashboard\n0 = J\n1 = PM I\n2 = PM II",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "open_main_switch_rq",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Open main switch request\n-1 = released\n1 = pressed",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "pantograph",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Pantograph switch\n0 = lower pantographs\n1 = raise front pantograph\n2 = raise back pantograph\n3 = raise both",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "pantograph_air_valve_back",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Back pantograph air valve (not further documented)",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "pantograph_air_valve_front",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Front pantograph air valve (not further documented)",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "power_supply_switch",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Power supply switch (115 V)\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "power_supply_switch_breaker",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Power supply breaker\n0 = off position\n1 = on position",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "radio_0",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Radio 0 button on numpad\n0 = released\n1 = pressed",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "radio_1",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Radio 1 button on numpad\n0 = released\n1 = pressed",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "radio_2",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Radio 2 button on numpad\n0 = released\n1 = pressed",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "radio_3",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Radio 3 button on numpad\n0 = released\n1 = pressed",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "radio_4",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Radio 4 button on numpad\n0 = released\n1 = pressed",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "radio_5",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Radio 5 button on numpad\n0 = released\n1 = pressed",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "radio_6",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Radio 6 button on numpad\n0 = released\n1 = pressed",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "radio_7",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Radio 7 button on numpad\n0 = released\n1 = pressed",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "radio_8",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Radio 8 button on numpad\n0 = released\n1 = pressed",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "radio_9",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Radio 9 button on numpad\n0 = released\n1 = pressed",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "radio_down",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Radio down arrow button\n0 = released\n1 = pressed",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "radio_enter",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Radio enter button\n0 = released\n1 = pressed",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "radio_f",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Radio F button\n0 = released\n1 = pressed",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "radio_f1",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Radio F1 button\n0 = released\n1 = pressed",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "radio_f2",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Radio F2 button\n0 = released\n1 = pressed",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "radio_f3",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Radio F3 button\n0 = released\n1 = pressed",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "radio_f4",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Radio F4 button\n0 = released\n1 = pressed",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "radio_f5",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Radio F5 button\n0 = released\n1 = pressed",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "radio_f6",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Radio F6 button\n0 = released\n1 = pressed",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "radio_f7",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Radio F7 button\n0 = released\n1 = pressed",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "radio_f8",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Radio F8 button\n0 = released\n1 = pressed",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "radio_f9",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Radio F9 button\n0 = released\n1 = pressed",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "radio_hash",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Radio # button on numpad\n0 = released\n1 = pressed",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "radio_left",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Radio left arrow button\n0 = released\n1 = pressed",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "radio_null",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Radio NULL button\n0 = released\n1 = pressed",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "radio_onoff",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Radio on/off button\n0 = released\n1 = pressed",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "radio_radiostop",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Radiostop button\n0 = released\n1 = pressed",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "radio_right",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Radio right arrow button\n0 = released\n1 = pressed",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "radio_simplex",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Radio SIMPLEX button\n0 = released\n1 = pressed",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "radio_system",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Radio SYSTEM button\n0 = released\n1 = pressed",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "radio_tab",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Radio TAB button on numpad\n0 = released\n1 = pressed",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "radio_up",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Radio up arrow button\n0 = released\n1 = pressed",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "relative_power_switch",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Relative power switch\n1–12 = 12 positions",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "release_brakes",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Release brakes button\n0 = released\n1 = pressed (returns to 0 when released)",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "sanding",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Sending button\n0 = released\n1 = pressed (returns to 0 when released)",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "sanding_pedal",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Sanding pedal\n0 = released\n1 = pressed",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "signal_lights_l",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Left headlamp switch\n0 = disabled\n1 = white\n2 = red",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "signal_lights_r",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Right headlamp switch\n0 = disabled\n1 = white\n2 = red",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "speed_ctrl_rq",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Cruise speed control buttons\n0 = buttons released\n-1 = decrease cruise speed by 5 km/h\n1 = increase cruise speed by 5 km/h\n-30 = set limit to 0 km/h\n10–120 = set limit 10–120 km/h",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "train_heating",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Train heating lever\n0 = disabled\n1 = enabled",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_163",
+      "name": "train_type_switch",
+      "vehicles": [
+        "71E (CD163)"
+      ],
+      "variants": [
+        {
+          "description": "Train type switch\n0 = passenger\n1 = freight",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_E6ACT",
+      "name": "activation_handle",
+      "vehicles": [
+        "Dragon 2 (ET25 / E6ACTa)"
+      ],
+      "variants": [
+        {
+          "description": "Cabin activation switch\n0 = disabled\n2 = activates cabin A\n3 = activates cabin B",
+          "vehicles": [
+            "Dragon 2 (ET25 / E6ACTa)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_E6ACT",
+      "name": "dashboard_light_intensity",
+      "vehicles": [
+        "Dragon 2 (ET25 / E6ACTa)"
+      ],
+      "variants": [
+        {
+          "description": "Desk backlight intensity\n0.25–1 = 25%–100% of light intensity",
+          "vehicles": [
+            "Dragon 2 (ET25 / E6ACTa)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_E6ACT",
+      "name": "dashboard_light_secondary",
+      "vehicles": [
+        "Dragon 2 (ET25 / E6ACTa)"
+      ],
+      "variants": [
+        {
+          "description": "Desk backlight switch\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "Dragon 2 (ET25 / E6ACTa)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "air_recirculation",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Air recirculation switch\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "alarm_rq",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Train alarm signal switch\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "blind_control",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Roller blind control\n-1 = close\n0 = neutral\n1 = open",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "booster",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Booster mode switch\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "brake_distributor_insulation",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Brake distributor insulation switch\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "brake_test",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Brake test switch\n0 = disabled\n1 = pneumatic brake test\n2 = automatic brake test\n3 = electromagnetic brake test",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "bypass_mcb",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Bypass of main circuit breaker switch\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "bypass_tco",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Bypass of traction cut-off function switch\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "corridor_light",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Corridor light switch\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "coupler_cover_open",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Coupler cover open/close request\n-2 = default position\n0 = close\n1 = open",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "dashboard_light_intensity",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Dashboard backlight intensity\n0.05–1.0 = 0%–100% of light intensity",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "decouple",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Decoupling request\n-1 = decouple rear\n1 = decouple front (direction depends on current cabin selected)\n0 = default position",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "disable_lzb",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Disable LZB switch\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "disable_mirel",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Disable MIREL switch\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "disable_nothalt",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Disable emergency stop (nothalt) switch\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "disable_pzb",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Disable PZB switch\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "disable_radiostop",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Disable radiostop switch\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "disable_shp",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Disable SHP switch\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "disable_sifa",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Disable SIFA switch\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "door_close",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Close opened doors request\n0 = button released\n1 = button pressed",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "door_open_left",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Left door open request\n0 = button released\n1 = button pressed",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "door_open_right",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Right door open request\n0 = button released\n1 = button pressed",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "ed_enable_rq",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Request to enable electrodynamic brake\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "emergency_ventilation",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Emergency ventilation switch\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "footrest_control",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Footrest control request\n-1 = lower\n0 = neutral\n1 = raise",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "forbid_emergency_brake",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Forbid emergency braking switch\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "force_compressors",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Force compressors switch\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "headlight_battery_power",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Powering headlight from battery switch\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "heating_fan",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Heating fan request 0-3",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "heating_feet",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Heating feet switch\n-1 = disable\n1 = first level\n2 = second level",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "heating_temp",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Heating temperature switch\n0.0–1.1 = 0%–100% of heating power",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "high_beam_headlights",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "High beam headlights switch\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "high_beam_headlights_impulse",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "High beam headlights request\n-1 = button released\n1 = button pressed",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "instrument_light_intensity",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Instrument backlight intensity\n0–1 = 0%–100% of light intensity",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "neutral_section",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Neutral section switch\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "override_hz_ril_a",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Override of harmonic measurement for section A switch\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "override_hz_ril_b",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Override of harmonic measurement for section B switch\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "parking",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Parking mode request\n0 = button released\n1 = button pressed",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "pas_comp_light",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Passenger compartment light request\n-1 = turn off\n0 = default position\n1 = turn on",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "rear_light_pos",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Rear headlight mode switch\n0 = Pc5 AUT\n1 = Pc1\n2 = Tb1a\n3 = Pc2\n4 = SCZ\n5 = LCZ\n6 = Tb1b\n7 = Pc5",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "reset_controller",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Controller reset request\n0 = button released\n1 = button pressed",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "reset_evc_teloc",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Reset EVC/TELOC request\n0 = button released\n1 = button pressed",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "shp_button",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Main SHP button\n-1 = button released\n1 = button pressed",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "spotlight_driver",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Driver lamp switch\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "spotlight_helper",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Helper lamp switch\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "test_dashboard_controls",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Dashboard controls test request\n-1 = button released\n1 = button pressed",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "test_lv_board_controls",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Low-voltage cabinet indicator lights test request\n0 = button released\n1 = button pressed",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "test_sifa",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "SIFA test request\n0 = button released\n1 = button pressed",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "upper_headlight",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Upper headlight switch\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "voltage_selector",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Voltage selector position\n0 = 3kV DC (PL)\n1 = 25kV AC (PL)\n2 = 15kV AC\n3 = 25kV AC (CZ)\n4 = 3kV AC (CZ)",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ED250",
+      "name": "windscreen_heater",
+      "vehicles": [
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Windscreen heater switch\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ELF_34WE",
+      "name": "airtight_test_rq",
+      "vehicles": [
+        "Elf (EN76 / EN96)"
+      ],
+      "variants": []
+    },
+    {
+      "category": "Physics_Input_ELF_34WE",
+      "name": "dashboard_light_impulse",
+      "vehicles": [
+        "Elf (EN76 / EN96)"
+      ],
+      "variants": [
+        {
+          "description": "Button which will enable dashboard lights when pressed, but will disable them when released\n-1 = Released\n1 = Pressed",
+          "vehicles": [
+            "Elf (EN76 / EN96)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ELF_34WE",
+      "name": "door_allow_switch",
+      "vehicles": [
+        "Elf (EN76 / EN96)"
+      ],
+      "variants": [
+        {
+          "description": "Door opening switch\n0 = open left\n1 = Closed\n2 = open right\n3 = open both sides",
+          "vehicles": [
+            "Elf (EN76 / EN96)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ELF_34WE",
+      "name": "door_close",
+      "vehicles": [
+        "Elf (EN76 / EN96)"
+      ],
+      "variants": [
+        {
+          "description": "Door closing button\n0 = released\n1 = pressed\nThis button should return to 0.",
+          "vehicles": [
+            "Elf (EN76 / EN96)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ELF_34WE",
+      "name": "door_open",
+      "vehicles": [
+        "Elf (EN76 / EN96)"
+      ],
+      "variants": [
+        {
+          "description": "Door opening button\n0 = released\n1 = pressed\nThis button should return to 0.",
+          "vehicles": [
+            "Elf (EN76 / EN96)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ELF_34WE",
+      "name": "door_step_allow",
+      "vehicles": [
+        "Elf (EN76 / EN96)"
+      ],
+      "variants": [
+        {
+          "description": "Door step button\n0 = released\n1 = pressed\nThis button should stay pressed unless pushed in again.",
+          "vehicles": [
+            "Elf (EN76 / EN96)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ELF_34WE",
+      "name": "speed_ctrl_force",
+      "vehicles": [
+        "Elf (EN76 / EN96)"
+      ],
+      "variants": []
+    },
+    {
+      "category": "Physics_Input_ELF_34WE",
+      "name": "speed_ctrl_rq",
+      "vehicles": [
+        "Elf (EN76 / EN96)"
+      ],
+      "variants": []
+    },
+    {
+      "category": "Physics_Input_ELF_34WE",
+      "name": "warning_signal_handle",
+      "vehicles": [
+        "Elf (EN76 / EN96)"
+      ],
+      "variants": [
+        {
+          "description": "Warning signal (horns) - partially overlapys with Physics_Input_general horn_signal\n0 = Both tones\n1 = High tone\n2 = Disabled\n3 = Low tone\n4 = Both tones",
+          "vehicles": [
+            "Elf (EN76 / EN96)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EN57",
+      "name": "active_cabin_rq",
+      "vehicles": [
+        "Kibel (EN57 / EN71)"
+      ],
+      "variants": [
+        {
+          "description": "Cabin activation switch\n-1 = deactivated\n1 = activate",
+          "vehicles": [
+            "Kibel (EN57 / EN71)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EN57",
+      "name": "ca_intensity",
+      "vehicles": [
+        "Kibel (EN57 / EN71)"
+      ],
+      "variants": [
+        {
+          "description": "CA indicator alerted dimming.\n1 = disabled\n0.6 = enabled",
+          "vehicles": [
+            "Kibel (EN57 / EN71)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EN57",
+      "name": "cabin_light",
+      "vehicles": [
+        "Kibel (EN57 / EN71)"
+      ],
+      "variants": [
+        {
+          "description": "Cabin light switch\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "Kibel (EN57 / EN71)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EN57",
+      "name": "close_main_switch_rq",
+      "vehicles": [
+        "Kibel (EN57 / EN71)"
+      ],
+      "variants": [
+        {
+          "description": "Main switch (circuit breaker) close request.\n-1 = button released\n1 = button pressed",
+          "vehicles": [
+            "Kibel (EN57 / EN71)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EN57",
+      "name": "compressor_rq",
+      "vehicles": [
+        "Kibel (EN57 / EN71)"
+      ],
+      "variants": [
+        {
+          "description": "Main compressor switch\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "Kibel (EN57 / EN71)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EN57",
+      "name": "converter_rq",
+      "vehicles": [
+        "Kibel (EN57 / EN71)"
+      ],
+      "variants": [
+        {
+          "description": "Converter switch\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "Kibel (EN57 / EN71)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EN57",
+      "name": "destination_board_backlight",
+      "vehicles": [
+        "Kibel (EN57 / EN71)"
+      ],
+      "variants": [
+        {
+          "description": "Destination board backlight switch\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "Kibel (EN57 / EN71)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EN57",
+      "name": "dim_right_headlight",
+      "vehicles": [
+        "Kibel (EN57 / EN71)"
+      ],
+      "variants": [
+        {
+          "description": "Dimming of right headlight\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "Kibel (EN57 / EN71)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EN57",
+      "name": "direction_controller",
+      "vehicles": [
+        "Kibel (EN57 / EN71)"
+      ],
+      "variants": [
+        {
+          "description": "Driving direction selector (per cabin)\n0 = Forward II\n1 = Forward I\n2 = Neutral\n3 = disabled\n4 = reverse",
+          "vehicles": [
+            "Kibel (EN57 / EN71)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EN57",
+      "name": "door_left",
+      "vehicles": [
+        "Kibel (EN57 / EN71)"
+      ],
+      "variants": [
+        {
+          "description": "Left door switch\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "Kibel (EN57 / EN71)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EN57",
+      "name": "door_right",
+      "vehicles": [
+        "Kibel (EN57 / EN71)"
+      ],
+      "variants": [
+        {
+          "description": "Right door switch\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "Kibel (EN57 / EN71)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EN57",
+      "name": "door_signal",
+      "vehicles": [
+        "Kibel (EN57 / EN71)"
+      ],
+      "variants": [
+        {
+          "description": "Door signal request\n-1 = button released\n1 = button pressed",
+          "vehicles": [
+            "Kibel (EN57 / EN71)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EN57",
+      "name": "endsignal_individual_fl",
+      "vehicles": [
+        "Kibel (EN57 / EN71)"
+      ],
+      "variants": [
+        {
+          "description": "Cabin A (front), left end-signal switch\n-128 = disabled\n128 = enabled",
+          "vehicles": [
+            "Kibel (EN57 / EN71)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EN57",
+      "name": "endsignal_individual_fr",
+      "vehicles": [
+        "Kibel (EN57 / EN71)"
+      ],
+      "variants": [
+        {
+          "description": "Cabin A (front), right end-signal switch\n-2 = disabled\n2 = enabled",
+          "vehicles": [
+            "Kibel (EN57 / EN71)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EN57",
+      "name": "endsignal_individual_rl",
+      "vehicles": [
+        "Kibel (EN57 / EN71)"
+      ],
+      "variants": [
+        {
+          "description": "Cabin B (rear), left end-signal switch\n-65536 = disabled\n65536 = enabled",
+          "vehicles": [
+            "Kibel (EN57 / EN71)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EN57",
+      "name": "endsignal_individual_rr",
+      "vehicles": [
+        "Kibel (EN57 / EN71)"
+      ],
+      "variants": [
+        {
+          "description": "Cabin B (rear), right end-signal switch\n-1024 = disabled\n1024 = enabled",
+          "vehicles": [
+            "Kibel (EN57 / EN71)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EN57",
+      "name": "headlight_individual_fl",
+      "vehicles": [
+        "Kibel (EN57 / EN71)"
+      ],
+      "variants": [
+        {
+          "description": "Cabin A (front), left headlight switch\n-128 = disabled\n128 = enabled",
+          "vehicles": [
+            "Kibel (EN57 / EN71)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EN57",
+      "name": "headlight_individual_fr",
+      "vehicles": [
+        "Kibel (EN57 / EN71)"
+      ],
+      "variants": [
+        {
+          "description": "Cabin A (front), right headlight switch\n-2 = disabled\n2 = enabled",
+          "vehicles": [
+            "Kibel (EN57 / EN71)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EN57",
+      "name": "headlight_individual_ft",
+      "vehicles": [
+        "Kibel (EN57 / EN71)"
+      ],
+      "variants": [
+        {
+          "description": "Cabin A (front), top headlight switch\n-16 = disabled\n16 = enabled",
+          "vehicles": [
+            "Kibel (EN57 / EN71)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EN57",
+      "name": "headlight_individual_rl",
+      "vehicles": [
+        "Kibel (EN57 / EN71)"
+      ],
+      "variants": [
+        {
+          "description": "Cabin B (rear), left headlight switch\n-65536 = disabled\n65536 = enabled",
+          "vehicles": [
+            "Kibel (EN57 / EN71)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EN57",
+      "name": "headlight_individual_rr",
+      "vehicles": [
+        "Kibel (EN57 / EN71)"
+      ],
+      "variants": [
+        {
+          "description": "Cabin B (rear), right headlight switch\n-1024 = disabled\n1024 = enabled",
+          "vehicles": [
+            "Kibel (EN57 / EN71)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EN57",
+      "name": "headlight_individual_rt",
+      "vehicles": [
+        "Kibel (EN57 / EN71)"
+      ],
+      "variants": [
+        {
+          "description": "Cabin B (rear), top headlight switch\n-8192 = disabled\n8192 = enabled",
+          "vehicles": [
+            "Kibel (EN57 / EN71)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EN57",
+      "name": "heating_rq",
+      "vehicles": [
+        "Kibel (EN57 / EN71)"
+      ],
+      "variants": [
+        {
+          "description": "Train HV heating switch\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "Kibel (EN57 / EN71)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EN57",
+      "name": "instrument_light",
+      "vehicles": [
+        "Kibel (EN57 / EN71)"
+      ],
+      "variants": [
+        {
+          "description": "Instruments backlight switch\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "Kibel (EN57 / EN71)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EN57",
+      "name": "lamp_test_1",
+      "vehicles": [
+        "Kibel (EN57 / EN71)"
+      ],
+      "variants": [
+        {
+          "description": "First group of lamp test request (button)\n-1 = released\n1 = pressed",
+          "vehicles": [
+            "Kibel (EN57 / EN71)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EN57",
+      "name": "lamp_test_2",
+      "vehicles": [
+        "Kibel (EN57 / EN71)"
+      ],
+      "variants": [
+        {
+          "description": "Second group of lamp test request (button)\n-1 = released\n1 = pressed",
+          "vehicles": [
+            "Kibel (EN57 / EN71)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EN57",
+      "name": "main_brake",
+      "vehicles": [
+        "Kibel (EN57 / EN71)"
+      ],
+      "variants": [
+        {
+          "description": "Main braking handle position (per cabin)\n0 = Releasing ep\n1 = Driving ep\n2 = driving\n3 = braking ep\n4 = driving pn\n5 = maintain pn\n5.6 = braking pn\n6 = emergency\n7 = disabled",
+          "vehicles": [
+            "Kibel (EN57 / EN71)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EN57",
+      "name": "main_controller",
+      "vehicles": [
+        "Kibel (EN57 / EN71)"
+      ],
+      "variants": [
+        {
+          "description": "Main driving handle position\n0–6 = integers only",
+          "vehicles": [
+            "Kibel (EN57 / EN71)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EN57",
+      "name": "manual_brake",
+      "vehicles": [
+        "Kibel (EN57 / EN71)"
+      ],
+      "variants": [
+        {
+          "description": "Manual brake handle position\n0 = enabled\n1 = disabled",
+          "vehicles": [
+            "Kibel (EN57 / EN71)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EN57",
+      "name": "pantograph_all_down_rq",
+      "vehicles": [
+        "Kibel (EN57 / EN71)"
+      ],
+      "variants": [
+        {
+          "description": "All pantographs lower button\n-1 = default state\n1 = lower",
+          "vehicles": [
+            "Kibel (EN57 / EN71)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EN57",
+      "name": "pantograph_front_down_rq",
+      "vehicles": [
+        "Kibel (EN57 / EN71)"
+      ],
+      "variants": [
+        {
+          "description": "Front pantograph lower switch\n-1 = default state\n1 = lower",
+          "vehicles": [
+            "Kibel (EN57 / EN71)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EN57",
+      "name": "pantograph_front_up_rq",
+      "vehicles": [
+        "Kibel (EN57 / EN71)"
+      ],
+      "variants": [
+        {
+          "description": "Front pantograph raise switch\n-1 = default state\n1 = raise",
+          "vehicles": [
+            "Kibel (EN57 / EN71)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EN57",
+      "name": "pantograph_rear_up_rq",
+      "vehicles": [
+        "Kibel (EN57 / EN71)"
+      ],
+      "variants": [
+        {
+          "description": "Rear pantograph raise switch\n-1 = default state\n1 = raise",
+          "vehicles": [
+            "Kibel (EN57 / EN71)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EN57",
+      "name": "passanger_light_disable_rq",
+      "vehicles": [
+        "Kibel (EN57 / EN71)"
+      ],
+      "variants": [
+        {
+          "description": "Passenger light disable request\n-1 = button released\n1 = button pressed",
+          "vehicles": [
+            "Kibel (EN57 / EN71)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EN57",
+      "name": "passanger_light_enable_rq",
+      "vehicles": [
+        "Kibel (EN57 / EN71)"
+      ],
+      "variants": [
+        {
+          "description": "Passenger light enable request\n-1 = button released\n1 = button pressed",
+          "vehicles": [
+            "Kibel (EN57 / EN71)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EN57",
+      "name": "security_system_button_a",
+      "vehicles": [
+        "Kibel (EN57 / EN71)"
+      ],
+      "variants": [
+        {
+          "description": "Main CA/SHP button\n-1 = button released\n1 = button pressed",
+          "vehicles": [
+            "Kibel (EN57 / EN71)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EN57",
+      "name": "security_system_button_b",
+      "vehicles": [
+        "Kibel (EN57 / EN71)"
+      ],
+      "variants": [
+        {
+          "description": "Main CA/SHP button\n-1 = button released\n1 = button pressed",
+          "vehicles": [
+            "Kibel (EN57 / EN71)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EN57",
+      "name": "shp_intensity",
+      "vehicles": [
+        "Kibel (EN57 / EN71)"
+      ],
+      "variants": [
+        {
+          "description": "SHP indicator backlight intensity\n1 = full\n0.6 = dimmed",
+          "vehicles": [
+            "Kibel (EN57 / EN71)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EN57",
+      "name": "unlock_compressors_rq",
+      "vehicles": [
+        "Kibel (EN57 / EN71)"
+      ],
+      "variants": [
+        {
+          "description": "Unlock compressors request\n-1 = button released\n1 = button pressed",
+          "vehicles": [
+            "Kibel (EN57 / EN71)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EN57",
+      "name": "unlock_converters_rq",
+      "vehicles": [
+        "Kibel (EN57 / EN71)"
+      ],
+      "variants": [
+        {
+          "description": "Unlock converters request\n-1 = button released\n1 = button pressed",
+          "vehicles": [
+            "Kibel (EN57 / EN71)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EN57",
+      "name": "unlock_fuses_rq",
+      "vehicles": [
+        "Kibel (EN57 / EN71)"
+      ],
+      "variants": [
+        {
+          "description": "Unlock traction motors overlay relay\n-1 = button released\n1 = button pressed (should return to -1 when released)",
+          "vehicles": [
+            "Kibel (EN57 / EN71)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EN57",
+      "name": "warning_signal_rq",
+      "vehicles": [
+        "Kibel (EN57 / EN71)"
+      ],
+      "variants": [
+        {
+          "description": "Horn warning pedal\n-1 = relesede\n1 = pressed",
+          "vehicles": [
+            "Kibel (EN57 / EN71)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EN57",
+      "name": "wiper_1",
+      "vehicles": [
+        "Kibel (EN57 / EN71)"
+      ],
+      "variants": [
+        {
+          "description": "Wiper knob position in cabin A\n0–3 = 0%–100% of wiper speed",
+          "vehicles": [
+            "Kibel (EN57 / EN71)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EN57",
+      "name": "wiper_2",
+      "vehicles": [
+        "Kibel (EN57 / EN71)"
+      ],
+      "variants": [
+        {
+          "description": "Second wiper enable switch in cabin A\n0 = disabled\n1 = enabled",
+          "vehicles": [
+            "Kibel (EN57 / EN71)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EN57",
+      "name": "wiper_second_speed",
+      "vehicles": [
+        "Kibel (EN57 / EN71)"
+      ],
+      "variants": [
+        {
+          "description": "Second wiper speed control (per cabin)\n0.25–2 = 0%–100% of wiper speed",
+          "vehicles": [
+            "Kibel (EN57 / EN71)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "active_cabin_rq",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "Cabin activation switch\n1 = activate\n0 = deactivate",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "alerter_intensity",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "Alerted dimming\n0.6 = dimmed\n1 = disabled",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "anti_slipping_brake_rq",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "ABS request\n-1 = button released\n1 = button pressed",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "brake_regime",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "Position of brake regime knob\n0 = G\n1 = P\n2 = R",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "brake_release_button_rq",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "Brake releaser button\n-1 = button released\n1 = button pressed",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "close_main_switch_rq",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "Main switch close request\n-1 = button released\n1 = button pressed",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "compressor_rq",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "Position of the main compressor switch\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "converter_rq",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "Position of the converter switch\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "dim_headlights",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "Backlight intensity of headlights\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "dim_right_headlight",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "Backlight intensity of right headlight\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "direction_controller",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "Driving direction selector\n0 = forward II\n1 = forward I\n2 = neutral\n3 = reverse",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "emergency_brake_button_rq",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "Emergency brake button\n-4 = disabled\n4 = enabled",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "emergency_pantograph_lower_rq",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "Emergency pantograph lower request\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "enable_main_switch_rq",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "Main switch supply request in cabin A\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "endsignal_individual_fl",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "Cabin A (front), left end-signal switch\n-128 = disabled\n128 = enabled",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "endsignal_individual_fr",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "Cabin A (front), right end-signal switch\n-2 = disabled\n2 = enabled",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "endsignal_individual_rl",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "Cabin B (rear), left end-signal switch\n-65536 = disabled\n65536 = enabled",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "endsignal_individual_rr",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "Cabin B (rear), right end-signal switch\n-1024 = disabled\n1024 = enabled",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "headlight_individual_fl",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "Cabin A (front), left headlight switch\n-128 = disabled\n128 = enabled",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "headlight_individual_fr",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "Cabin A (front), right headlight switch\n-2 = disabled\n2 = enabled",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "headlight_individual_ft",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "Cabin A (front), top headlight switch\n-16 = disabled\n16 = enabled",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "headlight_individual_rl",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "Cabin B (rear), left headlight switch\n-65536 = disabled\n65536 = enabled",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "headlight_individual_rr",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "Cabin B (rear), right headlight switch\n-1024 = disabled\n1024 = enabled",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "headlight_individual_rt",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "Cabin B (rear), top headlight switch\n-8192 = disabled\n8192 = enabled",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "heating_rq",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "Train HV heating switch\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "highcurrent_rq",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "High current driving mode switch\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "instrument_light",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "Instruments backlight state\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "instrument_light_1_intensity",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "Instruments light dimming switch\n0 = disabled\n0.4 = enabled",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "instrument_light_2_intensity",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "Instruments light dimming switch\n0 = disabled\n0.4 = enabled",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "local_brake",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "Position of the local braking handle\n0–1 = 0%–100% of braking force",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "main_brake",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "Position of the main braking handle\n0 = disabled\n1 = fill\n2 = running\n3 = initial\n3.5-5.5 = braking (range)\n6 = full service\n7 = re-application\n8 = emergency braking",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "main_controller",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "Position of the main driving handle\n0–48 = integers only",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "manual_brake",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "Position of manual brake handle\n0 - released\n1 - engaged",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "open_contactors_rq",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "Request to open contactors\n-1 = button released\n1 = button pressed",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "pantograph_back_rq",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "Pantograph rear switch\n-1 = lower\n1 = raise",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "pantograph_front_rq_a",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "Pantograph front switch\n-1 = lower\n1 = raise",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "sanding",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "Sanding pedal\n0 = disabled\n1 = enabled",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "sanding_fuse",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "Sanding switch in cabin A\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "security_system_button",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "Main CA/SHP button\n-1 = button released\n1 = button pressed",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "shp_intensity",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "SHP dimming\n1 = disabled\n0.6 = enabled",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "shunting_handle",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "Position of the shunt regulator\n0–6 = positions",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "signal_lights_intensity_1",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "Signals lights dimming\n0.0 = disabled\n0.4 = enabled",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "signal_lights_intensity_2",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "Signals lights dimming\n0.0 = disabled\n0.4 = enabled",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "unlock_aux_relay_rq",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "Request to unlock auxiliary relay\n-1 = button released\n1 = button pressed",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "unlock_compressors_rq",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "Request to unlock compressors\n-1 = button released\n1 = button pressed",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "unlock_ground_relay_rq",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "Request to unlock ground relay in cabin A\n-1 = button released\n1 = button pressed",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "warning_signal_rq",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "Horn signal lever\n0 = default position\n1 = low tone\n2 = high tone",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "wiper_1",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "Position of wiper knob 1\n0 = disabled\n1 = enabled",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "wiper_1_speed",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "Current speed of wiper 1\n0-4 = 0%-100% of speed",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "wiper_2",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "Position of wiper knob 2\n0 = disabled\n1 = enabled",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_ET22",
+      "name": "wiper_2_speed",
+      "vehicles": [
+        "201E (ET22)"
+      ],
+      "variants": [
+        {
+          "description": "Current speed of wiper 2\n0-4 = 0%-100% of speed",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EU07",
+      "name": "anti_slipping_brake_rq",
+      "vehicles": [
+        "102E (EP08)",
+        "4E (EU07/EP07)"
+      ],
+      "variants": [
+        {
+          "description": "ABS request\n-1 = button released\n1 = button pressed",
+          "vehicles": [
+            "102E (EP08)"
+          ]
+        },
+        {
+          "description": "ABS request\n-1 = button relased, 1 = button presed.",
+          "vehicles": [
+            "4E (EU07/EP07)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EU07",
+      "name": "brake_regime",
+      "vehicles": [
+        "102E (EP08)",
+        "4E (EU07/EP07)"
+      ],
+      "variants": [
+        {
+          "description": "Position of brake regime knob\n0 = G\n1 = P\n2 = R",
+          "vehicles": [
+            "102E (EP08)",
+            "4E (EU07/EP07)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EU07",
+      "name": "ca_lights_intensity",
+      "vehicles": [
+        "102E (EP08)",
+        "4E (EU07/EP07)"
+      ],
+      "variants": [
+        {
+          "description": "Intensity of CA indicator lights\n0–1 = 0%–100% of brightness",
+          "vehicles": [
+            "102E (EP08)",
+            "4E (EU07/EP07)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EU07",
+      "name": "compressor_rq",
+      "vehicles": [
+        "102E (EP08)",
+        "4E (EU07/EP07)"
+      ],
+      "variants": [
+        {
+          "description": "Position of the main compressor switch\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "102E (EP08)",
+            "4E (EU07/EP07)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EU07",
+      "name": "converter_rq",
+      "vehicles": [
+        "102E (EP08)",
+        "4E (EU07/EP07)"
+      ],
+      "variants": [
+        {
+          "description": "Position of the converter switch\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "102E (EP08)",
+            "4E (EU07/EP07)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EU07",
+      "name": "endsignal_individual_fl",
+      "vehicles": [
+        "102E (EP08)",
+        "4E (EU07/EP07)"
+      ],
+      "variants": [
+        {
+          "description": "Cabin 1, left end-signal switch\n-128 = disabled\n128 = enabled",
+          "vehicles": [
+            "102E (EP08)"
+          ]
+        },
+        {
+          "description": "Cabin 1, right end-signal switch.\n-128 = disabled, 128 = enabled",
+          "vehicles": [
+            "4E (EU07/EP07)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EU07",
+      "name": "endsignal_individual_fr",
+      "vehicles": [
+        "102E (EP08)",
+        "4E (EU07/EP07)"
+      ],
+      "variants": [
+        {
+          "description": "Cabin 1, right end-signal switch\n-2 = disabled\n2 = enabled",
+          "vehicles": [
+            "102E (EP08)",
+            "4E (EU07/EP07)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EU07",
+      "name": "endsignal_individual_rl",
+      "vehicles": [
+        "102E (EP08)",
+        "4E (EU07/EP07)"
+      ],
+      "variants": [
+        {
+          "description": "Cabin -1, left end-signal switch\n-65536 = disabled\n65536 = enabled",
+          "vehicles": [
+            "102E (EP08)"
+          ]
+        },
+        {
+          "description": "Cabin -1, right end-signal switch.\n-65536 = disabled, 65536 = enabled",
+          "vehicles": [
+            "4E (EU07/EP07)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EU07",
+      "name": "endsignal_individual_rr",
+      "vehicles": [
+        "102E (EP08)",
+        "4E (EU07/EP07)"
+      ],
+      "variants": [
+        {
+          "description": "Cabin -1, right end-signal switch\n-1024 = disabled\n1024 = enabled",
+          "vehicles": [
+            "102E (EP08)",
+            "4E (EU07/EP07)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EU07",
+      "name": "general_lights",
+      "vehicles": [
+        "102E (EP08)",
+        "4E (EU07/EP07)"
+      ],
+      "variants": [
+        {
+          "description": "General lights\n0 = off\n1 = on",
+          "vehicles": [
+            "102E (EP08)",
+            "4E (EU07/EP07)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EU07",
+      "name": "headlight_individual_fl",
+      "vehicles": [
+        "102E (EP08)",
+        "4E (EU07/EP07)"
+      ],
+      "variants": [
+        {
+          "description": "Cabin 1, left headlight switch\n-128 = disabled\n128 = enabled",
+          "vehicles": [
+            "102E (EP08)",
+            "4E (EU07/EP07)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EU07",
+      "name": "headlight_individual_fr",
+      "vehicles": [
+        "102E (EP08)",
+        "4E (EU07/EP07)"
+      ],
+      "variants": [
+        {
+          "description": "Cabin 1, right headlight switch\n-2 = disabled\n2 = enabled",
+          "vehicles": [
+            "102E (EP08)",
+            "4E (EU07/EP07)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EU07",
+      "name": "headlight_individual_ft",
+      "vehicles": [
+        "102E (EP08)",
+        "4E (EU07/EP07)"
+      ],
+      "variants": [
+        {
+          "description": "Cabin 1, top headlight switch\n-16 = disabled\n16 = enabled",
+          "vehicles": [
+            "102E (EP08)",
+            "4E (EU07/EP07)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EU07",
+      "name": "headlight_individual_rl",
+      "vehicles": [
+        "102E (EP08)",
+        "4E (EU07/EP07)"
+      ],
+      "variants": [
+        {
+          "description": "Cabin -1, left headlight switch\n-65536 = disabled\n65536 = enabled",
+          "vehicles": [
+            "102E (EP08)"
+          ]
+        },
+        {
+          "description": "Cabin -1, right headlight switch.\n-65536 = disabled, 65536 = enabled",
+          "vehicles": [
+            "4E (EU07/EP07)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EU07",
+      "name": "headlight_individual_rr",
+      "vehicles": [
+        "102E (EP08)",
+        "4E (EU07/EP07)"
+      ],
+      "variants": [
+        {
+          "description": "Cabin -1, right headlight switch\n-1024 = disabled\n1024 = enabled",
+          "vehicles": [
+            "102E (EP08)",
+            "4E (EU07/EP07)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EU07",
+      "name": "headlight_individual_rt",
+      "vehicles": [
+        "102E (EP08)",
+        "4E (EU07/EP07)"
+      ],
+      "variants": [
+        {
+          "description": "Cabin -1, top headlight switch\n-8192 = disabled\n8192 = enabled",
+          "vehicles": [
+            "102E (EP08)"
+          ]
+        },
+        {
+          "description": "Cabin -1, right headlight switch.\n-8192 = disabled, 8192 = enabled",
+          "vehicles": [
+            "4E (EU07/EP07)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EU07",
+      "name": "heating_rq",
+      "vehicles": [
+        "102E (EP08)",
+        "4E (EU07/EP07)"
+      ],
+      "variants": [
+        {
+          "description": "Position of the train HV heating switch\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "102E (EP08)",
+            "4E (EU07/EP07)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EU07",
+      "name": "high_current_rq",
+      "vehicles": [
+        "102E (EP08)"
+      ],
+      "variants": [
+        {
+          "description": "High current driving mode request (not documented — verify)",
+          "vehicles": [
+            "102E (EP08)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EU07",
+      "name": "manual_brake_1",
+      "vehicles": [
+        "102E (EP08)",
+        "4E (EU07/EP07)"
+      ],
+      "variants": [
+        {
+          "description": "Manual brake\n0 = released\n1 = engaged",
+          "vehicles": [
+            "102E (EP08)"
+          ]
+        },
+        {
+          "description": "Manual brake\n0 = Released",
+          "vehicles": [
+            "4E (EU07/EP07)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EU07",
+      "name": "open_contactors_rq",
+      "vehicles": [
+        "102E (EP08)",
+        "4E (EU07/EP07)"
+      ],
+      "variants": [
+        {
+          "description": "Request to open contactors\n-1 = button released\n1 = button pressed",
+          "vehicles": [
+            "102E (EP08)"
+          ]
+        },
+        {
+          "description": "Request to open contactors\n-1 = button relased, 1 = button presed.",
+          "vehicles": [
+            "4E (EU07/EP07)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EU07",
+      "name": "shp_lights_intensity",
+      "vehicles": [
+        "102E (EP08)",
+        "4E (EU07/EP07)"
+      ],
+      "variants": [
+        {
+          "description": "Intensity of SHP indicator lights\n0–1 = 0%–100% of brightness",
+          "vehicles": [
+            "102E (EP08)",
+            "4E (EU07/EP07)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EU07",
+      "name": "shunting_compensation_rq",
+      "vehicles": [
+        "102E (EP08)",
+        "4E (EU07/EP07)"
+      ],
+      "variants": [
+        {
+          "description": "Position of shunting compensation knob\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "102E (EP08)",
+            "4E (EU07/EP07)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EU07",
+      "name": "signal_lights_intensity",
+      "vehicles": [
+        "102E (EP08)",
+        "4E (EU07/EP07)"
+      ],
+      "variants": [
+        {
+          "description": "Intensity of signal lights\n0–1 = 0%–100% of brightness",
+          "vehicles": [
+            "102E (EP08)",
+            "4E (EU07/EP07)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EU07",
+      "name": "unlock_and_release_rq",
+      "vehicles": [
+        "102E (EP08)",
+        "4E (EU07/EP07)"
+      ],
+      "variants": [
+        {
+          "description": "Request to unlock brake pipe and release brakes\n-1 = button released\n1 = button pressed",
+          "vehicles": [
+            "102E (EP08)"
+          ]
+        },
+        {
+          "description": "Request to unlock brake pipe and release brakes.\n-1 = button relased, 1 = button presed.",
+          "vehicles": [
+            "4E (EU07/EP07)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EU07",
+      "name": "unlock_overloaded_compressors_rq",
+      "vehicles": [
+        "102E (EP08)",
+        "4E (EU07/EP07)"
+      ],
+      "variants": [
+        {
+          "description": "Request to unlock overloaded compressors\n-1 = button released\n1 = button pressed",
+          "vehicles": [
+            "102E (EP08)"
+          ]
+        },
+        {
+          "description": "Request to unlock overloaded compressors.\n-1 = button relased, 1 = button presed.",
+          "vehicles": [
+            "4E (EU07/EP07)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EU07",
+      "name": "unlock_overloaded_converters_rq",
+      "vehicles": [
+        "102E (EP08)",
+        "4E (EU07/EP07)"
+      ],
+      "variants": [
+        {
+          "description": "Request to unlock overloaded converters\n-1 = button released\n1 = button pressed",
+          "vehicles": [
+            "102E (EP08)"
+          ]
+        },
+        {
+          "description": "Request to unlock overloaded converters.\n-1 = button relased, 1 = button presed.",
+          "vehicles": [
+            "4E (EU07/EP07)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EU07",
+      "name": "unlock_overloaded_motors_rq",
+      "vehicles": [
+        "102E (EP08)",
+        "4E (EU07/EP07)"
+      ],
+      "variants": [
+        {
+          "description": "Request to unlock overloaded motors\n-1 = button released\n1 = button pressed",
+          "vehicles": [
+            "102E (EP08)"
+          ]
+        },
+        {
+          "description": "Request to unlock overloaded motors.\n-1 = button relased, 1 = button presed.",
+          "vehicles": [
+            "4E (EU07/EP07)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EU07",
+      "name": "wiper",
+      "vehicles": [
+        "102E (EP08)",
+        "4E (EU07/EP07)"
+      ],
+      "variants": [
+        {
+          "description": "Position of wiper knob\n0 = disabled\n1, 2, 3 = selected speed",
+          "vehicles": [
+            "102E (EP08)",
+            "4E (EU07/EP07)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_EU07",
+      "name": "wiper2",
+      "vehicles": [
+        "102E (EP08)",
+        "4E (EU07/EP07)"
+      ],
+      "variants": [
+        {
+          "description": "Position of wiper knob on the left of the cabin\n0 = disabled\n1, 2, 3 = selected speed",
+          "vehicles": [
+            "102E (EP08)",
+            "4E (EU07/EP07)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_General",
+      "name": "active_cab",
+      "vehicles": [
+        "102E (EP08)",
+        "4E (EU07/EP07)",
+        "Elf (EN76 / EN96)",
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Cabin activation\n-1 = cabin B\n0 = disabled\n1 = cabin A",
+          "vehicles": [
+            "102E (EP08)",
+            "4E (EU07/EP07)"
+          ]
+        },
+        {
+          "description": "Cabin activation.\n-3 = Multi multi traction\n0 = Inactive\n1 = Cabin active single traction\n2 = Activate of first cab in multiple traction",
+          "vehicles": [
+            "Elf (EN76 / EN96)"
+          ]
+        },
+        {
+          "description": "Cabin activation/deactivation\n0 = default (neutral position)\n-2 = deactivate cabin\n1 = activate cabin A\n-1 = activate cabin B",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_General",
+      "name": "assimilation_button",
+      "vehicles": [
+        "Dragon 2 (ET25 / E6ACTa)",
+        "Elf (EN76 / EN96)",
+        "Traxx (E186)",
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Brake assimilation request\n0 = button released\n1 = button pressed",
+          "vehicles": [
+            "Dragon 2 (ET25 / E6ACTa)",
+            "Traxx (E186)"
+          ]
+        },
+        {
+          "description": "Brake assimilation request\n-1 = button released\n1 = button pressed",
+          "vehicles": [
+            "Traxx DE (BR285)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_General",
+      "name": "battery_rq",
+      "vehicles": [
+        "102E (EP08)",
+        "201E (ET22)",
+        "4E (EU07/EP07)",
+        "Elf (EN76 / EN96)",
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Battery switch\n-1 = disable\n1 = activate",
+          "vehicles": [
+            "102E (EP08)",
+            "4E (EU07/EP07)"
+          ]
+        },
+        {
+          "description": "Battery request\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "201E (ET22)"
+          ]
+        },
+        {
+          "description": "Battery switch (outside)\n0 = Disable\n1 = Activate",
+          "vehicles": [
+            "Elf (EN76 / EN96)"
+          ]
+        },
+        {
+          "description": "Battery request\n-1 = disabled\n1 = enabled\n0 = default (neutral)",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_General",
+      "name": "battery_rq_off",
+      "vehicles": [
+        "Elf (EN76 / EN96)"
+      ],
+      "variants": [
+        {
+          "description": "Battery switch for turning off (outside)\n0 = Disable\n1 = Activate",
+          "vehicles": [
+            "Elf (EN76 / EN96)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_General",
+      "name": "brake_releaser",
+      "vehicles": [
+        "4E (EU07/EP07)",
+        "Dragon 2 (ET25 / E6ACTa)",
+        "Traxx (E186)",
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Brake releaser button.\n0 = disabled, 1 = release.",
+          "vehicles": [
+            "4E (EU07/EP07)",
+            "Dragon 2 (ET25 / E6ACTa)",
+            "Traxx (E186)",
+            "Traxx DE (BR285)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_General",
+      "name": "cabin_light",
+      "vehicles": [
+        "102E (EP08)",
+        "4E (EU07/EP07)",
+        "Dragon 2 (ET25 / E6ACTa)",
+        "Elf (EN76 / EN96)",
+        "Pendolino (ED250)",
+        "Traxx (E186)",
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Cabin backlight switch\n-1 = disabled\n1 = cabin backlight\n2 = desk backlight",
+          "vehicles": [
+            "Dragon 2 (ET25 / E6ACTa)",
+            "Traxx (E186)",
+            "Traxx DE (BR285)"
+          ]
+        },
+        {
+          "description": "Cabin backlight switch\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        },
+        {
+          "description": "Lights in cabin A",
+          "vehicles": [
+            "102E (EP08)",
+            "4E (EU07/EP07)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_General",
+      "name": "cabin_light_b",
+      "vehicles": [
+        "102E (EP08)",
+        "4E (EU07/EP07)",
+        "Dragon 2 (ET25 / E6ACTa)",
+        "Traxx (E186)",
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Cabin backlight switch, cabin B\n-1 = disabled\n1 = cabin backlight\n2 = desk backlight",
+          "vehicles": [
+            "Traxx (E186)"
+          ]
+        },
+        {
+          "description": "Lights in cabin B",
+          "vehicles": [
+            "102E (EP08)",
+            "4E (EU07/EP07)"
+          ]
+        },
+        {
+          "description": "Cabin backlight switch, cabin B\n-1 = disabled\n1 = enabled (verify)",
+          "vehicles": [
+            "Dragon 2 (ET25 / E6ACTa)"
+          ]
+        },
+        {
+          "description": "Cabin backlight switch, cabin B (same values as cabin_light",
+          "vehicles": [
+            "Traxx DE (BR285)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_General",
+      "name": "dashboard_light",
+      "vehicles": [
+        "Elf (EN76 / EN96)",
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Desk backlight switch\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_General",
+      "name": "direction_rq",
+      "vehicles": [
+        "102E (EP08)",
+        "4E (EU07/EP07)",
+        "Dragon 2 (ET25 / E6ACTa)",
+        "Elf (EN76 / EN96)",
+        "Pendolino (ED250)",
+        "Traxx (E186)",
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Driving direction selector\n-1 = reverse\n1 = forward\n2 = neutral",
+          "vehicles": [
+            "102E (EP08)",
+            "4E (EU07/EP07)",
+            "Pendolino (ED250)"
+          ]
+        },
+        {
+          "description": "Driving direction selector.\n-1 = reverse\n0 = neutral\n1 = forward",
+          "vehicles": [
+            "Elf (EN76 / EN96)",
+            "Traxx DE (BR285)"
+          ]
+        },
+        {
+          "description": "Driving direction selector buttons (multiple)\n-1 = reverse\n2 = neutral\n1 = forward\n0 when buttons are released",
+          "vehicles": [
+            "Dragon 2 (ET25 / E6ACTa)"
+          ]
+        },
+        {
+          "description": "Driving direction selector buttons\n-1 = reverse\n2 = neutral\n1 = forward\n0 = when released",
+          "vehicles": [
+            "Traxx (E186)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_General",
+      "name": "drive_handle",
+      "vehicles": [
+        "102E (EP08)",
+        "4E (EU07/EP07)",
+        "Dragon 2 (ET25 / E6ACTa)",
+        "Elf (EN76 / EN96)",
+        "Pendolino (ED250)",
+        "Traxx (E186)",
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Position of the main driving handle (power controller)\n0–43 = integer values (as float)",
+          "vehicles": [
+            "102E (EP08)"
+          ]
+        },
+        {
+          "description": "Position of the main driving handle (Power Controller)\n0-43, integers values (as float)",
+          "vehicles": [
+            "4E (EU07/EP07)"
+          ]
+        },
+        {
+          "description": "Position of the main driving handle\n0 = high flow charge\n1 = decrease brake force\n2 = maintain brake force\n3 = increase brake force\n4 = emergancy braking",
+          "vehicles": [
+            "Dragon 2 (ET25 / E6ACTa)"
+          ]
+        },
+        {
+          "description": "Main driving handle\n0 = Emergency braking\n1 = full braking\n2 = increase braking force\n3 = Maintain brake force / decrease power\n4 = Maintain brake force / decrease brake power\n5 = Increase power (should drop to 4 after releasing)",
+          "vehicles": [
+            "Elf (EN76 / EN96)"
+          ]
+        },
+        {
+          "description": "Position of the main driving handle\n0–1 = 0%–100% of power",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        },
+        {
+          "description": "Position of the main driving handle\n0 = increase ED braking power\n1 = maintain ED braking power\n2 = decrease ED braking power\n3 = neutral position (0)\n4 = decrease power\n5 = maintain power\n6 = increase power\n7 = maximum power",
+          "vehicles": [
+            "Traxx (E186)"
+          ]
+        },
+        {
+          "description": "Position of the main driving handle\n0 = increase ED braking power\n1 = hold ED braking power\n2 = decrease ED braking power\n3 = neutral position (0)\n4 = decrease power\n5 = hold power\n6 = increase power\n7 = maximum power",
+          "vehicles": [
+            "Traxx DE (BR285)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_General",
+      "name": "drive_handle_pressed",
+      "vehicles": [
+        "Traxx (E186)",
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Drive handle pressed state\n0 = released\n1 = pressed",
+          "vehicles": [
+            "Traxx DE (BR285)"
+          ]
+        },
+        {
+          "description": "Drive handle being pressed",
+          "vehicles": [
+            "Traxx (E186)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_General",
+      "name": "emergency_brake_button",
+      "vehicles": [
+        "Elf (EN76 / EN96)",
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Emergency brake switch\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        },
+        {
+          "description": "Emergancy brake",
+          "vehicles": [
+            "Elf (EN76 / EN96)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_General",
+      "name": "emergency_brake_button_flag",
+      "vehicles": [
+        "Dragon 2 (ET25 / E6ACTa)",
+        "Traxx (E186)",
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Emergency brake button switch\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "Dragon 2 (ET25 / E6ACTa)",
+            "Traxx (E186)",
+            "Traxx DE (BR285)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_General",
+      "name": "emergency_pantographs",
+      "vehicles": [
+        "Dragon 2 (ET25 / E6ACTa)",
+        "Elf (EN76 / EN96)"
+      ],
+      "variants": [
+        {
+          "description": "Emergency pantograph lowering switch\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "Dragon 2 (ET25 / E6ACTa)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_General",
+      "name": "etcs_ack_button",
+      "vehicles": [
+        "4E (EU07/EP07)",
+        "Dragon 2 (ET25 / E6ACTa)",
+        "Impuls 2 (36WEd)"
+      ],
+      "variants": [
+        {
+          "description": "ETCS ACK yellow button state\n-1 = button released, 1 = button pressed",
+          "vehicles": [
+            "4E (EU07/EP07)"
+          ]
+        },
+        {
+          "description": "ETCS ACK yellow button state\n0 = button released\n1 = button pressed",
+          "vehicles": [
+            "Dragon 2 (ET25 / E6ACTa)"
+          ]
+        },
+        {
+          "description": "ETCS acknowledge yellow button state\n-1 = button released\n1 = button pressed",
+          "vehicles": [
+            "Impuls 2 (36WEd)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_General",
+      "name": "etcs_isolation_rq",
+      "vehicles": [
+        "4E (EU07/EP07)",
+        "Dragon 2 (ET25 / E6ACTa)",
+        "Impuls 2 (36WEd)",
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "ETCS isolation request.\n-1 = unisolate, 1 = isolate",
+          "vehicles": [
+            "4E (EU07/EP07)",
+            "Dragon 2 (ET25 / E6ACTa)",
+            "Impuls 2 (36WEd)",
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_General",
+      "name": "horn_signal",
+      "vehicles": [
+        "102E (EP08)",
+        "4E (EU07/EP07)",
+        "Dragon 2 (ET25 / E6ACTa)",
+        "Elf (EN76 / EN96)",
+        "Pendolino (ED250)",
+        "Traxx (E186)",
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Horn signal lever\n1 = low tone\n2 = high tone\n3 = both tones",
+          "vehicles": [
+            "Pendolino (ED250)",
+            "Traxx DE (BR285)"
+          ]
+        },
+        {
+          "description": "Horn signal lever\n1 = low tone\n2 = high tone\n0 = default position",
+          "vehicles": [
+            "102E (EP08)"
+          ]
+        },
+        {
+          "description": "Horn signal lever.\n1 = low tone\n2 = high tone\n0 = Default position*",
+          "vehicles": [
+            "4E (EU07/EP07)"
+          ]
+        },
+        {
+          "description": "Horn signal switch\n1 = low tone\n2 = high tone\n0 = default position",
+          "vehicles": [
+            "Dragon 2 (ET25 / E6ACTa)"
+          ]
+        },
+        {
+          "description": "Horn signal or whistle.\n0 = disabled\n1 = horn low\n2 = horn high\n4 = whistle\nBit sum to play multiple at the same time.",
+          "vehicles": [
+            "Elf (EN76 / EN96)"
+          ]
+        },
+        {
+          "description": "Horn signal lever\n1 = low tone\n2 = high tone\n0 = neutral",
+          "vehicles": [
+            "Traxx (E186)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_General",
+      "name": "instrument_light",
+      "vehicles": [
+        "102E (EP08)",
+        "4E (EU07/EP07)",
+        "Traxx (E186)",
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Instruments backlight state\n0 = disabled\n1 = enabled",
+          "vehicles": [
+            "102E (EP08)",
+            "4E (EU07/EP07)",
+            "Traxx DE (BR285)"
+          ]
+        },
+        {
+          "description": "Instruments backlight state\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "Traxx (E186)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_General",
+      "name": "instrument_light_intensity",
+      "vehicles": [
+        "102E (EP08)",
+        "4E (EU07/EP07)"
+      ],
+      "variants": [
+        {
+          "description": "Instruments backlight intensity\n0–1 = 0%–100% of brightness",
+          "vehicles": [
+            "102E (EP08)",
+            "4E (EU07/EP07)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_General",
+      "name": "light_pos",
+      "vehicles": [
+        "Dragon 2 (ET25 / E6ACTa)",
+        "Elf (EN76 / EN96)",
+        "Pendolino (ED250)",
+        "Traxx (E186)",
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Headlight mode switch\n0 = train drive\n1 = end of train marking\n2 = left track drive (I)\n3 = normal drive (I)\n4 = warning signal (NL)\n5 = left track drive\n6 = warning flash (F, L)\n7 = warning flash (B)\n8 = warning signal (CH)\n9 = shunting (NL)\n10 = shunting (DK, F, L, S, N, H)\n11 = shunting / stop (CH)",
+          "vehicles": [
+            "Traxx (E186)",
+            "Traxx DE (BR285)"
+          ]
+        },
+        {
+          "description": "Headlight mode switch\n0 = A1\n1 = LCZ\n2 = Tb1\n3 = Pc5\n4 = disabled\n5 = Pc1 (train drive)\n6 = Pc2\n7 = Pc1 (dimmed light)\n8 = Pc6",
+          "vehicles": [
+            "Dragon 2 (ET25 / E6ACTa)"
+          ]
+        },
+        {
+          "description": "Light positions\n0 = turned off\n1 = Pc1 (normal drive)\n2 = Pc2 (drive on left track)\n3 = L (drive without cars)\n4 = Tb1 (Shunting)\n5 = A1 (Alarm)",
+          "vehicles": [
+            "Elf (EN76 / EN96)"
+          ]
+        },
+        {
+          "description": "Headlight mode switch\n0 = Pc5 AUT\n1 = Pc1\n2 = Tb1a\n3 = Pc2\n4 = SCZ\n5 = LCZ\n6 = Tb1b\n7 = Pc5",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_General",
+      "name": "lights_power",
+      "vehicles": [
+        "102E (EP08)",
+        "4E (EU07/EP07)",
+        "Dragon 2 (ET25 / E6ACTa)",
+        "Elf (EN76 / EN96)",
+        "Kibel (EN57 / EN71)",
+        "Pendolino (ED250)",
+        "Traxx (E186)",
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Lights dimming\n0 = disabled\n1 = enabled",
+          "vehicles": [
+            "102E (EP08)",
+            "4E (EU07/EP07)"
+          ]
+        },
+        {
+          "description": "Headlight dimming switch\n1 = dimmed signal lights\n2 = signal lights\n3 = low beams\n4 = high beams",
+          "vehicles": [
+            "Traxx (E186)",
+            "Traxx DE (BR285)"
+          ]
+        },
+        {
+          "description": "Headlight dimming switch\n-1 = fog lights\n0 = high beams\n1 = low beams",
+          "vehicles": [
+            "Dragon 2 (ET25 / E6ACTa)"
+          ]
+        },
+        {
+          "description": "Light intensity\n0 = far\n1 = near",
+          "vehicles": [
+            "Elf (EN76 / EN96)"
+          ]
+        },
+        {
+          "description": "Headlight dimming switch\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "Kibel (EN57 / EN71)"
+          ]
+        },
+        {
+          "description": "Headlight dimming switch\n-1 = signal light\n1 = low beam headlights",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_General",
+      "name": "local_brake",
+      "vehicles": [
+        "102E (EP08)",
+        "4E (EU07/EP07)",
+        "Dragon 2 (ET25 / E6ACTa)",
+        "Traxx (E186)",
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Position of the local braking handle\n0 = release brake\n1 = decrease brake (unstable)\n2 = maintain brake force\n3 = increase brake force\n4 = full braking",
+          "vehicles": [
+            "Traxx (E186)",
+            "Traxx DE (BR285)"
+          ]
+        },
+        {
+          "description": "Position of the local braking handle\n0–1 = 0%–100% of braking force",
+          "vehicles": [
+            "102E (EP08)"
+          ]
+        },
+        {
+          "description": "Position of the lokal braking handle.\n0-1 = 0-100% of braking force.",
+          "vehicles": [
+            "4E (EU07/EP07)"
+          ]
+        },
+        {
+          "description": "Position of the local braking handle\n0 = released (stable position)\n1 = decrease brake force\n2 = mantain brake force\n3 = increase brake force\n4 = full braking",
+          "vehicles": [
+            "Dragon 2 (ET25 / E6ACTa)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_General",
+      "name": "main_brake",
+      "vehicles": [
+        "102E (EP08)",
+        "4E (EU07/EP07)",
+        "Dragon 2 (ET25 / E6ACTa)",
+        "Elf (EN76 / EN96)",
+        "Pendolino (ED250)",
+        "Traxx (E186)",
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Position of the main braking handle (service brake)\n0 = disabled\n1 = fill\n2 = driving\n3 = initial\n4–6 = full service (3.4 bar)\n7 = re-application (2.8 bar)\n8 = emergency braking",
+          "vehicles": [
+            "102E (EP08)"
+          ]
+        },
+        {
+          "description": "Position of the main braking handle (Service Brake)\n0 = disabled\n1 = fill\n2 = driving\n3 = initial\n4...6 = full service (3.4bar)\n7 = re-application (2.8 bar)\n8 = emergency braking.",
+          "vehicles": [
+            "4E (EU07/EP07)"
+          ]
+        },
+        {
+          "description": "Position of the main braking handle\n0 = high flow\n1 = decrease brake force\n2 = maintain brake force\n3 = increase brake force\n4 = emergency braking",
+          "vehicles": [
+            "Dragon 2 (ET25 / E6ACTa)"
+          ]
+        },
+        {
+          "description": "Local brake lever position\n-1 = released\n1 = decrease brake force (should move to 2 when released)\n2 = maintain brake force\n3 = increase braking force (should move to 2 when released)\n4 = Full braking force",
+          "vehicles": [
+            "Elf (EN76 / EN96)"
+          ]
+        },
+        {
+          "description": "Position of the main braking handle\n0 = disabled\n1 = fill\n2 = running\n2.5-3.6 = electrodynamic brake\n4 = initial\n4.5-5.5 = braking\n6 = full braking\n7 = emergency braking",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        },
+        {
+          "description": "Position of the main braking handle\n0 = high-flow charge\n1 = driving\n2 = decrease brake force\n3 = maintain brake force\n4 = increase brake force\n5 = emergency braking",
+          "vehicles": [
+            "Traxx (E186)"
+          ]
+        },
+        {
+          "description": "Position of the main braking handle\n0 = filling with increased cross-section\n1 = driving\n2 = release\n3 = maintain brake force\n4 = braking\n5 = emergency braking",
+          "vehicles": [
+            "Traxx DE (BR285)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_General",
+      "name": "main_switch",
+      "vehicles": [
+        "102E (EP08)",
+        "4E (EU07/EP07)",
+        "Dragon 2 (ET25 / E6ACTa)",
+        "Elf (EN76 / EN96)",
+        "Pendolino (ED250)",
+        "Traxx (E186)",
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Main switch position\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "102E (EP08)",
+            "4E (EU07/EP07)",
+            "Dragon 2 (ET25 / E6ACTa)",
+            "Traxx DE (BR285)"
+          ]
+        },
+        {
+          "description": "Main switch - this one is problematic.\n0 = is a neutral position, however, every second press it should be\n-1 = disabled and then\n1 = enabled.",
+          "vehicles": [
+            "Elf (EN76 / EN96)"
+          ]
+        },
+        {
+          "description": "Main switch position\n-1 = disable\n1 = enable",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        },
+        {
+          "description": "Main switch position\n-1 = disabled\n1 = enabled\n0 = neutral (default)",
+          "vehicles": [
+            "Traxx (E186)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_General",
+      "name": "pantograph_back_rq",
+      "vehicles": [
+        "102E (EP08)",
+        "4E (EU07/EP07)",
+        "Dragon 2 (ET25 / E6ACTa)",
+        "Elf (EN76 / EN96)",
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Back pantograph switch\n-1 = lower\n1 = raise",
+          "vehicles": [
+            "102E (EP08)",
+            "4E (EU07/EP07)",
+            "Dragon 2 (ET25 / E6ACTa)",
+            "Elf (EN76 / EN96)",
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_General",
+      "name": "pantograph_front_rq",
+      "vehicles": [
+        "102E (EP08)",
+        "4E (EU07/EP07)",
+        "Dragon 2 (ET25 / E6ACTa)",
+        "Elf (EN76 / EN96)",
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Front pantograph switch\n-1 = lower\n1 = raise",
+          "vehicles": [
+            "102E (EP08)",
+            "4E (EU07/EP07)",
+            "Dragon 2 (ET25 / E6ACTa)",
+            "Elf (EN76 / EN96)",
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_General",
+      "name": "pantograph_set_rq",
+      "vehicles": [
+        "Traxx (E186)",
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Pantograph switch, controlled in field pantograph_set\n-1 = lower\n1 = raise\n0 = neutral (default)",
+          "vehicles": [
+            "Traxx (E186)"
+          ]
+        },
+        {
+          "description": "Pantograph switch, controlled in field pantograph_set\n-1 = lower\n1 = raise",
+          "vehicles": [
+            "Traxx DE (BR285)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_General",
+      "name": "radio_channel_change",
+      "vehicles": [
+        "71E (CD163)",
+        "Elf (EN76 / EN96)",
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Change radio channel button.\n0 when nothing pressed\n1 when switching one channel up (then return to 0)\n-1 when switching one channel down (then return to 0).",
+          "vehicles": [
+            "Traxx DE (BR285)"
+          ]
+        },
+        {
+          "description": "Radiotelephone channel change request",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_General",
+      "name": "radio_channel_set",
+      "vehicles": [
+        "102E (EP08)",
+        "71E (CD163)",
+        "Common (radio)",
+        "Elf (EN76 / EN96)",
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Setting radio channel to desired. Values 1-10",
+          "vehicles": [
+            "Traxx DE (BR285)"
+          ]
+        },
+        {
+          "description": "Change radio channel button\n0 - default state\n-1 - Lower radio channel\n1 - Higher radio channel",
+          "vehicles": [
+            "Common (radio)"
+          ]
+        },
+        {
+          "description": "Radio channel knob\nInt values from 1 to 10 where each value sets the radio to appropriate channel",
+          "vehicles": [
+            "Common (radio)"
+          ]
+        },
+        {
+          "description": "Selected radiotelephone channel number to set (not documented — verify)",
+          "vehicles": [
+            "102E (EP08)"
+          ]
+        },
+        {
+          "description": "Selected radiotelephone channel number to set",
+          "vehicles": [
+            "71E (CD163)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_General",
+      "name": "radio_enable_set",
+      "vehicles": [
+        "102E (EP08)",
+        "Common (radio)",
+        "Elf (EN76 / EN96)"
+      ],
+      "variants": [
+        {
+          "description": "Set radio state\n0 - default state\n-1 - disable radio\n1 - enable radio",
+          "vehicles": [
+            "Common (radio)"
+          ]
+        },
+        {
+          "description": "Set radio state\n-1 - disable radio (released)\n1 - enable radio (pressed)",
+          "vehicles": [
+            "Common (radio)"
+          ]
+        },
+        {
+          "description": "Radiotelephone enable request (not documented — verify)",
+          "vehicles": [
+            "102E (EP08)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_General",
+      "name": "radio_selective_call",
+      "vehicles": [
+        "102E (EP08)",
+        "Common (radio)",
+        "Elf (EN76 / EN96)",
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Radiotelephone selective call request. 1 = ZEW 1, 3 = ZEW 3",
+          "vehicles": [
+            "Traxx DE (BR285)"
+          ]
+        },
+        {
+          "description": "Call button on radio\n0 - default state\n1 - ZEW 1\n3 - ZEW 3",
+          "vehicles": [
+            "Common (radio)"
+          ]
+        },
+        {
+          "description": "Radiotelephone selective call request (not documented — verify)",
+          "vehicles": [
+            "102E (EP08)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_General",
+      "name": "radio_volume_set",
+      "vehicles": [
+        "102E (EP08)",
+        "Common (radio)",
+        "Elf (EN76 / EN96)",
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Volume knob\nInt values 0-5",
+          "vehicles": [
+            "Common (radio)"
+          ]
+        },
+        {
+          "description": "Radiotelephone volume setting (not documented — verify)",
+          "vehicles": [
+            "102E (EP08)"
+          ]
+        },
+        {
+          "description": "Radiotelephone volume setting.",
+          "vehicles": [
+            "Traxx DE (BR285)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_General",
+      "name": "radiostop_rq",
+      "vehicles": [
+        "102E (EP08)",
+        "Common (radio)",
+        "Elf (EN76 / EN96)",
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Radiostop activation request\n0 = disabled\n1 = enabled",
+          "vehicles": [
+            "Traxx DE (BR285)"
+          ]
+        },
+        {
+          "description": "Radiostop activation request (external RadioStop signal)\n0 = disabled\n1 = enabled (verify)",
+          "vehicles": [
+            "102E (EP08)"
+          ]
+        },
+        {
+          "description": "Radiostop request",
+          "vehicles": [
+            "Common (radio)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_General",
+      "name": "sanding_button",
+      "vehicles": [
+        "102E (EP08)",
+        "4E (EU07/EP07)",
+        "Dragon 2 (ET25 / E6ACTa)",
+        "Elf (EN76 / EN96)",
+        "Pendolino (ED250)",
+        "Traxx (E186)",
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Sanding button\n0 = disabled\n1 = enabled",
+          "vehicles": [
+            "102E (EP08)",
+            "4E (EU07/EP07)",
+            "Elf (EN76 / EN96)"
+          ]
+        },
+        {
+          "description": "Sanding pedal\n0 = disabled\n1 = enabled",
+          "vehicles": [
+            "Dragon 2 (ET25 / E6ACTa)"
+          ]
+        },
+        {
+          "description": "Sanding button\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        },
+        {
+          "description": "Sanding button\n-1 = automatic sanding\n1 = manual sanding\n0 = neutral (default)",
+          "vehicles": [
+            "Traxx (E186)"
+          ]
+        },
+        {
+          "description": "Sanding button\n-1 = automatic sanding\n1 = manual sanding",
+          "vehicles": [
+            "Traxx DE (BR285)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_General",
+      "name": "secondary_handle",
+      "vehicles": [
+        "102E (EP08)",
+        "4E (EU07/EP07)"
+      ],
+      "variants": [
+        {
+          "description": "Position of the secondary driving handle (shunt regulator)\nInt values as float: 0–6",
+          "vehicles": [
+            "102E (EP08)",
+            "4E (EU07/EP07)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_General",
+      "name": "security_system_button",
+      "vehicles": [
+        "102E (EP08)",
+        "4E (EU07/EP07)",
+        "Dragon 2 (ET25 / E6ACTa)",
+        "Elf (EN76 / EN96)",
+        "Pendolino (ED250)",
+        "Traxx (E186)",
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Main CA/SHP button\n-1 = button released\n1 = button pressed",
+          "vehicles": [
+            "102E (EP08)",
+            "4E (EU07/EP07)",
+            "Elf (EN76 / EN96)"
+          ]
+        },
+        {
+          "description": "Main CA/SHP button\n0 = released\n1 = pressed",
+          "vehicles": [
+            "Dragon 2 (ET25 / E6ACTa)",
+            "Traxx (E186)"
+          ]
+        },
+        {
+          "description": "Main CA/SHP button\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "Pendolino (ED250)",
+            "Traxx DE (BR285)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_General",
+      "name": "speed_ctrl",
+      "vehicles": [
+        "Dragon 2 (ET25 / E6ACTa)",
+        "Elf (EN76 / EN96)",
+        "Pendolino (ED250)",
+        "Traxx (E186)",
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Cruise control handle position\n0 = disabled\n1 = speed decrease\n2 = speed hold\n3 = speed increase\n4 = max speed",
+          "vehicles": [
+            "Traxx (E186)",
+            "Traxx DE (BR285)"
+          ]
+        },
+        {
+          "description": "Cruise control handle position\n-1 = disabled\n0–120 = 0%–100% given force",
+          "vehicles": [
+            "Dragon 2 (ET25 / E6ACTa)"
+          ]
+        },
+        {
+          "description": "Sets cruise speed limit\n-2 - sets limit to 0\n-1 - decreases limit by 5 km/h\n1 - increase limit by 5 km/h\nAny higher value sets limit in km/h.",
+          "vehicles": [
+            "Elf (EN76 / EN96)"
+          ]
+        },
+        {
+          "description": "Cruise control handle position\n0 = disabled\n1 = speed decrease\n2 = speed hold\n3 = speed increase",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_General",
+      "name": "spring_brake_rq",
+      "vehicles": [
+        "Dragon 2 (ET25 / E6ACTa)",
+        "Elf (EN76 / EN96)",
+        "Pendolino (ED250)",
+        "Traxx (E186)",
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Spring brake release\n-1 = release\n1 = apply brake",
+          "vehicles": [
+            "Dragon 2 (ET25 / E6ACTa)"
+          ]
+        },
+        {
+          "description": "Spring brake button\n0 = default\n1 = activate\n-1 = release",
+          "vehicles": [
+            "Elf (EN76 / EN96)"
+          ]
+        },
+        {
+          "description": "Spring brake request\n-1 = disable\n1 = enable",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        },
+        {
+          "description": "Spring brake request buttons\n-1 = disable\n1 = enable\n0 = when released",
+          "vehicles": [
+            "Traxx (E186)"
+          ]
+        },
+        {
+          "description": "Spring brake request\n-1 = disabled\n1 = enabled",
+          "vehicles": [
+            "Traxx DE (BR285)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_General",
+      "name": "unlock_brake_pipe",
+      "vehicles": [
+        "Elf (EN76 / EN96)",
+        "Pendolino (ED250)"
+      ],
+      "variants": [
+        {
+          "description": "Unlock brake pipe button\n0 = default\n1 = unlock (should return to 0 when released)",
+          "vehicles": [
+            "Elf (EN76 / EN96)"
+          ]
+        },
+        {
+          "description": "Unlock brake pipe request\n-1 = button released\n1 = button pressed",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_General",
+      "name": "washer",
+      "vehicles": [
+        "102E (EP08)",
+        "4E (EU07/EP07)",
+        "Dragon 2 (ET25 / E6ACTa)",
+        "Elf (EN76 / EN96)",
+        "Kibel (EN57 / EN71)",
+        "Pendolino (ED250)",
+        "Traxx (E186)",
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Windshield washer activation request\n-1 = button released\n1 = button pressed",
+          "vehicles": [
+            "Dragon 2 (ET25 / E6ACTa)",
+            "Kibel (EN57 / EN71)",
+            "Pendolino (ED250)",
+            "Traxx DE (BR285)"
+          ]
+        },
+        {
+          "description": "Windshield washer activation request\n0 = disabled\n1 = enabled",
+          "vehicles": [
+            "102E (EP08)",
+            "4E (EU07/EP07)"
+          ]
+        },
+        {
+          "description": "Windshield washer button\n0 = disabled, 1 = enabled",
+          "vehicles": [
+            "Elf (EN76 / EN96)"
+          ]
+        },
+        {
+          "description": "Windshield washer activation request\n-1 = button released\n1 = button pressed\n0 = neutral (default)",
+          "vehicles": [
+            "Traxx (E186)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_General",
+      "name": "wiper",
+      "vehicles": [
+        "Dragon 2 (ET25 / E6ACTa)",
+        "Elf (EN76 / EN96)",
+        "Pendolino (ED250)",
+        "Traxx (E186)",
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Wiper switch position switch\n0 = disabled\n1 = program 1\n2 = program 2\n3 = program 3",
+          "vehicles": [
+            "Traxx (E186)",
+            "Traxx DE (BR285)"
+          ]
+        },
+        {
+          "description": "Wiper switch position switch\n0 = disabled\n1 = program 3\n2 = program 1\n3 = program 2",
+          "vehicles": [
+            "Dragon 2 (ET25 / E6ACTa)"
+          ]
+        },
+        {
+          "description": "Wiper mode\n0 = disabled\n1-4 = Modes from 1 to 4",
+          "vehicles": [
+            "Elf (EN76 / EN96)"
+          ]
+        },
+        {
+          "description": "Wiper switch position switch\n0 = disabled\n1 = first position\n2 = second position",
+          "vehicles": [
+            "Pendolino (ED250)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_Impuls",
+      "name": "active_cab",
+      "vehicles": [
+        "Impuls 2 (36WEd)"
+      ],
+      "variants": [
+        {
+          "description": "Activate cabin switch\n0 = deactivate cabin\n1 = activate cabin",
+          "vehicles": [
+            "Impuls 2 (36WEd)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_Impuls",
+      "name": "airtight_test_rq",
+      "vehicles": [
+        "Impuls 2 (36WEd)"
+      ],
+      "variants": [
+        {
+          "description": "Airtightness switch\n0 = disabled\n1 = enabled",
+          "vehicles": [
+            "Impuls 2 (36WEd)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_Impuls",
+      "name": "battery",
+      "vehicles": [
+        "Impuls 2 (36WEd)"
+      ],
+      "variants": [
+        {
+          "description": "Battery switch (from a panel in the back of the cabin)\n-1 = disable\n0 = default position\n1 = enable",
+          "vehicles": [
+            "Impuls 2 (36WEd)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_Impuls",
+      "name": "cablight",
+      "vehicles": [
+        "Impuls 2 (36WEd)"
+      ],
+      "variants": [
+        {
+          "description": "A switch for cabin lights\nRange between 0 and 1",
+          "vehicles": [
+            "Impuls 2 (36WEd)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_Impuls",
+      "name": "cablight_pow",
+      "vehicles": [
+        "Impuls 2 (36WEd)"
+      ],
+      "variants": [
+        {
+          "description": "A knob for cabin lights intensity\nRange between 0.25 and 1.0",
+          "vehicles": [
+            "Impuls 2 (36WEd)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_Impuls",
+      "name": "dashboard_l_pow",
+      "vehicles": [
+        "Impuls 2 (36WEd)"
+      ],
+      "variants": [
+        {
+          "description": "Intensity of the light on the left side of a dashboard\nRange 0.025–1.0",
+          "vehicles": [
+            "Impuls 2 (36WEd)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_Impuls",
+      "name": "dashboard_light",
+      "vehicles": [
+        "Impuls 2 (36WEd)"
+      ],
+      "variants": [
+        {
+          "description": "A switch for dashboard lights\n0 = disabled\n1 = enabled",
+          "vehicles": [
+            "Impuls 2 (36WEd)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_Impuls",
+      "name": "dashboard_light_pow",
+      "vehicles": [
+        "Impuls 2 (36WEd)"
+      ],
+      "variants": [
+        {
+          "description": "A switch for dashboard light intensity\nRange between 0 and 1",
+          "vehicles": [
+            "Impuls 2 (36WEd)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_Impuls",
+      "name": "dashboard_lights_l",
+      "vehicles": [
+        "Impuls 2 (36WEd)"
+      ],
+      "variants": [
+        {
+          "description": "Lights switch for the left part of a dashboard\n0 = disabled\n1 = enabled",
+          "vehicles": [
+            "Impuls 2 (36WEd)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_Impuls",
+      "name": "dashboard_lights_l_pow",
+      "vehicles": [
+        "Impuls 2 (36WEd)"
+      ],
+      "variants": [
+        {
+          "description": "Intensity of the light on the left side of a dashboard\nRange 0.025–1.0",
+          "vehicles": [
+            "Impuls 2 (36WEd)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_Impuls",
+      "name": "decouple",
+      "vehicles": [
+        "Impuls 2 (36WEd)"
+      ],
+      "variants": [
+        {
+          "description": "Decoupling switch\n0 = default\n1 = decouple",
+          "vehicles": [
+            "Impuls 2 (36WEd)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_Impuls",
+      "name": "direction_rq",
+      "vehicles": [
+        "Impuls 2 (36WEd)"
+      ],
+      "variants": [
+        {
+          "description": "Drive direction\n1 = forward\n2 = neutral\n-1 = backward\nNote: should be set to 0 after the button returns to its original position",
+          "vehicles": [
+            "Impuls 2 (36WEd)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_Impuls",
+      "name": "door_close",
+      "vehicles": [
+        "Impuls 2 (36WEd)"
+      ],
+      "variants": [
+        {
+          "description": "Closing door button\n1 = pressed\n0 = default position (returns to 0 when the button returns to its original position)",
+          "vehicles": [
+            "Impuls 2 (36WEd)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_Impuls",
+      "name": "door_left",
+      "vehicles": [
+        "Impuls 2 (36WEd)"
+      ],
+      "variants": [
+        {
+          "description": "Opening doors on the left\n1 = pressed\n0 = default position (returns to 0 when the button returns to its original position)",
+          "vehicles": [
+            "Impuls 2 (36WEd)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_Impuls",
+      "name": "door_right",
+      "vehicles": [
+        "Impuls 2 (36WEd)"
+      ],
+      "variants": [
+        {
+          "description": "Opening doors on the right\n1 = pressed\n0 = default position (returns to 0 when the button returns to its original position)",
+          "vehicles": [
+            "Impuls 2 (36WEd)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_Impuls",
+      "name": "drive_handle",
+      "vehicles": [
+        "Impuls 2 (36WEd)"
+      ],
+      "variants": [
+        {
+          "description": "Position of the drive handle (range)\nFrom -1.001 (brake) to 1.0 (full acceleration), where 0 is neutral",
+          "vehicles": [
+            "Impuls 2 (36WEd)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_Impuls",
+      "name": "emergency_brake_bt",
+      "vehicles": [
+        "Impuls 2 (36WEd)"
+      ],
+      "variants": [
+        {
+          "description": "Emergency brake button\n-1 = released\n1 = pressed",
+          "vehicles": [
+            "Impuls 2 (36WEd)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_Impuls",
+      "name": "flash_alarm_bt",
+      "vehicles": [
+        "Impuls 2 (36WEd)"
+      ],
+      "variants": [
+        {
+          "description": "Flash alarm button\n0 = disabled\n1 = enabled",
+          "vehicles": [
+            "Impuls 2 (36WEd)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_Impuls",
+      "name": "green_loop_override_rq",
+      "vehicles": [
+        "Impuls 2 (36WEd)"
+      ],
+      "variants": [
+        {
+          "description": "Green loop override button\n0 = disabled\n1 = enabled",
+          "vehicles": [
+            "Impuls 2 (36WEd)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_Impuls",
+      "name": "horn",
+      "vehicles": [
+        "Impuls 2 (36WEd)"
+      ],
+      "variants": [
+        {
+          "description": "Horn switch\n2 = high tone\n0 = neutral position\n1 = low tone",
+          "vehicles": [
+            "Impuls 2 (36WEd)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_Impuls",
+      "name": "horn_l",
+      "vehicles": [
+        "Impuls 2 (36WEd)"
+      ],
+      "variants": [
+        {
+          "description": "Horn switch (left)\n2 = high tone\n0 = neutral position\n1 = low tone",
+          "vehicles": [
+            "Impuls 2 (36WEd)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_Impuls",
+      "name": "horn_pedal",
+      "vehicles": [
+        "Impuls 2 (36WEd)"
+      ],
+      "variants": [
+        {
+          "description": "Horn pedal\n0 = released\n1 = pressed",
+          "vehicles": [
+            "Impuls 2 (36WEd)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_Impuls",
+      "name": "instrument_light_pow",
+      "vehicles": [
+        "Impuls 2 (36WEd)"
+      ],
+      "variants": [
+        {
+          "description": "Instrument light power knob\nRange between 0.25 and 1",
+          "vehicles": [
+            "Impuls 2 (36WEd)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_Impuls",
+      "name": "light_pos",
+      "vehicles": [
+        "Impuls 2 (36WEd)"
+      ],
+      "variants": [
+        {
+          "description": "Headlight mode\n0 = disabled\n1 = train front marking (dimmed)\n2 = normal drive\n3 = shunting (end of the train)\n4 = shunting\n5 = drive on left track\n6 = emergency stop\n7 = marking the end of the train",
+          "vehicles": [
+            "Impuls 2 (36WEd)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_Impuls",
+      "name": "main_brake",
+      "vehicles": [
+        "Impuls 2 (36WEd)"
+      ],
+      "variants": [
+        {
+          "description": "Service brake\n0 = high flow charge\n1 = driving position\n2 = decrease brake force (unstable)\n3 = maintain brake force\n4 = increase brake force (unstable)\n5 = emergency braking",
+          "vehicles": [
+            "Impuls 2 (36WEd)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_Impuls",
+      "name": "main_switch",
+      "vehicles": [
+        "Impuls 2 (36WEd)"
+      ],
+      "variants": [
+        {
+          "description": "Close main switch\n1 = activate\n0 = default position",
+          "vehicles": [
+            "Impuls 2 (36WEd)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_Impuls",
+      "name": "pantograph_set",
+      "vehicles": [
+        "Impuls 2 (36WEd)"
+      ],
+      "variants": [
+        {
+          "description": "Pantograph selection switch (panel in the back of the cabin)\n0 = none\n1 = front\n2 = back\n3 = both",
+          "vehicles": [
+            "Impuls 2 (36WEd)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_Impuls",
+      "name": "pantograph_set_rq",
+      "vehicles": [
+        "Impuls 2 (36WEd)"
+      ],
+      "variants": [
+        {
+          "description": "Switch for pantograph\n2 = raise\n1 = default (neutral)\n0 = lower",
+          "vehicles": [
+            "Impuls 2 (36WEd)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_Impuls",
+      "name": "sanding_rq",
+      "vehicles": [
+        "Impuls 2 (36WEd)"
+      ],
+      "variants": [
+        {
+          "description": "Sanding switch\n0 = default position (should return to this position)\n1 = active",
+          "vehicles": [
+            "Impuls 2 (36WEd)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_Impuls",
+      "name": "security_system_button",
+      "vehicles": [
+        "Impuls 2 (36WEd)"
+      ],
+      "variants": [
+        {
+          "description": "Security system button (CA/SHP)\n1 = pressed\n0 = default position (returns to 0 when the button returns to its normal position)",
+          "vehicles": [
+            "Impuls 2 (36WEd)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_Impuls",
+      "name": "shp_isolation",
+      "vehicles": [
+        "Impuls 2 (36WEd)"
+      ],
+      "variants": [
+        {
+          "description": "SHP isolation\n0 = enabled\n1 = disabled",
+          "vehicles": [
+            "Impuls 2 (36WEd)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_Impuls",
+      "name": "shunting_mode_rq",
+      "vehicles": [
+        "Impuls 2 (36WEd)"
+      ],
+      "variants": [
+        {
+          "description": "Shunting mode button\n0 = disabled\n1 = enabled",
+          "vehicles": [
+            "Impuls 2 (36WEd)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_Impuls",
+      "name": "signal_lamps_dim",
+      "vehicles": [
+        "Impuls 2 (36WEd)"
+      ],
+      "variants": [
+        {
+          "description": "Switch for signal lights dimming\n1 = disabled\n0.5 = dimmed",
+          "vehicles": [
+            "Impuls 2 (36WEd)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_Impuls",
+      "name": "speed_ctrl_rq",
+      "vehicles": [
+        "Impuls 2 (36WEd)"
+      ],
+      "variants": [
+        {
+          "description": "Cruise control\n0 = released\n1 = pressed",
+          "vehicles": [
+            "Impuls 2 (36WEd)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_Impuls",
+      "name": "springbrake_off",
+      "vehicles": [
+        "Impuls 2 (36WEd)"
+      ],
+      "variants": [
+        {
+          "description": "Deactivate spring brake button\n1 = pressed\n0 = default position",
+          "vehicles": [
+            "Impuls 2 (36WEd)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_Impuls",
+      "name": "springbrake_on",
+      "vehicles": [
+        "Impuls 2 (36WEd)"
+      ],
+      "variants": [
+        {
+          "description": "Activate spring brake button\n1 = pressed\n0 = default position",
+          "vehicles": [
+            "Impuls 2 (36WEd)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_Impuls",
+      "name": "unlock_brake_pipe",
+      "vehicles": [
+        "Impuls 2 (36WEd)"
+      ],
+      "variants": [
+        {
+          "description": "Unlock brake pipe button\n1 = pressed\n0 = default position (returns to 0 when the button returns to its normal position)",
+          "vehicles": [
+            "Impuls 2 (36WEd)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_Impuls",
+      "name": "washer",
+      "vehicles": [
+        "Impuls 2 (36WEd)"
+      ],
+      "variants": [
+        {
+          "description": "Window washer button\n1 = pressed\n0 = default position (returns to 0 when the button returns to its normal position)",
+          "vehicles": [
+            "Impuls 2 (36WEd)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_Impuls",
+      "name": "whistle",
+      "vehicles": [
+        "Impuls 2 (36WEd)"
+      ],
+      "variants": [
+        {
+          "description": "Whistle button\n0 = default\n1 = sound a whistle",
+          "vehicles": [
+            "Impuls 2 (36WEd)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_Impuls",
+      "name": "windscreen_heating",
+      "vehicles": [
+        "Impuls 2 (36WEd)"
+      ],
+      "variants": [
+        {
+          "description": "Windscreen heating switch\n0 = disabled\n1 = manual\n2 = automatic",
+          "vehicles": [
+            "Impuls 2 (36WEd)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_Impuls",
+      "name": "wiper",
+      "vehicles": [
+        "Impuls 2 (36WEd)"
+      ],
+      "variants": [
+        {
+          "description": "Window wiper switch\n0 = disabled\n1 = mode 3\n2 = mode 1\n3 = mode 2",
+          "vehicles": [
+            "Impuls 2 (36WEd)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_TRAXX_E186",
+      "name": "activation_handle",
+      "vehicles": [
+        "Traxx (E186)",
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Battery activation switch\n0 = disabled\n1 = cabin inactive\n2 = cabin A activation\n3 = cabin B activation",
+          "vehicles": [
+            "Traxx (E186)"
+          ]
+        },
+        {
+          "description": "Battery activation switch\n0 = disabled\n1 = cabin not active\n2 = cabin A activation\n3 = cabin B activation",
+          "vehicles": [
+            "Traxx DE (BR285)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_TRAXX_E186",
+      "name": "diesel_engine_disable_rq",
+      "vehicles": [
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Diesel engine key switch.\n1 = turn off engine\n0 = turn on engine",
+          "vehicles": [
+            "Traxx DE (BR285)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_TRAXX_E186",
+      "name": "display1_c",
+      "vehicles": [
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Display 1 C button\n1 = pressed\n0 = released",
+          "vehicles": [
+            "Traxx DE (BR285)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_TRAXX_E186",
+      "name": "display1_display_aus",
+      "vehicles": [
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Display 1 display-off button (German: Display aus)\n1 = pressed\n0 = released",
+          "vehicles": [
+            "Traxx DE (BR285)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_TRAXX_E186",
+      "name": "display1_dot",
+      "vehicles": [
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Display 1 . (dot) button\n1 = pressed\n0 = released",
+          "vehicles": [
+            "Traxx DE (BR285)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_TRAXX_E186",
+      "name": "display1_down",
+      "vehicles": [
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Display 1 down-arrow button\n1 = pressed\n0 = released",
+          "vehicles": [
+            "Traxx DE (BR285)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_TRAXX_E186",
+      "name": "display1_enter",
+      "vehicles": [
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Display 1 enter button\n1 = pressed\n0 = released",
+          "vehicles": [
+            "Traxx DE (BR285)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_TRAXX_E186",
+      "name": "display1_F0",
+      "vehicles": [
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Display 1 F0 function button\n1 = pressed\n0 = released",
+          "vehicles": [
+            "Traxx DE (BR285)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_TRAXX_E186",
+      "name": "display1_F1",
+      "vehicles": [
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Display 1 F1 function button\n1 = pressed\n0 = released",
+          "vehicles": [
+            "Traxx DE (BR285)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_TRAXX_E186",
+      "name": "display1_F2",
+      "vehicles": [
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Display 1 F2 function button\n1 = pressed\n0 = released",
+          "vehicles": [
+            "Traxx DE (BR285)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_TRAXX_E186",
+      "name": "display1_F3",
+      "vehicles": [
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Display 1 F3 function button\n1 = pressed\n0 = released",
+          "vehicles": [
+            "Traxx DE (BR285)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_TRAXX_E186",
+      "name": "display1_F4",
+      "vehicles": [
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Display 1 F4 function button\n1 = pressed\n0 = released",
+          "vehicles": [
+            "Traxx DE (BR285)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_TRAXX_E186",
+      "name": "display1_F5",
+      "vehicles": [
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Display 1 F5 function button\n1 = pressed\n0 = released",
+          "vehicles": [
+            "Traxx DE (BR285)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_TRAXX_E186",
+      "name": "display1_F6",
+      "vehicles": [
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Display 1 F6 function button\n1 = pressed\n0 = released",
+          "vehicles": [
+            "Traxx DE (BR285)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_TRAXX_E186",
+      "name": "display1_F7",
+      "vehicles": [
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Display 1 F7 function button\n1 = pressed\n0 = released",
+          "vehicles": [
+            "Traxx DE (BR285)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_TRAXX_E186",
+      "name": "display1_F8",
+      "vehicles": [
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Display 1 F8 function button\n1 = pressed\n0 = released",
+          "vehicles": [
+            "Traxx DE (BR285)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_TRAXX_E186",
+      "name": "display1_F9",
+      "vehicles": [
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Display 1 F9 function button\n1 = pressed\n0 = released",
+          "vehicles": [
+            "Traxx DE (BR285)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_TRAXX_E186",
+      "name": "display1_helligkeit",
+      "vehicles": [
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Display 1 brightness button (German: Helligkeit)\n1 = pressed\n0 = released",
+          "vehicles": [
+            "Traxx DE (BR285)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_TRAXX_E186",
+      "name": "display1_info",
+      "vehicles": [
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Display 1 info button\n1 = pressed\n0 = released",
+          "vehicles": [
+            "Traxx DE (BR285)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_TRAXX_E186",
+      "name": "display1_invers",
+      "vehicles": [
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Display 1 inverse-color button\n1 = pressed\n0 = released",
+          "vehicles": [
+            "Traxx DE (BR285)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_TRAXX_E186",
+      "name": "display1_lang",
+      "vehicles": [
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Display 1 language button (German: Lang)\n1 = pressed\n0 = released",
+          "vehicles": [
+            "Traxx DE (BR285)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_TRAXX_E186",
+      "name": "display1_storung",
+      "vehicles": [
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Display 1 fault/disturbance button (German: Störung)\n1 = pressed\n0 = released",
+          "vehicles": [
+            "Traxx DE (BR285)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_TRAXX_E186",
+      "name": "display1_ud",
+      "vehicles": [
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Display 1 UD button\n1 = pressed\n0 = released",
+          "vehicles": [
+            "Traxx DE (BR285)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_TRAXX_E186",
+      "name": "display1_up",
+      "vehicles": [
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Display 1 up-arrow button\n1 = pressed\n0 = released",
+          "vehicles": [
+            "Traxx DE (BR285)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_TRAXX_E186",
+      "name": "display1_v0",
+      "vehicles": [
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Display 1 V0 button\n1 = pressed\n0 = released",
+          "vehicles": [
+            "Traxx DE (BR285)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_TRAXX_E186",
+      "name": "display1_v1",
+      "vehicles": [
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Display 1 V1 button\n1 = pressed\n0 = released",
+          "vehicles": [
+            "Traxx DE (BR285)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_TRAXX_E186",
+      "name": "ed_toggle_rq",
+      "vehicles": [
+        "Traxx (E186)",
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Request to enable electrodynamic brake (toggle) - button located inside main brake handle\n0 = released\n1 = pressed",
+          "vehicles": [
+            "Traxx (E186)"
+          ]
+        },
+        {
+          "description": "Request to toggle electrodynamic brake 0 = disabled, 1 = enabled",
+          "vehicles": [
+            "Traxx DE (BR285)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_TRAXX_E186",
+      "name": "electric_bus_button",
+      "vehicles": [
+        "Traxx (E186)",
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Electric bus request\n0 = button released\n1 = button pressed",
+          "vehicles": [
+            "Traxx (E186)",
+            "Traxx DE (BR285)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Physics_Input_TRAXX_E186",
+      "name": "radio_backlight_switch",
+      "vehicles": [
+        "Traxx DE (BR285)"
+      ],
+      "variants": [
+        {
+          "description": "Toggle for switching backlight\n0 = when released\n1 when pressed",
+          "vehicles": [
+            "Traxx DE (BR285)"
+          ]
+        }
+      ]
+    }
+  ]
+}

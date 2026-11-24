@@ -1,0 +1,31 @@
+{
+  "name": "simrail-mqtt",
+  "version": "0.1.0",
+  "description": "Custom controllers for SimRail over MQTT: local TypeScript server + browser UI over WebSockets.",
+  "license": "ISC",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node --disable-warning=DEP0180 --import ./server/ts-node-register.js server/src/index.ts",
+    "dev": "node --disable-warning=DEP0180 --watch --import ./server/ts-node-register.js server/src/index.ts --no-open",
+    "fake-simrail": "node --disable-warning=DEP0180 --import ./server/ts-node-register.js tools/fake-simrail.ts",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "express": "^5.3.0",
+    "mqtt": "^5.16.1",
+    "open": "^11.0.4",
+    "ws": "^8.23.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^24.19.2",
+    "@types/ws": "^8.18.2",
+    "aedes": "^1.2.0",
+    "ts-node": "^10.9.2",
+    "typescript": "~5.9"
+  }
+}

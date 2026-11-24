@@ -1,0 +1,11 @@
+{
+  "about": "Corrections to the SimRail wiki, applied on top of simrail-inputs.json. Keyed by '<category>/<field>', then by vehicle name as it appears in the catalogue; the description replaces the wiki's for that vehicle.",
+  "overrides": {
+    "Physics_Input_General/drive_handle": {
+      "Dragon 2 (ET25 / E6ACTa)": {
+        "description": "Position of the main driving handle\n-1–1 = handle position, float",
+        "note": "The wiki lists positions 0–4 (a brake-handle list); the game accepts floats from -1 to 1."
+      }
+    }
+  }
+}

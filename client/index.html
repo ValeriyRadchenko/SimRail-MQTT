@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SimRail Controllers</title>
+    <link rel="stylesheet" href="css/app.css" />
+    <script type="module" src="js/main.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <h1 class="brand">SimRail Controllers</h1>
+      <div class="status" id="status" data-state="offline">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span id="status-text">Connecting to local server…</span>
+      </div>
+      <div class="trainset" id="trainset" hidden></div>
+      <button id="refresh-topics" class="btn btn-ghost" type="button" disabled
+        title="Ask SimRail for the current list of topics">Refresh topics</button>
+    </header>
+
+    <main class="layout">
+      <section class="panel testing" aria-labelledby="testing-title">
+        <header class="panel-header">
+          <h2 id="testing-title">Testing panel</h2>
+        </header>
+        <div class="panel-content">
+          <form id="testing-form" class="testing-form" autocomplete="off">
+            <div class="field field-element">
+              <span class="label">Element</span>
+              <div class="element">
+                <span id="testing-element" class="element-title">Pick an input from the list</span>
+                <span id="testing-group" class="element-group"></span>
+              </div>
+            </div>
+            <label class="field field-topic">
+              <span class="label">MQTT topic</span>
+              <input id="testing-topic" type="text" spellcheck="false" placeholder="category/field_name" />
+            </label>
+            <label class="field field-value">
+              <span class="label">Value</span>
+              <input id="testing-value" type="number" step="any" inputmode="decimal" placeholder="0" />
+            </label>
+            <button id="testing-apply" class="btn btn-primary" type="submit" disabled>Apply</button>
+          </form>
+          <div class="slider-row">
+            <label class="field slider-min">
+              <span class="label">Min</span>
+              <input id="slider-min" type="number" step="any" />
+            </label>
+            <div class="slider-main">
+              <input id="testing-slider" type="range" list="slider-ticks" aria-label="Value" />
+              <datalist id="slider-ticks"></datalist>
+            </div>
+            <label class="field slider-max">
+              <span class="label">Max</span>
+              <input id="slider-max" type="number" step="any" />
+            </label>
+            <label class="field slider-step">
+              <span class="label">Step</span>
+              <input id="slider-step" type="number" step="any" min="0" />
+            </label>
+            <label class="toggle slider-live">
+              <input id="slider-live" type="checkbox" checked />
+              <span>Send while dragging</span>
+            </label>
+            <div class="slider-readout">
+              <span id="slider-meaning" class="meaning"></span>
+              <span id="game-value" class="game-value"></span>
+            </div>
+          </div>
+          <p id="testing-hint" class="hint"></p>
+          <div id="testing-details" class="details" hidden>
+            <label id="variant-field" class="variant" hidden>
+              <span class="label">Description for</span>
+              <select id="testing-variant"></select>
+            </label>
+            <pre id="testing-description" class="description"></pre>
+            <p id="testing-meta" class="meta"></p>
+          </div>
+          <p id="testing-result" class="result" role="status" aria-live="polite"></p>
+        </div>
+      </section>
+
+      <section class="panel column" aria-labelledby="joysticks-title">
+        <header class="panel-header">
+          <h2 id="joysticks-title">Joysticks</h2>
+          <span class="count">0</span>
+        </header>
+        <div class="panel-body empty-state">
+          <p>No joysticks yet</p>
+          <p class="muted">Connected controllers will be listed here.</p>
+        </div>
+      </section>
+
+      <section class="panel column" aria-labelledby="inputs-title">
+        <header class="panel-header">
+          <h2 id="inputs-title">Inputs</h2>
+          <span class="count" id="inputs-count">0</span>
+          <span class="badge" id="inputs-source" hidden></span>
+        </header>
+        <div class="panel-toolbar">
+          <input id="inputs-filter" type="search" spellcheck="false"
+            placeholder="Filter, e.g. brake, pantograph, EU07" aria-label="Filter inputs" />
+        </div>
+        <div class="panel-body list" id="inputs-list" role="listbox" aria-label="Input elements"></div>
+      </section>
+    </main>
+  </body>
+</html>
