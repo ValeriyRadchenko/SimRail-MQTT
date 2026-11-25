@@ -1,7 +1,7 @@
 import { EventEmitter } from 'node:events';
 import { SerialPort } from 'serialport';
 import type { JoystickInfo, JoystickInput, JoystickState } from '../protocol.js';
-import { comparePorts, defaultJoystick, type JoystickSettings } from '../settings/schema.js';
+import { comparePorts, defaultSerialJoystick, type SerialJoystickSettings } from '../settings/schema.js';
 import { compileMask, type ChannelKind, type CompiledMask } from './mask.js';
 
 /** A port as the system lists it. */
@@ -45,7 +45,7 @@ interface Connection {
   pending: string;
 }
 
-interface ManagerEvents {
+interface SerialEvents {
   /** The list of ports or their state changed. */
   joysticks: [JoystickInfo[]];
   /** Every line read, as it arrives. */
@@ -57,10 +57,10 @@ interface ManagerEvents {
  * the port's mask. Ports come and go (USB): the list is checked every few seconds, ports are
  * opened when they appear and retried when they fail.
  */
-export class JoystickManager extends EventEmitter<ManagerEvents> {
+export class SerialJoysticks extends EventEmitter<SerialEvents> {
   private readonly backend: SerialBackend;
   private readonly listIntervalMs: number;
-  private settings = new Map<string, JoystickSettings>();
+  private settings = new Map<string, SerialJoystickSettings>();
   private readonly masks = new Map<string, CompiledMask>();
   private listed = new Map<string, PortListing>();
   private readonly connections = new Map<string, Connection>();
@@ -95,7 +95,7 @@ export class JoystickManager extends EventEmitter<ManagerEvents> {
   }
 
   /** Apply the user's port settings: opens, closes or reopens ports as needed. */
-  configure(joysticks: JoystickSettings[]): void {
+  configure(joysticks: SerialJoystickSettings[]): void {
     const previous = this.settings;
     this.settings = new Map(joysticks.map((j) => [j.port, j]));
     for (const [port, next] of this.settings) {
@@ -128,8 +128,8 @@ export class JoystickManager extends EventEmitter<ManagerEvents> {
 
   // ---------- ports ----------
 
-  private settingsFor(port: string): JoystickSettings {
-    return this.settings.get(port) ?? defaultJoystick(port);
+  private settingsFor(port: string): SerialJoystickSettings {
+    return this.settings.get(port) ?? defaultSerialJoystick(port);
   }
 
   private maskFor(port: string): CompiledMask {
@@ -271,7 +271,7 @@ export class JoystickManager extends EventEmitter<ManagerEvents> {
   /** After a mask change, show what the last line means with the new mask. */
   private reparseLatest(port: string): void {
     const latest = this.latest.get(port);
-    if (!latest) return;
+    if (latest?.line === undefined) return;
     const input = { ...latest, values: this.maskFor(port).parse(latest.line) };
     this.latest.set(port, input);
     this.emit('input', input);
@@ -284,17 +284,21 @@ export class JoystickManager extends EventEmitter<ManagerEvents> {
     const settings = this.settingsFor(port);
     const error = this.errors.get(port)?.message;
     const state = this.stateOf(port, settings, Boolean(listing), error);
+    const mask = this.maskFor(port);
     return {
       port,
+      kind: 'serial',
+      name: port,
       present: Boolean(listing),
       description: describePort(listing),
       state,
       ...(state === 'error' && error ? { error } : {}),
-      channels: this.maskFor(port).channels,
+      channels: mask.channels,
+      labels: mask.labels,
     };
   }
 
-  private stateOf(port: string, settings: JoystickSettings, present: boolean, error?: string): JoystickState {
+  private stateOf(port: string, settings: SerialJoystickSettings, present: boolean, error?: string): JoystickState {
     const connection = this.connections.get(port);
     if (connection?.phase === 'open') return 'open';
     if (connection) return settings.enabled ? 'opening' : 'off'; // closing: reopening for a new baud rate

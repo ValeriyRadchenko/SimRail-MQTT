@@ -1,5 +1,5 @@
 import { SerialPortMock } from 'serialport';
-import type { SerialBackend } from './manager.js';
+import type { SerialBackend } from './serial.js';
 
 // A simulated joystick on port FAKE1, for working on the app without hardware
 // (`npm run dev -- --fake-joystick`). Instead of the system's ports, only FAKE1 is listed.

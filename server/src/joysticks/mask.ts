@@ -24,6 +24,8 @@ export interface CompiledMask {
   readonly mask: string;
   /** One entry per value in the line, in order. */
   readonly channels: ChannelKind[];
+  /** "Axis 1", "Axis 2", "Button 1": numbered per kind, in mask order. */
+  readonly labels: string[];
   /** The line's values in mask order, or null when the line doesn't have the mask's shape. */
   parse(line: string): number[] | null;
 }
@@ -74,9 +76,13 @@ export function compileMask(mask: string): CompiledMask {
   });
   const re = new RegExp(`^\\s*${body}\\s*$`);
 
+  const counts: Record<ChannelKind, number> = { analog: 0, button: 0 };
+  const labels = channels.map((kind) => `${kind === 'button' ? 'Button' : 'Axis'} ${++counts[kind]}`);
+
   return {
     mask: source,
     channels,
+    labels,
     parse(line) {
       const match = re.exec(line);
       return match ? match.slice(1).map(Number) : null;

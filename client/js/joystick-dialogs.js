@@ -198,7 +198,7 @@ export class ChannelDialog extends ModalForm {
       released: binding?.released ?? DEFAULT_RELEASED,
     };
 
-    this.$('title').textContent = `${joystick.port} · ${channelLabel(joystick.channels, channel)}`;
+    this.$('title').textContent = `${joystick.name} · ${channelLabel(joystick, channel)}`;
     this.$('subtitle').textContent = locomotive;
     this.#renderFeatureOptions();
     this.$('tolerance').value = fieldValue(this.#draft.tolerance);
@@ -288,8 +288,8 @@ export class ChannelDialog extends ModalForm {
 
   async #remove() {
     const { joystick, channel, locomotive } = this.#ctx;
-    const label = channelLabel(joystick.channels, channel);
-    if (!window.confirm(`Remove what ${label} of ${joystick.port} does on ${locomotive}?`)) return;
+    const label = channelLabel(joystick, channel);
+    if (!window.confirm(`Remove what ${label} of ${joystick.name} does on ${locomotive}?`)) return;
     await this.send(() => this.#onSave({ kind: 'remove-binding', locomotive, joystick: joystick.port, channel }));
   }
 
@@ -424,9 +424,9 @@ export class ChannelDialog extends ModalForm {
     readout.dataset.kind = 'note';
     if (!this.#input) {
       readout.textContent =
-        joystick.state === 'open' ? `Waiting for data from ${joystick.port}…` : `No live value: ${joystick.port} is not being read.`;
+        joystick.state === 'open' ? `Waiting for data from ${joystick.name}…` : `No live value: ${joystick.name} is not being read.`;
     } else if (raw === null) {
-      readout.textContent = `The last line from ${joystick.port} doesn't match its mask.`;
+      readout.textContent = `The last line from ${joystick.name} doesn't match its mask.`;
     } else if (kind === 'button') {
       readout.dataset.kind = 'value';
       readout.textContent = `${raw ? 'Pressed' : 'Released'} → ${formatValue(resolveButton(this.#draft, raw).value)}`;

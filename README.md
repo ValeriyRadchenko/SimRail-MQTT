@@ -8,7 +8,8 @@ A local app for building custom train controllers for [SimRail](https://simrail.
 
 ## Running
 
-Requires Node.js 22+.
+Requires Node.js 22+. `npm install` also downloads SDL (prebuilt, from the
+[node-sdl](https://github.com/ValeriyRadchenko/node-sdl) releases), which reads game controllers.
 
 ```sh
 npm install
@@ -32,6 +33,7 @@ session. Until then the app shows **Waiting for SimRail** and keeps retrying.
 | `SIMRAIL_POLL_MS`        | `100`                      | How often the selected input's value is polled  |
 | `NO_OPEN=1`              |                            | Don't open the browser                          |
 | `FAKE_JOYSTICK=1`        |                            | Same as `--fake-joystick`                       |
+| `NO_CONTROLLERS=1`       |                            | Same as `--no-controllers`: don't load SDL      |
 | `SETTINGS_FILE`          | `settings/config.json`     | Where UI settings are saved (e.g. for testing)  |
 
 ## UI
@@ -47,18 +49,23 @@ session. Until then the app shows **Waiting for SimRail** and keeps retrying.
   - Fields can mean different things per vehicle; **Description for** switches between them and is
     preselected for the train you are driving, recognised from its input topics
     (`physics_input_e6act/*` → Dragon 2), since `trainset/name` is just `trainset-Player`.
-- **Joysticks**: serial (COM) ports and what their channels do on the chosen locomotive, see below.
+- **Joysticks**: serial (COM) ports and game controllers, and what their channels do on the chosen
+  locomotive, see below.
 - **Inputs**: every input field, titled from its snake_case name (`compressor_rq` → *Compressor
   Request*), grouped by vehicle category and filterable.
 
 ## Joysticks
 
-Joysticks are serial devices (e.g. an Arduino) that print one line of values per reading, such as
-`{512,340}`. The port list is checked every 2 seconds; every port is listed, and only the ones with
-**Read** turned on are opened (opening a port resets most Arduinos and keeps other programs, like
-the Arduino IDE, from using it). Read ports are reopened when they are plugged back in.
+A joystick is either a **serial device** (e.g. an Arduino) that prints one line of values per
+reading, such as `{512,340}`, or a **game controller** (a USB joystick, gamepad, throttle… anything
+Windows lists under *Game controllers*), see [Game controllers](#game-controllers). Both are listed
+in the Joysticks column and used the same way.
 
-- **Settings** (per port): the **mask** and the baud rate (default 9600). In the mask, `a` is an
+The port list is checked every 2 seconds; every port is listed, and only the ones with **Read**
+turned on are opened (opening a port resets most Arduinos and keeps other programs, like the Arduino
+IDE, from using it). Read ports are reopened when they are plugged back in.
+
+- **Settings** (per serial port): the **mask** and the baud rate (default 9600). In the mask, `a` is an
   analog value (a whole number, 0–1023 from `analogRead`), `b` a button (0 released, 1 pressed), and
   everything else has to appear in the line as written; spaces around it don't matter. The default
   `{a,a}` reads `{512,340}` as two axes; `{a,a,b}` reads `{512,340,1}`. A line that doesn't match
@@ -76,6 +83,27 @@ the Arduino IDE, from using it). Read ports are reopened when they are plugged b
 
   The track at the top shows the areas, notch bands and the lever, and what the current position
   maps to, before anything is saved.
+
+### Game controllers
+
+Game controllers are read through SDL ([node-sdl](https://github.com/ValeriyRadchenko/node-sdl)).
+They show up within half a second of being plugged in, under their name (`Generic USB Joystick`),
+numbered when several have the same name. Like serial ports, they are only read once **Read** is
+on, and are read again when plugged back in.
+
+- **Channels**: the axes (*Axis 1…*), then the buttons (*Button 1…*), then
+  each hat (d-pad) as four buttons: *Hat 1 up*, *right*, *down*, *left* (a diagonal presses two).
+- **Axes are scaled to 0–1023**, like a serial joystick's analog values, so notches, areas and
+  tolerances work the same (centre ≈ 512).
+- A controller only reports **changes**: a lever nobody touches isn't flagged as silent. The status
+  line lists the buttons being pressed, which helps telling them apart.
+- **Ids**: identical devices share SDL's GUID, so a controller is known by its device path, which
+  names the device and the USB port it is in: `sdl:HID#VID_0079&PID_0006#9&234B6673&0&0000`. Like a
+  COM port's number, it stays the same across restarts **as long as the controller stays in the same
+  USB port**; plugged into another one, it is listed as a new controller (assign its channels again,
+  or edit the id in the settings file). Hover a controller's name to see its id.
+- No settings beyond **Read**. If SDL can't be loaded, the app still runs with serial ports only
+  (the console says why); `--no-controllers` doesn't load it at all.
 
 ### Sending to SimRail
 
@@ -100,7 +128,7 @@ game.
 ### Settings file
 
 Everything set up in the UI is saved to `settings/config.json` (created on first start, not in
-git: COM port names are specific to the PC). It can be edited by hand while the app is stopped;
+git: COM port names and controller ids are specific to the PC). It can be edited by hand while the app is stopped;
 entries that don't validate are skipped with a warning, and a file that isn't valid JSON is moved
 aside to `config.invalid-<time>.json`.
 
@@ -109,7 +137,10 @@ aside to `config.invalid-<time>.json`.
   "version": 1,
   "locomotive": "Dragon 2 (ET25 / E6ACTa)",
   "paused": false,
-  "joysticks": [{ "port": "COM3", "enabled": true, "baudRate": 9600, "mask": "{a,a}" }],
+  "joysticks": [
+    { "port": "COM3", "enabled": true, "baudRate": 9600, "mask": "{a,a}" },
+    { "port": "sdl:HID#VID_0079&PID_0006#9&234B6673&0&0000", "enabled": true }
+  ],
   "bindings": [
     {
       "locomotive": "Dragon 2 (ET25 / E6ACTa)",
@@ -125,7 +156,9 @@ aside to `config.invalid-<time>.json`.
 ```
 
 `channel` is the 0-based position of the value in the mask (`1` = *Axis 2* with `{a,a}`).
-Button channels have `pressed` / `released` instead of `tolerance`, `notches` and `areas`.
+For a controller it is the position in its channel list (axes, buttons, hats; *Button 1* of a
+controller with 5 axes is `5`). Button channels have `pressed` / `released` instead of
+`tolerance`, `notches` and `areas`.
 
 ## How it talks to SimRail
 
@@ -176,7 +209,8 @@ list brake              list inputs (optionally filtered)
 `npm run dev -- --fake-joystick` (or `FAKE_JOYSTICK=1`) lists a simulated joystick, `FAKE1`, instead
 of the PC's COM ports. Once read, it sends `{a,a}` lines 50 times a second: axis 1 sweeps from end
 to end every 8 s, axis 2 rests in one of five notches (60, 290, 512, 735, 960) at a time, with a
-little jitter. Its first line arrives cut off, like a real port opened mid-line.
+little jitter. Its first line arrives cut off, like a real port opened mid-line. Game controllers
+are still listed (`--no-controllers` leaves them out).
 
 ## Layout
 
@@ -197,7 +231,9 @@ server/
   src/protocol.ts                WebSocket message types
   src/value-watch.ts             which tab follows which topic
   src/coalesce.ts                rate-limits joystick values sent to the browser
-  src/joysticks/manager.ts       finds, opens and reads serial ports
+  src/joysticks/manager.ts       all joysticks: serial ports + game controllers
+  src/joysticks/serial.ts        finds, opens and reads serial ports
+  src/joysticks/controllers.ts   game controllers through SDL: list, read, report changes
   src/joysticks/mask.ts          line format ("{a,a}") parsing
   src/joysticks/fake.ts          simulated joystick (--fake-joystick)
   src/joysticks/mapping.ts       raw value → notch / area → value (what is sent)

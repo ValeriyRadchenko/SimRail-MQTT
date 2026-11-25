@@ -36,6 +36,12 @@ export const config = {
     fake: process.argv.includes('--fake-joystick') || process.env.FAKE_JOYSTICK === '1',
     /** At most one value per SimRail input this often (20 per second), like the testing slider. */
     sendIntervalMs: 50,
+    /** List game controllers (USB joysticks, gamepads…) through SDL. */
+    controllers: !process.argv.includes('--no-controllers') && process.env.NO_CONTROLLERS !== '1',
+    /** How often the controllers being read are checked for changes. */
+    controllerPollMs: 10,
+    /** How often the controller list is checked for controllers being plugged in or out. */
+    controllerListIntervalMs: 500,
   },
   openBrowser: !process.argv.includes('--no-open') && process.env.NO_OPEN !== '1',
   paths: {

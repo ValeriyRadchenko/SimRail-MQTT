@@ -3,9 +3,11 @@ import open from 'open';
 import { coalesce } from './coalesce.js';
 import { config } from './config.js';
 import { createHttpServer } from './http.js';
+import { GameControllers, sdlControllers } from './joysticks/controllers.js';
 import { FAKE_PORT, fakeSerial } from './joysticks/fake.js';
-import { JoystickManager, systemSerial } from './joysticks/manager.js';
+import { JoystickManager } from './joysticks/manager.js';
 import { JoystickSender } from './joysticks/sender.js';
+import { SerialJoysticks, systemSerial } from './joysticks/serial.js';
 import type { ClientMessage, InputList, JoystickInput, ServerMessage } from './protocol.js';
 import { parseSettingsChange } from './settings/schema.js';
 import { SettingsStore } from './settings/store.js';
@@ -32,8 +34,11 @@ async function main(): Promise<void> {
   const bridge = new SimRailBridge({ ...config.mqtt, runtimeDir: config.paths.runtime });
   const values = new ValueWatch(bridge);
   const joysticks = new JoystickManager({
-    backend: config.joysticks.fake ? fakeSerial() : systemSerial,
-    listIntervalMs: config.joysticks.listIntervalMs,
+    serial: new SerialJoysticks({
+      backend: config.joysticks.fake ? fakeSerial() : systemSerial,
+      listIntervalMs: config.joysticks.listIntervalMs,
+    }),
+    controllers: await loadControllers(),
   });
   joysticks.configure(settings.get().joysticks);
   const sender = new JoystickSender({
@@ -105,7 +110,7 @@ async function main(): Promise<void> {
   console.log(`[mqtt] waiting for SimRail broker at ${bridge.getStatus().broker}`);
 
   joysticks.start();
-  if (config.joysticks.fake) console.log(`[joystick] simulated joystick on ${FAKE_PORT}; system ports are not used`);
+  if (config.joysticks.fake) console.log(`[joystick] simulated joystick on ${FAKE_PORT}; system COM ports are not used`);
 
   if (config.openBrowser) {
     open(url).catch((err: Error) => console.warn(`[http] could not open a browser (${err.message}); open ${url} manually`));
@@ -121,6 +126,21 @@ async function main(): Promise<void> {
   };
   process.once('SIGINT', shutdown);
   process.once('SIGTERM', shutdown);
+}
+
+/** Game controllers through SDL, or null when turned off or SDL can't be loaded (serial ports still work). */
+async function loadControllers(): Promise<GameControllers | null> {
+  if (!config.joysticks.controllers) return null;
+  try {
+    return new GameControllers({
+      backend: await sdlControllers(),
+      pollMs: config.joysticks.controllerPollMs,
+      listIntervalMs: config.joysticks.controllerListIntervalMs,
+    });
+  } catch (err) {
+    console.warn(`[controller] game controllers are not available: ${(err as Error).message}`);
+    return null;
+  }
 }
 
 async function handleClientMessage(

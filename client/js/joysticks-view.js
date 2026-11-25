@@ -4,10 +4,18 @@ import { groupLabel, humanize } from './humanize.js';
 import { ChannelDialog, PortDialog } from './joystick-dialogs.js';
 import { inferRange } from './value-range.js';
 
-/** Settings of a port the user hasn't touched; mirrors defaultJoystick() in server/src/settings/schema.ts. */
-const defaultJoystick = (port) => ({ port, enabled: false, baudRate: 9600, mask: '{a,a}' });
-/** A port that is read but silent for this long is flagged. */
+/** Game controllers' ids start with this; mirrors CONTROLLER_PREFIX in server/src/settings/schema.ts. */
+const CONTROLLER_PREFIX = 'sdl:';
+/**
+ * Settings of a joystick the user hasn't touched; mirrors defaultSerialJoystick() and
+ * defaultController() in server/src/settings/schema.ts.
+ */
+const defaultJoystick = (port) =>
+  port.startsWith(CONTROLLER_PREFIX) ? { port, enabled: false } : { port, enabled: false, baudRate: 9600, mask: '{a,a}' };
+/** A serial port that is read but silent for this long is flagged (controllers only report changes). */
 const STALE_MS = 2000;
+
+const plural = (n, one, many = `${one}s`) => `${n} ${n === 1 ? one : many}`;
 
 const escapeHtml = (s) =>
   String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
@@ -15,8 +23,9 @@ const escapeHtml = (s) =>
 const featureTitle = (topic) => humanize(topic.slice(topic.lastIndexOf('/') + 1));
 
 /**
- * The "Joysticks" column: serial ports, whether they are read, their live values per channel,
- * and what each channel drives on the selected locomotive. Settings open in modal dialogs.
+ * The "Joysticks" column: serial ports and game controllers, whether they are read, their live
+ * values per channel, and what each channel drives on the selected locomotive. Settings open in
+ * modal dialogs.
  */
 export class JoysticksView {
   #els;
@@ -251,8 +260,8 @@ export class JoysticksView {
     this.#cards.clear();
     if (this.#joysticks.length === 0) {
       list.innerHTML =
-        '<div class="empty-state"><p>No serial ports found</p>' +
-        '<p class="muted">Plug in a joystick; the list is checked every 2 seconds.</p></div>';
+        '<div class="empty-state"><p>No joysticks found</p>' +
+        '<p class="muted">Plug in a game controller or a serial (COM port) joystick; it shows up here within 2 seconds.</p></div>';
       return;
     }
     list.innerHTML = this.#joysticks.map((j) => this.#cardHtml(j)).join('');
@@ -342,42 +351,55 @@ export class JoysticksView {
   }
 
   #cardHtml(joystick) {
-    const { port, description, state, channels } = joystick;
+    const { port, name, description, state, channels, layout } = joystick;
+    const serial = joystick.kind === 'serial';
     const settings = this.#settingsFor(port);
     const locomotive = this.#settings?.locomotive;
     const p = escapeHtml(port);
+    const n = escapeHtml(name);
 
     const rows =
       state === 'off'
         ? ''
         : `<ul class="channels">${channels.map((kind, i) => this.#channelHtml(joystick, kind, i, locomotive)).join('')}</ul>`;
+    // Serial: how lines are read. Controllers: what they have (known once read).
+    let config = '';
+    if (serial) config = `${settings.baudRate} baud · <code>${escapeHtml(settings.mask)}</code>`;
+    else if (layout) {
+      const { axes, buttons, hats } = layout;
+      config = [plural(axes, 'axis', 'axes'), plural(buttons, 'button'), hats ? plural(hats, 'hat') : ''].filter(Boolean).join(' · ');
+    }
+    // Only serial ports have settings (mask, baud rate).
+    const settingsButton = serial
+      ? `<button type="button" class="btn btn-small btn-ghost" data-action="port-settings"
+            data-focus-key="port:${p}" title="Mask and baud rate">Settings</button>`
+      : '';
 
     return `
-      <article class="joystick" data-port="${p}" data-state="${state}">
+      <article class="joystick" data-port="${p}" data-kind="${joystick.kind}" data-state="${state}">
         <header class="joystick-header">
           <span class="dot" data-state="${state}" aria-hidden="true"></span>
           <div class="joystick-name">
-            <span class="joystick-port">${p}</span>
+            <span class="joystick-port" ${serial ? '' : `title="${p}"`}>${n}</span>
             <span class="joystick-description">${escapeHtml(description ?? '')}</span>
           </div>
-          <label class="switch" title="Read joystick values from ${p}">
+          <label class="switch" title="Read joystick values from ${n}">
             <input type="checkbox" role="switch" data-action="enable" data-focus-key="enable:${p}"
               ${settings.enabled ? 'checked' : ''} ${this.#serverOnline ? '' : 'disabled'} />
             <span>Read</span>
           </label>
-          <button type="button" class="btn btn-small btn-ghost" data-action="port-settings"
-            data-focus-key="port:${p}" title="Mask and baud rate">Settings</button>
+          ${settingsButton}
         </header>
         <div class="joystick-status">
           <span class="status-line" data-role="status"></span>
-          <span class="status-config">${settings.baudRate} baud · <code>${escapeHtml(settings.mask)}</code></span>
+          <span class="status-config">${config}</span>
         </div>
         ${rows}
       </article>`;
   }
 
   #channelHtml(joystick, kind, channel, locomotive) {
-    const label = channelLabel(joystick.channels, channel);
+    const label = channelLabel(joystick, channel);
     const binding = this.#bindingFor(joystick.port, channel);
     const indicator =
       kind === 'analog'
@@ -412,7 +434,7 @@ export class JoysticksView {
     const joystick = this.#joysticks.find((j) => j.port === port);
     if (!card || !joystick) return;
     const input = this.#inputFor(joystick);
-    const stale = input && Date.now() - input.receivedAt > STALE_MS;
+    const stale = joystick.kind === 'serial' && input && Date.now() - input.receivedAt > STALE_MS;
 
     card.status.innerHTML = this.#statusHtml(joystick, input, stale);
 
@@ -435,9 +457,12 @@ export class JoysticksView {
   }
 
   #statusHtml(joystick, input, stale) {
+    const serial = joystick.kind === 'serial';
     switch (joystick.state) {
       case 'off':
-        return '<span class="muted">Not read. Turn on Read if this is a joystick.</span>';
+        return serial
+          ? '<span class="muted">Not read. Turn on Read if this is a joystick.</span>'
+          : '<span class="muted">Not read. Turn on Read to use it.</span>';
       case 'absent':
         return '<span class="warn">Not connected</span>';
       case 'opening':
@@ -446,6 +471,14 @@ export class JoysticksView {
         return `<span class="danger">${escapeHtml(joystick.error ?? 'Error')}</span> <span class="muted">· retrying</span>`;
       case 'open':
         if (!input) return '<span class="muted">Waiting for data…</span>';
+        if (!serial) {
+          // No line to show: list what is pressed, which helps tell the buttons apart.
+          const pressed = (input.values ?? [])
+            .map((value, i) => (joystick.channels[i] === 'button' && value === 1 ? channelLabel(joystick, i) : null))
+            .filter(Boolean);
+          const status = '<span class="ok">Connected</span>';
+          return pressed.length ? `${status} · ${escapeHtml(pressed.join(', '))} pressed` : status;
+        }
         if (stale) {
           const seconds = Math.round((Date.now() - input.receivedAt) / 1000);
           return `<span class="warn">No data for ${seconds} s</span>`;

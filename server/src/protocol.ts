@@ -55,33 +55,53 @@ export interface InputList {
 
 /**
  * - off: the user hasn't turned reading on
- * - absent: turned on, but the port isn't there (unplugged)
+ * - absent: turned on, but the device isn't there (unplugged)
  * - opening / open
  * - error: couldn't be opened or was lost; retried every few seconds
  */
 export type JoystickState = 'off' | 'absent' | 'opening' | 'open' | 'error';
 
-/** A serial port that is, or may be, a joystick. */
+/** serial: a COM port sending lines of text; controller: a game controller read through SDL. */
+export type JoystickKind = 'serial' | 'controller';
+
+/** A serial port that is, or may be, a joystick, or a game controller. */
 export interface JoystickInfo {
-  /** e.g. "COM3" */
+  /** Identifies the joystick in settings and bindings: "COM3", or "sdl:…" for a controller. */
   port: string;
+  kind: JoystickKind;
+  /** What to call it: the port ("COM3"), or the controller's name ("Generic USB Joystick",
+   *  numbered when several are called the same). */
+  name: string;
   /** Listed by the system right now. */
   present: boolean;
-  /** e.g. "USB-SERIAL CH340", from the driver. */
+  /** e.g. "USB-SERIAL CH340" from the driver, or the kind of controller ("Throttle"). */
   description: string | null;
   state: JoystickState;
   error?: string;
-  /** What each value in a line is, from the port's mask. */
+  /** What each value is: from the port's mask, or the controller's axes, buttons and hats. */
   channels: ChannelKind[];
+  /** One per channel, e.g. "Axis 1", "Button 3", "Hat 1 up". */
+  labels: string[];
+  /** Controllers, once they have been read. */
+  layout?: ControllerLayout;
 }
 
-/** The latest line read from a joystick. */
+/** What a controller has. Each hat is four channels (up, right, down, left). */
+export interface ControllerLayout {
+  axes: number;
+  buttons: number;
+  hats: number;
+}
+
+/** The latest values read from a joystick. */
 export interface JoystickInput {
   port: string;
-  /** As received, trimmed; unprintable characters replaced. */
-  line: string;
-  /** Values in mask order; null when the line doesn't match the mask. */
+  /** Serial ports: the line as received, trimmed; unprintable characters replaced. */
+  line?: string;
+  /** Values in channel order; null when the line doesn't match the mask. A controller's axes are
+   *  scaled to 0–1023 like a serial joystick's analog values. */
   values: number[] | null;
+  /** Serial ports send lines all the time; controllers only report changes. */
   receivedAt: number;
 }
 

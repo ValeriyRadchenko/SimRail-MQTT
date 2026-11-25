@@ -770,6 +770,12 @@ input[aria-invalid] {
   font-weight: 650;
 }
 
+/* A controller's name ("Generic USB Joystick"), not a port. */
+.joystick[data-kind='controller'] .joystick-port {
+  font-family: inherit;
+  white-space: nowrap;
+}
+
 .joystick-description {
   overflow: hidden;
   font-size: 12px;

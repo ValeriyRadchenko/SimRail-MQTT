@@ -4,6 +4,7 @@ import { basename, dirname, extname, join } from 'node:path';
 import {
   applyChange,
   defaultSettings,
+  isSerialSettings,
   parseSettingsFile,
   type Settings,
   type SettingsChange,
@@ -117,7 +118,8 @@ function describe(change: SettingsChange): string {
       return change.paused ? 'sending to SimRail paused' : 'sending to SimRail resumed';
     case 'joystick': {
       const j = change.joystick;
-      return `${j.port}: ${j.enabled ? 'read' : 'not read'}, ${j.baudRate} baud, mask ${j.mask}`;
+      const read = j.enabled ? 'read' : 'not read';
+      return isSerialSettings(j) ? `${j.port}: ${read}, ${j.baudRate} baud, mask ${j.mask}` : `${j.port}: ${read}`;
     }
     case 'binding': {
       const b = change.binding;

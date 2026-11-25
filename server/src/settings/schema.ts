@@ -6,7 +6,10 @@ import { compileMask, DEFAULT_MASK } from '../joysticks/mask.js';
 //   "version": 1,
 //   "locomotive": "Dragon 2 (ET25 / E6ACTa)",
 //   "paused": false,
-//   "joysticks": [{ "port": "COM3", "enabled": true, "baudRate": 9600, "mask": "{a,a}" }],
+//   "joysticks": [
+//     { "port": "COM3", "enabled": true, "baudRate": 9600, "mask": "{a,a}" },
+//     { "port": "sdl:HID#VID_0079&PID_0006#9&234B6673&0&0000", "enabled": true }
+//   ],
 //   "bindings": [{
 //     "locomotive": "Dragon 2 (ET25 / E6ACTa)", "joystick": "COM3", "channel": 0,
 //     "feature": "physics_input_general/drive_handle",
@@ -15,9 +18,16 @@ import { compileMask, DEFAULT_MASK } from '../joysticks/mask.js';
 //     "areas": [{ "from": 560, "to": 1023, "valueFrom": 0, "valueTo": 1 }]
 //   }]
 // }
+//
+// A joystick is either a serial port ("COM3") or a game controller, whose id starts with "sdl:"
+// (see joysticks/controllers.ts).
+
+export const CONTROLLER_PREFIX = 'sdl:';
+
+export const isControllerPort = (port: string) => port.startsWith(CONTROLLER_PREFIX);
 
 /** How a serial port is read. */
-export interface JoystickSettings {
+export interface SerialJoystickSettings {
   /** e.g. "COM3" */
   port: string;
   /** Read the port. Off until the user turns it on: opening a port resets most Arduinos and
@@ -27,6 +37,18 @@ export interface JoystickSettings {
   /** Line format, see joysticks/mask.ts. */
   mask: string;
 }
+
+/** A game controller (USB joystick, gamepad, throttle…) read through SDL. */
+export interface ControllerSettings {
+  /** "sdl:" + the device's id, e.g. "sdl:HID#VID_0079&PID_0006#9&234B6673&0&0000" */
+  port: string;
+  /** Read the controller. Off until the user turns it on, like serial ports. */
+  enabled: boolean;
+}
+
+export type JoystickSettings = SerialJoystickSettings | ControllerSettings;
+
+export const isSerialSettings = (j: JoystickSettings): j is SerialJoystickSettings => !isControllerPort(j.port);
 
 /** A detent of an analog lever: raw values within the tolerance of `position` give `value`. */
 export interface Notch {
@@ -45,9 +67,9 @@ export interface AnalogArea {
 /** Which SimRail input (the "feature") a joystick channel drives on a locomotive, and how. */
 export interface Binding {
   locomotive: string;
-  /** Port of the joystick, e.g. "COM3". */
+  /** Port of the joystick, e.g. "COM3", or a controller's "sdl:…" id. */
   joystick: string;
-  /** 0-based position of the value in the joystick's mask. */
+  /** 0-based position of the value in the joystick's mask (controllers: axes, buttons, then hats). */
   channel: number;
   /** SimRail input topic, e.g. "physics_input_general/drive_handle". */
   feature: string;
@@ -74,7 +96,7 @@ export interface Settings {
 export type SettingsChange =
   | { kind: 'locomotive'; locomotive: string | null }
   | { kind: 'paused'; paused: boolean }
-  /** Add or replace a port's settings. */
+  /** Add or replace a joystick's settings. */
   | { kind: 'joystick'; joystick: JoystickSettings }
   /** Add or replace the binding of (locomotive, joystick, channel). */
   | { kind: 'binding'; binding: Binding }
@@ -82,8 +104,12 @@ export type SettingsChange =
 
 export const DEFAULT_BAUD_RATE = 9600;
 
-export function defaultJoystick(port: string): JoystickSettings {
+export function defaultSerialJoystick(port: string): SerialJoystickSettings {
   return { port, enabled: false, baudRate: DEFAULT_BAUD_RATE, mask: DEFAULT_MASK };
+}
+
+export function defaultController(port: string): ControllerSettings {
+  return { port, enabled: false };
 }
 
 export function defaultSettings(): Settings {
@@ -127,6 +153,7 @@ export function parseJoystickSettings(raw: unknown): JoystickSettings {
   if (!isRecord(raw)) fail('Joystick settings are missing.');
   const port = text(raw.port, 'Port');
   if (typeof raw.enabled !== 'boolean') fail('"enabled" must be true or false.');
+  if (isControllerPort(port)) return { port, enabled: raw.enabled };
   const baudRate = raw.baudRate;
   if (typeof baudRate !== 'number' || !Number.isInteger(baudRate) || baudRate < 110 || baudRate > 4_000_000) {
     fail('Baud rate must be a whole number between 110 and 4000000.');
@@ -160,7 +187,8 @@ function parseArea(raw: unknown, label: string): AnalogArea {
 export function parseBinding(raw: unknown): Binding {
   if (!isRecord(raw)) fail('Binding is missing.');
   const channel = raw.channel;
-  if (typeof channel !== 'number' || !Number.isInteger(channel) || channel < 0 || channel > 63) {
+  // Controllers can have many: DirectInput allows 8 axes, 128 buttons and 4 hats (4 channels each).
+  if (typeof channel !== 'number' || !Number.isInteger(channel) || channel < 0 || channel > 255) {
     fail('Channel must be a whole number from 0.');
   }
   const feature = text(raw.feature, 'Feature');

@@ -46,9 +46,7 @@ export function formatValue(value) {
   return Number.isFinite(value) ? String(Number(value.toFixed(3)) || 0) : '?';
 }
 
-/** "Axis 1", "Axis 2", "Button 1" — numbered per kind, in mask order. */
-export function channelLabel(channels, index) {
-  const kind = channels[index];
-  const number = channels.slice(0, index + 1).filter((k) => k === kind).length;
-  return `${kind === 'button' ? 'Button' : 'Axis'} ${number}`;
+/** "Axis 1", "Button 3", "Hat 1 up" — named by the server (joystick.labels). */
+export function channelLabel(joystick, index) {
+  return joystick.labels?.[index] ?? `Channel ${index + 1}`;
 }
