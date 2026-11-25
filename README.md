@@ -16,6 +16,7 @@ npm start             # starts the server and opens http://127.0.0.1:8090 in you
 npm run dev           # same, but restarts on server changes and doesn't open a browser
 npm run typecheck     # ts-node only transpiles; this does the type checking
 npm run fake-simrail  # a stand-in for the game, see below
+npm run dev -- --fake-joystick   # a simulated joystick instead of the COM ports, see below
 ```
 
 In SimRail, enable MQTT under **Options → Control → External input**. The broker only exists while
@@ -30,6 +31,8 @@ session. Until then the app shows **Waiting for SimRail** and keeps retrying.
 | `SIMRAIL_MQTT_CLIENT_ID` | `simrail-mqtt-controllers` | MQTT client ID                                  |
 | `SIMRAIL_POLL_MS`        | `100`                      | How often the selected input's value is polled  |
 | `NO_OPEN=1`              |                            | Don't open the browser                          |
+| `FAKE_JOYSTICK=1`        |                            | Same as `--fake-joystick`                       |
+| `SETTINGS_FILE`          | `settings/config.json`     | Where UI settings are saved (e.g. for testing)  |
 
 ## UI
 
@@ -44,9 +47,85 @@ session. Until then the app shows **Waiting for SimRail** and keeps retrying.
   - Fields can mean different things per vehicle; **Description for** switches between them and is
     preselected for the train you are driving, recognised from its input topics
     (`physics_input_e6act/*` → Dragon 2), since `trainset/name` is just `trainset-Player`.
-- **Joysticks**: empty for now.
+- **Joysticks**: serial (COM) ports and what their channels do on the chosen locomotive, see below.
 - **Inputs**: every input field, titled from its snake_case name (`compressor_rq` → *Compressor
   Request*), grouped by vehicle category and filterable.
+
+## Joysticks
+
+Joysticks are serial devices (e.g. an Arduino) that print one line of values per reading, such as
+`{512,340}`. The port list is checked every 2 seconds; every port is listed, and only the ones with
+**Read** turned on are opened (opening a port resets most Arduinos and keeps other programs, like
+the Arduino IDE, from using it). Read ports are reopened when they are plugged back in.
+
+- **Settings** (per port): the **mask** and the baud rate (default 9600). In the mask, `a` is an
+  analog value (a whole number, 0–1023 from `analogRead`), `b` a button (0 released, 1 pressed), and
+  everything else has to appear in the line as written; spaces around it don't matter. The default
+  `{a,a}` reads `{512,340}` as two axes; `{a,a,b}` reads `{512,340,1}`. A line that doesn't match
+  (e.g. the first one, cut off when the port is opened) is skipped, and the card says so.
+- **Locomotive**: the train whose assignments are shown and edited. Preselected the first time a
+  train is recognised in game.
+- **Assign / Edit** (per channel): the **feature** (SimRail input) the channel drives on that
+  locomotive and how its values map:
+  - **Notches**: a raw position and the value it gives. The lever counts as in a notch within
+    ± **tolerance** (default 20) of its position. *Add notch* adds one at the lever's current
+    position; *Capture* moves a position there.
+  - **Analog areas**: raw *from*–*to* mapped linearly onto *value from*–*value to* (from > to
+    reverses the direction). Notches win where they overlap an area.
+  - Buttons: the values for pressed and released (default 1 and 0).
+
+  The track at the top shows the areas, notch bands and the lever, and what the current position
+  maps to, before anything is saved.
+
+### Sending to SimRail
+
+The values of the chosen locomotive's assigned channels are sent to their features (input topics)
+while SimRail is connected. The panel header shows the state: **Sending to SimRail**, **Sending
+paused** or **SimRail not connected**; values on the cards are greyed out when they don't reach the
+game.
+
+- **Only changes are sent**, at most 20 per second per feature (always ending on the final
+  position), so the game's own controls still work for a lever nobody touches.
+- **Between notches / outside every area nothing is sent**: the game keeps the last value (the card
+  says *keeps last value*).
+- **Pause sending** stops sending; the joysticks are still read and shown, so mappings can be tried
+  out without moving the train. It is saved, so it stays paused after a restart.
+- When sending (re)starts (resume, SimRail connects, a train is loaded, settings saved) the levers'
+  current values are sent, so the game matches the hardware.
+- If the train recognised in game isn't the chosen locomotive, the panel warns: the chosen
+  locomotive's assignments are what gets sent.
+- To see what the game makes of it, pick the feature in **Inputs**: the Testing panel's
+  *In game* value follows the lever.
+
+### Settings file
+
+Everything set up in the UI is saved to `settings/config.json` (created on first start, not in
+git: COM port names are specific to the PC). It can be edited by hand while the app is stopped;
+entries that don't validate are skipped with a warning, and a file that isn't valid JSON is moved
+aside to `config.invalid-<time>.json`.
+
+```json
+{
+  "version": 1,
+  "locomotive": "Dragon 2 (ET25 / E6ACTa)",
+  "paused": false,
+  "joysticks": [{ "port": "COM3", "enabled": true, "baudRate": 9600, "mask": "{a,a}" }],
+  "bindings": [
+    {
+      "locomotive": "Dragon 2 (ET25 / E6ACTa)",
+      "joystick": "COM3",
+      "channel": 1,
+      "feature": "physics_input_general/drive_handle",
+      "tolerance": 20,
+      "notches": [{ "position": 512, "value": 0 }],
+      "areas": [{ "from": 0, "to": 490, "valueFrom": -1, "valueTo": 0 }]
+    }
+  ]
+}
+```
+
+`channel` is the 0-based position of the value in the mask (`1` = *Axis 2* with `{a,a}`).
+Button channels have `pressed` / `released` instead of `tolerance`, `notches` and `areas`.
 
 ## How it talks to SimRail
 
@@ -92,6 +171,13 @@ list brake              list inputs (optionally filtered)
 | `FAKE_SIMRAIL_VEHICLE`  | `4E`              | Vehicle, by name prefix, e.g. `dragon`      |
 | `FAKE_SIMRAIL_TRAINSET` | `trainset-Player` | `trainset/name`                             |
 
+### Without a joystick
+
+`npm run dev -- --fake-joystick` (or `FAKE_JOYSTICK=1`) lists a simulated joystick, `FAKE1`, instead
+of the PC's COM ports. Once read, it sends `{a,a}` lines 50 times a second: axis 1 sweeps from end
+to end every 8 s, axis 2 rests in one of five notches (60, 290, 512, 735, 960) at a time, with a
+little jitter. Its first line arrives cut off, like a real port opened mid-line.
+
 ## Layout
 
 ```
@@ -102,10 +188,22 @@ client/                          static frontend (served as-is)
   js/testing-panel.js            Testing panel: slider, live values
   js/value-range.js              slider range + value meanings from descriptions
   js/humanize.js                 snake_case → title
+  js/joysticks-view.js           Joysticks column: ports, live channel values, locomotive
+  js/joystick-dialogs.js         port settings and channel assignment dialogs
+  js/axis-mapping.js             raw value → notch / area → value (previews; mirrors the server's)
+  js/axis-meter.js               0–1023 track with notches, areas and the lever
 server/
-  src/index.ts                   entry: Express + WebSocket + MQTT bridge, opens the browser
+  src/index.ts                   entry: Express + WebSocket + MQTT bridge + joysticks, opens the browser
   src/protocol.ts                WebSocket message types
   src/value-watch.ts             which tab follows which topic
+  src/coalesce.ts                rate-limits joystick values sent to the browser
+  src/joysticks/manager.ts       finds, opens and reads serial ports
+  src/joysticks/mask.ts          line format ("{a,a}") parsing
+  src/joysticks/fake.ts          simulated joystick (--fake-joystick)
+  src/joysticks/mapping.ts       raw value → notch / area → value (what is sent)
+  src/joysticks/sender.ts        sends changed values to SimRail, pause, resync
+  src/settings/schema.ts         settings/config.json shape, validation, changes
+  src/settings/store.ts          loads and saves settings/config.json
   src/simrail/bridge.ts          MQTT connection to SimRail, polling of watched inputs
   src/simrail/payload.ts         payload encoding/decoding
   src/simrail/topics.ts          request_topics_response parsing, vehicle recognition
@@ -114,4 +212,6 @@ server/
   data/simrail-input-overrides.json  our corrections to the wiki
 tools/
   fake-simrail.ts                stand-in SimRail broker for development
+settings/
+  config.json                    what was set up in the UI (not in git)
 ```

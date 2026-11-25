@@ -6,10 +6,16 @@
 //   { type: 'inputs', inputs: { source: 'catalog' | 'live', items: InputElement[] } }
 //   { type: 'value', topic, value, receivedAt }   current value of the watched topic
 //   { type: 'publish-result', requestId, ok, topic, value, error? }
+//   { type: 'catalog', items: InputElement[] }    wiki catalogue (inputs per locomotive)
+//   { type: 'settings', settings }                settings/config.json: locomotive, joysticks, bindings
+//   { type: 'joysticks', joysticks: [{ port, present, description, state, error?, channels }] }
+//   { type: 'joystick-input', input: { port, line, values: number[] | null, receivedAt } }
+//   { type: 'result', requestId, ok, error? }     answer to update-settings
 // Client -> server:
 //   { type: 'publish', requestId, topic, value }
 //   { type: 'request-topics' }
 //   { type: 'watch', topic | null }              follow one topic's value (this tab)
+//   { type: 'update-settings', requestId, change }  see SettingsChange in server/src/settings/schema.ts
 
 const RESPONSE_TIMEOUT_MS = 5000;
 const MAX_RETRY_MS = 5000;
@@ -53,6 +59,16 @@ export class ServerConnection extends EventTarget {
 
   /** Publish a float to an MQTT topic. Resolves to { ok, error? }. */
   publish(topic, value) {
+    return this.#request({ type: 'publish', topic, value });
+  }
+
+  /** Change a setting (saved to settings/config.json). Resolves to { ok, error? }. */
+  updateSettings(change) {
+    return this.#request({ type: 'update-settings', change });
+  }
+
+  /** Send a message that the server answers; resolves to { ok, error? }. */
+  #request(message) {
     if (!this.isOpen) return Promise.resolve({ ok: false, error: 'Local server is offline' });
 
     const requestId = String(this.#nextRequestId++);
@@ -65,7 +81,7 @@ export class ServerConnection extends EventTarget {
         clearTimeout(timer);
         resolve(result);
       });
-      this.#send({ type: 'publish', requestId, topic, value });
+      this.#send({ ...message, requestId });
     });
   }
 
@@ -91,7 +107,7 @@ export class ServerConnection extends EventTarget {
     } catch {
       return;
     }
-    if (message.type === 'publish-result') {
+    if (message.type === 'publish-result' || message.type === 'result') {
       const settle = this.#pending.get(message.requestId);
       this.#pending.delete(message.requestId);
       settle?.({ ok: message.ok, error: message.error });

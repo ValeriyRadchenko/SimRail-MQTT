@@ -83,14 +83,21 @@
       </section>
 
       <section class="panel column" aria-labelledby="joysticks-title">
-        <header class="panel-header">
+        <header class="panel-header joysticks-header">
           <h2 id="joysticks-title">Joysticks</h2>
-          <span class="count">0</span>
+          <span class="count" id="joysticks-count">0</span>
+          <span class="sending" id="sending-status" data-state="unknown" role="status"></span>
+          <button id="sending-toggle" class="btn btn-small btn-ghost" type="button" aria-pressed="false" disabled>
+            Pause sending</button>
         </header>
-        <div class="panel-body empty-state">
-          <p>No joysticks yet</p>
-          <p class="muted">Connected controllers will be listed here.</p>
+        <div class="panel-toolbar joysticks-toolbar">
+          <label class="inline-field">
+            <span class="label">Locomotive</span>
+            <select id="locomotive" disabled></select>
+          </label>
+          <p id="joysticks-notice" class="notice" role="status"></p>
         </div>
+        <div class="panel-body joysticks-list" id="joysticks-list"></div>
       </section>
 
       <section class="panel column" aria-labelledby="inputs-title">
@@ -106,5 +113,141 @@
         <div class="panel-body list" id="inputs-list" role="listbox" aria-label="Input elements"></div>
       </section>
     </main>
+
+    <dialog id="port-dialog" class="dialog dialog-narrow" aria-labelledby="port-dialog-title">
+      <form class="dialog-form" novalidate autocomplete="off">
+        <header class="dialog-header">
+          <div>
+            <h2 id="port-dialog-title" data-role="title">Port settings</h2>
+            <p class="muted" data-role="subtitle"></p>
+          </div>
+          <button type="button" class="icon-btn" data-close aria-label="Close">✕</button>
+        </header>
+        <div class="dialog-body">
+          <label class="field">
+            <span class="label">Mask</span>
+            <input type="text" data-role="mask" spellcheck="false" placeholder="{a,a}" autofocus />
+          </label>
+          <p class="hint">
+            <code>a</code> = analog value (0–1023), <code>b</code> = button (0 released, 1 pressed).
+            Everything else has to appear in the line as written: <code>{a,a,b}</code> reads <code>{512,340,1}</code>.
+          </p>
+          <label class="field field-narrow">
+            <span class="label">Baud rate</span>
+            <input type="number" data-role="baud" list="baud-rates" min="110" step="1" />
+          </label>
+          <datalist id="baud-rates">
+            <option value="9600"></option>
+            <option value="19200"></option>
+            <option value="38400"></option>
+            <option value="57600"></option>
+            <option value="115200"></option>
+            <option value="230400"></option>
+            <option value="250000"></option>
+            <option value="500000"></option>
+            <option value="1000000"></option>
+          </datalist>
+          <div class="field">
+            <span class="label">Last line received</span>
+            <p class="last-line" data-role="line"></p>
+          </div>
+          <p class="form-error" data-role="error" role="alert" hidden></p>
+        </div>
+        <footer class="dialog-footer">
+          <button type="button" class="btn btn-ghost" data-close>Cancel</button>
+          <button type="submit" class="btn btn-primary" data-role="save">Save</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <dialog id="channel-dialog" class="dialog" aria-labelledby="channel-dialog-title">
+      <form class="dialog-form" novalidate autocomplete="off">
+        <header class="dialog-header">
+          <div>
+            <h2 id="channel-dialog-title" data-role="title">Channel</h2>
+            <p class="muted" data-role="subtitle"></p>
+          </div>
+          <button type="button" class="icon-btn" data-close aria-label="Close">✕</button>
+        </header>
+        <div class="dialog-body">
+          <div class="live">
+            <div class="live-meter" data-role="meter"></div>
+            <div class="live-scale" aria-hidden="true"><span>0</span><span>1023</span></div>
+            <p class="live-readout" data-role="readout" aria-live="polite"></p>
+          </div>
+
+          <label class="field">
+            <span class="label">Feature</span>
+            <select data-role="feature" autofocus></select>
+          </label>
+          <p class="hint" data-role="feature-hint"></p>
+          <details class="feature-description" data-role="description-box">
+            <summary>Description</summary>
+            <pre data-role="description"></pre>
+          </details>
+
+          <div data-role="analog">
+            <label class="field field-narrow">
+              <span class="label">Notch tolerance (±)</span>
+              <input type="number" data-role="tolerance" min="0" step="1" />
+            </label>
+
+            <section class="mapping" aria-labelledby="notches-title">
+              <header class="mapping-header">
+                <h3 id="notches-title">Notches</h3>
+                <button type="button" class="btn btn-small btn-ghost" data-role="add-notch">Add notch</button>
+              </header>
+              <table class="mapping-table" data-role="notches-table">
+                <thead>
+                  <tr><th>#</th><th>Position</th><th>Value</th><th><span class="sr-only">Remove</span></th></tr>
+                </thead>
+                <tbody data-role="notches"></tbody>
+              </table>
+              <p class="hint" data-role="notches-empty">
+                None. Move the lever to a notch and press Add notch: it is added at the lever's position.
+              </p>
+            </section>
+
+            <section class="mapping" aria-labelledby="areas-title">
+              <header class="mapping-header">
+                <h3 id="areas-title">Analog areas</h3>
+                <button type="button" class="btn btn-small btn-ghost" data-role="add-area">Add area</button>
+              </header>
+              <table class="mapping-table" data-role="areas-table">
+                <thead>
+                  <tr>
+                    <th>#</th><th>From</th><th>To</th><th>Value from</th><th>Value to</th>
+                    <th><span class="sr-only">Remove</span></th>
+                  </tr>
+                </thead>
+                <tbody data-role="areas"></tbody>
+              </table>
+              <p class="hint" data-role="areas-empty">
+                None. An area maps raw values from–to linearly onto a range of values; notches win where they overlap.
+              </p>
+            </section>
+          </div>
+
+          <div class="button-values" data-role="button">
+            <label class="field">
+              <span class="label">Value when pressed</span>
+              <input type="number" step="any" data-role="pressed" />
+            </label>
+            <label class="field">
+              <span class="label">Value when released</span>
+              <input type="number" step="any" data-role="released" />
+            </label>
+          </div>
+
+          <p class="form-error" data-role="error" role="alert" hidden></p>
+        </div>
+        <footer class="dialog-footer">
+          <button type="button" class="btn btn-ghost btn-danger" data-role="remove">Remove assignment</button>
+          <span class="spacer"></span>
+          <button type="button" class="btn btn-ghost" data-close>Cancel</button>
+          <button type="submit" class="btn btn-primary" data-role="save">Save</button>
+        </footer>
+      </form>
+    </dialog>
   </body>
 </html>

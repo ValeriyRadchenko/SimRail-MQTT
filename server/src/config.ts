@@ -1,3 +1,4 @@
+import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 function portFromEnv(name: string, fallback: number): number {
@@ -28,11 +29,21 @@ export const config = {
     // The selected input's value is polled (SimRail doesn't push input changes); answers take ~1 ms.
     pollMs: Number(process.env.SIMRAIL_POLL_MS) || 100,
   },
+  joysticks: {
+    /** How often the COM port list is checked for joysticks being plugged in or out. */
+    listIntervalMs: 2000,
+    /** Replace the real COM ports with a simulated joystick, for working without hardware. */
+    fake: process.argv.includes('--fake-joystick') || process.env.FAKE_JOYSTICK === '1',
+    /** At most one value per SimRail input this often (20 per second), like the testing slider. */
+    sendIntervalMs: 50,
+  },
   openBrowser: !process.argv.includes('--no-open') && process.env.NO_OPEN !== '1',
   paths: {
     client: fromHere('../../client/'),
     catalog: fromHere('../data/simrail-inputs.json'),
     catalogOverrides: fromHere('../data/simrail-input-overrides.json'),
     runtime: fromHere('../../.runtime/'),
+    /** What the user set up in the UI (joysticks, bindings, locomotive). */
+    settings: process.env.SETTINGS_FILE ? resolve(process.env.SETTINGS_FILE) : fromHere('../../settings/config.json'),
   },
 } as const;

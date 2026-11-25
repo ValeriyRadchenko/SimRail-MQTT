@@ -1,6 +1,12 @@
 // Messages exchanged between the server and the browser over the WebSocket.
 // The client (plain JS) mirrors these shapes in client/js/connection.js.
 
+import type { ChannelKind } from './joysticks/mask.js';
+import type { Settings } from './settings/schema.js';
+
+export type { ChannelKind } from './joysticks/mask.js';
+export type { Settings } from './settings/schema.js';
+
 export type MqttConnectionState = 'connected' | 'waiting';
 
 export interface MqttStatus {
@@ -47,10 +53,50 @@ export interface InputList {
   vehicle?: string | null;
 }
 
+/**
+ * - off: the user hasn't turned reading on
+ * - absent: turned on, but the port isn't there (unplugged)
+ * - opening / open
+ * - error: couldn't be opened or was lost; retried every few seconds
+ */
+export type JoystickState = 'off' | 'absent' | 'opening' | 'open' | 'error';
+
+/** A serial port that is, or may be, a joystick. */
+export interface JoystickInfo {
+  /** e.g. "COM3" */
+  port: string;
+  /** Listed by the system right now. */
+  present: boolean;
+  /** e.g. "USB-SERIAL CH340", from the driver. */
+  description: string | null;
+  state: JoystickState;
+  error?: string;
+  /** What each value in a line is, from the port's mask. */
+  channels: ChannelKind[];
+}
+
+/** The latest line read from a joystick. */
+export interface JoystickInput {
+  port: string;
+  /** As received, trimmed; unprintable characters replaced. */
+  line: string;
+  /** Values in mask order; null when the line doesn't match the mask. */
+  values: number[] | null;
+  receivedAt: number;
+}
+
 export type ServerMessage =
   | { type: 'mqtt-status'; status: MqttStatus }
   | { type: 'trainset'; trainset: Trainset }
   | { type: 'inputs'; inputs: InputList }
+  /** The wiki catalogue, whatever the game reports: inputs per locomotive. */
+  | { type: 'catalog'; items: InputElement[] }
+  | { type: 'settings'; settings: Settings }
+  | { type: 'joysticks'; joysticks: JoystickInfo[] }
+  /** Latest line of a joystick; sent at most ~25 times a second per joystick. */
+  | { type: 'joystick-input'; input: JoystickInput }
+  /** Answer to a request that has nothing else to report. */
+  | { type: 'result'; requestId: string; ok: boolean; error?: string }
   /** Current value of the watched topic, as reported by the game (polled). */
   | { type: 'value'; topic: string; value: number; receivedAt: number }
   | {
@@ -66,7 +112,12 @@ export type ClientMessage =
   | { type: 'publish'; requestId: string; topic: string; value: number }
   | { type: 'request-topics' }
   /** Follow one topic's value (replaces this tab's previous watch); null stops watching. */
-  | { type: 'watch'; topic: string | null };
+  | { type: 'watch'; topic: string | null }
+  /**
+   * Change a setting; answered with 'result'. `change` is a SettingsChange, validated by the
+   * settings module so the user gets told what is wrong with it.
+   */
+  | { type: 'update-settings'; requestId: string; change: unknown };
 
 const isRecord = (v: unknown): v is Record<string, unknown> => typeof v === 'object' && v !== null;
 
@@ -92,6 +143,10 @@ export function parseClientMessage(raw: string): ClientMessage | null {
     if (typeof data.topic !== 'string') return null;
     const topic = data.topic.trim();
     return { type: 'watch', topic: topic === '' ? null : topic };
+  }
+  if (data.type === 'update-settings') {
+    if (typeof data.requestId !== 'string') return null;
+    return { type: 'update-settings', requestId: data.requestId, change: data.change };
   }
   return null;
 }

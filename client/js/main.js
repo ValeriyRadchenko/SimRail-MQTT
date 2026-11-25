@@ -1,5 +1,6 @@
 import { ServerConnection } from './connection.js';
 import { InputsView } from './inputs-view.js';
+import { JoysticksView } from './joysticks-view.js';
 import { TestingPanel } from './testing-panel.js';
 
 const $ = (id) => document.getElementById(id);
@@ -24,6 +25,20 @@ const testingPanel = new TestingPanel(document, {
 const inputsView = new InputsView(
   { list: $('inputs-list'), filter: $('inputs-filter'), count: $('inputs-count'), source: $('inputs-source') },
   (item, { byUser }) => testingPanel.select(item, { focus: byUser }),
+);
+
+const joysticksView = new JoysticksView(
+  {
+    list: $('joysticks-list'),
+    count: $('joysticks-count'),
+    locomotive: $('locomotive'),
+    notice: $('joysticks-notice'),
+    sendingStatus: $('sending-status'),
+    sendingToggle: $('sending-toggle'),
+    portDialog: $('port-dialog'),
+    channelDialog: $('channel-dialog'),
+  },
+  { onChange: (change) => connection.updateSettings(change) },
 );
 
 const refreshButton = $('refresh-topics');
@@ -64,6 +79,12 @@ function render() {
     trainset: state.trainset,
     vehicle: state.vehicle,
   });
+
+  joysticksView.setContext({
+    serverOnline: state.serverOnline,
+    mqttConnected,
+    vehicle: mqttConnected ? state.vehicle : null,
+  });
 }
 
 connection.addEventListener('open', () => {
@@ -87,10 +108,24 @@ connection.addEventListener('message', ({ detail: message }) => {
     case 'inputs':
       state.vehicle = message.inputs.vehicle ?? null;
       inputsView.setInputs(message.inputs);
+      joysticksView.setInputs(message.inputs);
       break;
     case 'value':
       // Frequent while the game moves a control: update the panel only, skip the full render.
       testingPanel.setGameValue(message.topic, message.value, message.receivedAt);
+      return;
+    case 'catalog':
+      joysticksView.setCatalog(message.items);
+      return;
+    case 'settings':
+      joysticksView.setSettings(message.settings);
+      return;
+    case 'joysticks':
+      joysticksView.setJoysticks(message.joysticks);
+      return;
+    case 'joystick-input':
+      // Many per second: update the joystick only.
+      joysticksView.setInput(message.input);
       return;
   }
   render();

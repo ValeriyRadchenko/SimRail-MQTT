@@ -1,20 +1,47 @@
 import type { Server } from 'node:http';
 import open from 'open';
+import { coalesce } from './coalesce.js';
 import { config } from './config.js';
 import { createHttpServer } from './http.js';
-import type { ClientMessage, InputList, ServerMessage } from './protocol.js';
+import { FAKE_PORT, fakeSerial } from './joysticks/fake.js';
+import { JoystickManager, systemSerial } from './joysticks/manager.js';
+import { JoystickSender } from './joysticks/sender.js';
+import type { ClientMessage, InputList, JoystickInput, ServerMessage } from './protocol.js';
+import { parseSettingsChange } from './settings/schema.js';
+import { SettingsStore } from './settings/store.js';
 import { SimRailBridge } from './simrail/bridge.js';
 import { loadCatalog } from './simrail/catalog.js';
 import { buildLiveInputs } from './simrail/topics.js';
 import { ValueWatch } from './value-watch.js';
 import { ClientHub, type Client } from './ws.js';
 
+/** Joystick values are shown in the browser at most this often (per joystick). */
+const JOYSTICK_UI_INTERVAL_MS = 40;
+
+interface Services {
+  bridge: SimRailBridge;
+  values: ValueWatch;
+  settings: SettingsStore;
+}
+
 async function main(): Promise<void> {
   const catalog = await loadCatalog(config.paths.catalog, config.paths.catalogOverrides);
   let inputs: InputList = { source: 'catalog', items: catalog };
 
+  const settings = await SettingsStore.open(config.paths.settings);
   const bridge = new SimRailBridge({ ...config.mqtt, runtimeDir: config.paths.runtime });
   const values = new ValueWatch(bridge);
+  const joysticks = new JoystickManager({
+    backend: config.joysticks.fake ? fakeSerial() : systemSerial,
+    listIntervalMs: config.joysticks.listIntervalMs,
+  });
+  joysticks.configure(settings.get().joysticks);
+  const sender = new JoystickSender({
+    publish: (topic, value) => bridge.publishFloat(topic, value),
+    channelsOf: (port) => joysticks.channelsOf(port),
+    intervalMs: config.joysticks.sendIntervalMs,
+  });
+  sender.setSettings(settings.get());
 
   const server = createHttpServer(config.paths.client);
   const { port } = config.http;
@@ -24,13 +51,37 @@ async function main(): Promise<void> {
     snapshot: (): ServerMessage[] => [
       { type: 'mqtt-status', status: bridge.getStatus() },
       { type: 'trainset', trainset: bridge.getTrainset() },
+      { type: 'catalog', items: catalog },
       { type: 'inputs', inputs },
+      { type: 'settings', settings: settings.get() },
+      { type: 'joysticks', joysticks: joysticks.getJoysticks() },
+      ...joysticks.getLatest().map((input): ServerMessage => ({ type: 'joystick-input', input })),
     ],
-    onMessage: (message, client) => handleClientMessage(bridge, values, message, client),
+    onMessage: (message, client) => handleClientMessage({ bridge, values, settings }, message, client),
     onDisconnect: (client) => values.set(client, null),
   });
 
-  bridge.on('status', (status) => hub.broadcast({ type: 'mqtt-status', status }));
+  settings.on('change', (next) => {
+    joysticks.configure(next.joysticks); // first: the sender reads channel kinds from the masks
+    sender.setSettings(next);
+    hub.broadcast({ type: 'settings', settings: next });
+  });
+  joysticks.on('joysticks', (list) => {
+    sender.onJoysticks(list);
+    hub.broadcast({ type: 'joysticks', joysticks: list });
+  });
+  const showInput = coalesce<string, JoystickInput>(JOYSTICK_UI_INTERVAL_MS, (input) =>
+    hub.broadcast({ type: 'joystick-input', input }),
+  );
+  joysticks.on('input', (input) => {
+    sender.onInput(input);
+    showInput(input.port, input);
+  });
+
+  bridge.on('status', (status) => {
+    sender.setConnected(status.state === 'connected');
+    hub.broadcast({ type: 'mqtt-status', status });
+  });
   bridge.on('trainset', (trainset) => hub.broadcast({ type: 'trainset', trainset }));
   bridge.on('topics', (topics) => {
     const { items, vehicle } = buildLiveInputs(topics, catalog);
@@ -41,6 +92,8 @@ async function main(): Promise<void> {
     if (vehicle) console.log(`[mqtt] vehicle: ${vehicle}`);
     inputs = { source: 'live', items, vehicle };
     hub.broadcast({ type: 'inputs', inputs });
+    // Possibly another train (or the same one reloaded): give it the levers' positions.
+    sender.resync();
   });
 
   await listen(server, port, config.http.host);
@@ -51,15 +104,19 @@ async function main(): Promise<void> {
   bridge.start();
   console.log(`[mqtt] waiting for SimRail broker at ${bridge.getStatus().broker}`);
 
+  joysticks.start();
+  if (config.joysticks.fake) console.log(`[joystick] simulated joystick on ${FAKE_PORT}; system ports are not used`);
+
   if (config.openBrowser) {
     open(url).catch((err: Error) => console.warn(`[http] could not open a browser (${err.message}); open ${url} manually`));
   }
 
   const shutdown = async () => {
     console.log('\nShutting down…');
+    sender.stop();
     hub.close();
     server.close();
-    await bridge.stop().catch(() => {});
+    await Promise.all([bridge.stop().catch(() => {}), joysticks.stop().catch(() => {}), settings.flush()]);
     process.exit(0);
   };
   process.once('SIGINT', shutdown);
@@ -67,8 +124,7 @@ async function main(): Promise<void> {
 }
 
 async function handleClientMessage(
-  bridge: SimRailBridge,
-  values: ValueWatch,
+  { bridge, values, settings }: Services,
   message: ClientMessage,
   client: Client,
 ): Promise<void> {
@@ -90,6 +146,16 @@ async function handleClientMessage(
     case 'watch':
       values.set(client, message.topic);
       break;
+    case 'update-settings': {
+      const { requestId } = message;
+      try {
+        await settings.update(parseSettingsChange(message.change));
+        client.send({ type: 'result', requestId, ok: true });
+      } catch (err) {
+        client.send({ type: 'result', requestId, ok: false, error: (err as Error).message });
+      }
+      break;
+    }
   }
 }
 
