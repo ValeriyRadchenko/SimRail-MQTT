@@ -36,19 +36,26 @@ jobs:
         shell: bash
         run: npm version "${GITHUB_REF_NAME#v}" --no-git-tag-version --allow-same-version
 
-      # npm run dist in two steps: on the runner, the dist script's nested `npm run build` ends the
-      # script, so electron-builder never ran (and the step still passed).
-      - run: npm run build
+      # npm run dist, with the tools started by node itself. On the runner, electron-builder started
+      # through npm's node_modules/.bin shim (npm run dist, npx) exited with code 0 without doing
+      # anything, and the step passed without an exe. tsc is started the same way, to be safe.
+      - name: Build
+        run: node node_modules/typescript/bin/tsc -p tsconfig.build.json
+
+      - name: Check the build output
+        shell: bash
+        run: test -f dist/electron/main.js && test -f dist/server/src/index.js
 
       # --publish never: on a tag, electron-builder would otherwise try to publish the release itself.
-      - run: npx electron-builder --publish never
+      - name: Package
+        run: node node_modules/electron-builder/cli.js --publish never
 
       - name: Attach the exe to the release
         if: github.event_name == 'release'
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release upload "$GITHUB_REF_NAME" release/*.exe --clobber
+        run: gh release upload "$GITHUB_REF_NAME" release/*.exe --clobber --repo "$GITHUB_REPOSITORY"
 
       - name: Keep the exe as the run's artifact
         if: github.event_name != 'release'
