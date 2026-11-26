@@ -16,6 +16,7 @@ permissions:
 jobs:
   build:
     runs-on: windows-latest
+    timeout-minutes: 30 # a build takes a few minutes; don't let a hung one run for the default 6 hours
     steps:
       - uses: actions/checkout@v7
 
