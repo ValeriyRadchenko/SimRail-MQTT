@@ -1,4 +1,5 @@
-import { resolve } from 'node:path';
+import { existsSync } from 'node:fs';
+import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 function portFromEnv(name: string, fallback: number): number {
@@ -11,8 +12,25 @@ function portFromEnv(name: string, fallback: number): number {
   return value;
 }
 
-// Paths are resolved relative to this file (server/src, two levels below the project root).
-const fromHere = (relative: string) => fileURLToPath(new URL(relative, import.meta.url));
+/**
+ * The folder with package.json, client/ and server/data/: the project folder, or the desktop app's
+ * resources. Found by going up from this file, since that is server/src/config.ts when run with
+ * ts-node but dist/server/src/config.js once compiled (npm run build, the desktop app).
+ */
+function findAppRoot(): string {
+  const start = dirname(fileURLToPath(import.meta.url));
+  for (let dir = start; ; dir = dirname(dir)) {
+    if (existsSync(join(dir, 'package.json'))) return dir;
+    if (dirname(dir) === dir) throw new Error(`No package.json found above ${start}`);
+  }
+}
+
+const appRoot = findAppRoot();
+const fromRoot = (relative: string) => join(appRoot, relative);
+function pathFromEnv(name: string, fallback: string): string {
+  const value = process.env[name];
+  return value ? resolve(value) : fallback;
+}
 
 export const config = {
   http: {
@@ -45,11 +63,12 @@ export const config = {
   },
   openBrowser: !process.argv.includes('--no-open') && process.env.NO_OPEN !== '1',
   paths: {
-    client: fromHere('../../client/'),
-    catalog: fromHere('../data/simrail-inputs.json'),
-    catalogOverrides: fromHere('../data/simrail-input-overrides.json'),
-    runtime: fromHere('../../.runtime/'),
+    client: fromRoot('client'),
+    catalog: fromRoot('server/data/simrail-inputs.json'),
+    catalogOverrides: fromRoot('server/data/simrail-input-overrides.json'),
+    /** SimRail's last topic list, saved for debugging. */
+    runtime: pathFromEnv('RUNTIME_DIR', fromRoot('.runtime')),
     /** What the user set up in the UI (joysticks, bindings, locomotive). */
-    settings: process.env.SETTINGS_FILE ? resolve(process.env.SETTINGS_FILE) : fromHere('../../settings/config.json'),
+    settings: pathFromEnv('SETTINGS_FILE', fromRoot('settings/config.json')),
   },
 } as const;

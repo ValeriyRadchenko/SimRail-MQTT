@@ -1,0 +1,11 @@
+{
+  // npm run build: compiles the server and the desktop app (electron/) to dist/. The desktop app runs
+  // that rather than the TypeScript sources; npm start still runs the sources with ts-node.
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "outDir": "dist",
+    "rootDir": "."
+  },
+  "include": ["server/src", "electron"]
+}

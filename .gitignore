@@ -2,3 +2,5 @@ node_modules/
 .runtime/
 /settings/
 *.log
+/dist/
+/release/

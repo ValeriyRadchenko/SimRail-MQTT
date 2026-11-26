@@ -10,7 +10,7 @@
     "skipLibCheck": true,
     "types": ["node"]
   },
-  "include": ["server/src", "tools"],
+  "include": ["server/src", "electron", "tools"],
   "ts-node": {
     // Type errors raised inside ts-node's ESM loader print as "[Object: null prototype]" on
     // Node 22+, so ts-node only transpiles; type checking is `npm run typecheck` (and the editor).

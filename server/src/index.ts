@@ -2,6 +2,7 @@ import type { Server } from 'node:http';
 import open from 'open';
 import { coalesce } from './coalesce.js';
 import { config } from './config.js';
+import { desktopApp } from './desktop-app.js';
 import { DeviceEngine } from './devices/engine.js';
 import { createHttpServer } from './http.js';
 import { GameControllers, sdlControllers } from './joysticks/controllers.js';
@@ -139,7 +140,10 @@ async function main(): Promise<void> {
     open(url).catch((err: Error) => console.warn(`[http] could not open a browser (${err.message}); open ${url} manually`));
   }
 
+  let stopping = false;
   const shutdown = async () => {
+    if (stopping) return;
+    stopping = true;
     console.log('\nShutting down…');
     sender.stop();
     devices.stop();
@@ -150,6 +154,12 @@ async function main(): Promise<void> {
   };
   process.once('SIGINT', shutdown);
   process.once('SIGTERM', shutdown);
+  // The desktop app opens its window on "ready" and asks for a shutdown when it is closed, so that
+  // the settings are saved and the ports are closed.
+  desktopApp?.on('message', ({ data }) => {
+    if (data.type === 'shutdown') void shutdown();
+  });
+  desktopApp?.postMessage({ type: 'ready', url });
 }
 
 /** Game controllers through SDL, or null when turned off or SDL can't be loaded (serial ports still work). */

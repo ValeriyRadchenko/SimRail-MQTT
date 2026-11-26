@@ -5,6 +5,8 @@ A local app for building custom train controllers for [SimRail](https://simrail.
 
 - **Server** (TypeScript, Express, run with ts-node): connects to SimRail's MQTT broker and serves the UI.
 - **Client** (plain JavaScript, no build step): talks to the server over a WebSocket.
+- **Desktop app** (Electron): both in a window of their own, packaged as a portable Windows exe, see
+  [Desktop app](#desktop-app).
 
 ## Running
 
@@ -18,6 +20,8 @@ npm run dev           # same, but restarts on server changes and doesn't open a 
 npm run typecheck     # ts-node only transpiles; this does the type checking
 npm run fake-simrail  # a stand-in for the game, see below
 npm run dev -- --fake-joystick   # a simulated joystick instead of the COM ports, see below
+npm run app           # the desktop app, see below
+npm run dist          # packages the desktop app as a portable exe
 ```
 
 In SimRail, enable MQTT under **Options → Control → External input**. The broker only exists while
@@ -35,6 +39,35 @@ session. Until then the app shows **Waiting for SimRail** and keeps retrying.
 | `FAKE_JOYSTICK=1`        |                            | Same as `--fake-joystick`                       |
 | `NO_CONTROLLERS=1`       |                            | Same as `--no-controllers`: don't load SDL      |
 | `SETTINGS_FILE`          | `settings/config.json`     | Where UI settings are saved (e.g. for testing)  |
+| `RUNTIME_DIR`            | `.runtime`                 | Where SimRail's last topic list is saved        |
+
+### Desktop app
+
+The same server and UI in a window (Electron), needing no Node.js on the PC it runs on.
+
+```sh
+npm run app     # from the project folder, with the same files as npm start
+npm run dist    # packages it: release/SimRail Controllers 0.1.0.exe
+```
+
+- **Portable**: the exe is the whole app, to be copied anywhere. Its settings are saved next to it,
+  in `settings\config.json`. On its first start it copies the settings of the project it was built
+  from (this folder's `settings/config.json`) when that exists on the PC; from then on the two are
+  separate. Each start unpacks the app to a temporary folder first, which takes a few seconds.
+- **The log** (what `npm start` prints in its terminal) is
+  `%APPDATA%\SimRail Controllers\logs\app.log`, started afresh each time: **File → Show log**.
+  SimRail's last topic list is saved in the same folder. If the app can't start, a dialog shows
+  why.
+- **Closing the window quits the app**, after saving the settings and closing the ports. One runs at
+  a time (starting it again brings up its window), and not next to `npm start`: both use port 8090.
+- **View → Open in browser** opens the UI in a browser as well, e.g. on a second screen.
+- Flags and env vars are the server's, as with `npm start`: `npm run app -- --fake-joystick`, or
+  `"SimRail Controllers 0.1.0.exe" --fake-joystick`.
+- The exe isn't code-signed and has Electron's icon. Copied to another PC (downloaded, sent),
+  Windows SmartScreen warns on its first start: *More info → Run anyway*.
+- It runs the compiled server (`npm run build`, to `dist/`), which `npm run app` and `npm run dist`
+  build first. The native modules (SDL, serialport) are N-API builds and work in Electron as they
+  are, so packaging doesn't rebuild them.
 
 ## UI
 
@@ -171,7 +204,7 @@ and presses made meanwhile are dropped, not sent later.
 ## Settings file
 
 Everything set up in the UI is saved to `settings/config.json` (created on first start, not in
-git: COM port names and controller ids are specific to the PC). It can be edited by hand while the app is stopped;
+git: COM port names and controller ids are specific to the PC; the desktop app's is next to its exe). It can be edited by hand while the app is stopped;
 entries that don't validate are skipped with a warning, and a file that isn't valid JSON is moved
 aside to `config.invalid-<time>.json`.
 
@@ -324,8 +357,11 @@ client/                          static frontend (served as-is)
   js/features.js                 features a channel or device can drive on a locomotive
   js/axis-mapping.js             raw value → notch / area → value (previews; mirrors the server's)
   js/axis-meter.js               0–1023 track with notches, areas and the lever
+electron/
+  main.ts                        desktop app: window, runs the server in a utility process, quits it
 server/
   src/index.ts                   entry: Express + WebSocket + MQTT bridge + joysticks, opens the browser
+  src/desktop-app.ts             the link to the desktop app (ready, shutdown)
   src/protocol.ts                WebSocket message types
   src/value-watch.ts             which tab follows which topic
   src/coalesce.ts                rate-limits joystick values sent to the browser
@@ -350,4 +386,12 @@ tools/
   fake-simrail.ts                stand-in SimRail broker for development
 settings/
   config.json                    what was set up in the UI (not in git)
+electron-builder.js              packaging (npm run dist): portable exe, settings import
+tsconfig.build.json              npm run build: compiles the server and the desktop app to dist/
+dist/, release/                  build output: compiled JavaScript, the packaged app (not in git)
 ```
+
+## License
+
+[MIT](LICENSE): free to use, change and share, for anything, as long as the copyright notice stays
+with it.

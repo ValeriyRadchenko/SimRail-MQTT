@@ -27,6 +27,9 @@ export class ClientHub {
       // Browsers let any website open a socket to localhost; only accept our own page.
       verifyClient: ({ origin }: { origin?: string }) => origin !== undefined && allowedOrigins.includes(origin),
     });
+    // The HTTP server's errors (such as the port being in use) are passed on here as well, and would
+    // crash the server unhandled; listen() in index.ts reports them.
+    this.wss.on('error', () => {});
 
     this.wss.on('connection', (socket) => {
       const client: Client = { id: this.nextId++, send: (message) => sendTo(socket, message) };
