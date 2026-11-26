@@ -8,6 +8,10 @@ A local app for building custom train controllers for [SimRail](https://simrail.
 - **Desktop app** (Electron): both in a window of their own, packaged as a portable Windows exe, see
   [Desktop app](#desktop-app).
 
+To just use it, download `SimRail Controllers <version>.exe` from
+[Releases](https://github.com/ValeriyRadchenko/SimRail-MQTT/releases) and run it: no install, no
+Node.js.
+
 ## Running
 
 Requires Node.js 22+. `npm install` also downloads SDL (prebuilt, from the
@@ -68,6 +72,10 @@ npm run dist    # packages it: release/SimRail Controllers 0.1.0.exe
 - It runs the compiled server (`npm run build`, to `dist/`), which `npm run app` and `npm run dist`
   build first. The native modules (SDL, serialport) are N-API builds and work in Electron as they
   are, so packaging doesn't rebuild them.
+- **Releases**: publishing a release on GitHub with a tag like `v0.2.0` builds the exe on GitHub
+  Actions ([release.yml](.github/workflows/release.yml)) and attaches it to the release within a few
+  minutes. The tag sets the version (and the exe's name), so `package.json` needn't be bumped first.
+  Built there, the exe has no project settings to import and starts with empty ones.
 
 ## UI
 
@@ -387,6 +395,7 @@ tools/
 settings/
   config.json                    what was set up in the UI (not in git)
 electron-builder.js              packaging (npm run dist): portable exe, settings import
+.github/workflows/release.yml    builds the exe on GitHub and attaches it to each release
 tsconfig.build.json              npm run build: compiles the server and the desktop app to dist/
 dist/, release/                  build output: compiled JavaScript, the packaged app (not in git)
 ```
