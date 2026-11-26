@@ -29,11 +29,15 @@ export class ValueWatch {
     if (previous !== undefined) this.remove(client, previous);
     if (topic === null) return;
 
-    this.bridge.watch(topic); // throws on an invalid topic, before any bookkeeping
+    // One bridge watch per topic, however many tabs follow it (released when the last one leaves).
+    let clients = this.clientsByTopic.get(topic);
+    if (!clients) {
+      this.bridge.watch(topic); // throws on an invalid topic, before any bookkeeping
+      clients = new Set<Client>();
+      this.clientsByTopic.set(topic, clients);
+    }
     this.topicByClient.set(client.id, topic);
-    const clients = this.clientsByTopic.get(topic) ?? new Set<Client>();
     clients.add(client);
-    this.clientsByTopic.set(topic, clients);
 
     // Another tab may already follow this topic: hand over the value we have.
     const known = this.latest.get(topic);

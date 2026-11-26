@@ -51,8 +51,8 @@ export class SimRailBridge extends EventEmitter<BridgeEvents> {
   private client: MqttClient | null = null;
   private status: MqttStatus;
   private trainset: Trainset = { name: null, vehicleDesignation: null };
-  /** Input topics whose values are polled. */
-  private readonly watched = new Set<string>();
+  /** Input topics whose values are polled -> how many watchers asked for it. */
+  private readonly watched = new Map<string, number>();
   /** topic -> when its unanswered poll was sent */
   private readonly pollSentAt = new Map<string, number>();
   private pollTimer: NodeJS.Timeout | null = null;
@@ -127,15 +127,24 @@ export class SimRailBridge extends EventEmitter<BridgeEvents> {
     await this.client.publishAsync(topic, encodeFloat(value), { qos: 0, retain: false });
   }
 
-  /** Start polling a topic's current value (emitted as 'value'). */
+  /**
+   * Start polling a topic's current value (emitted as 'value'). Watches are counted (the browser
+   * tabs and the virtual devices watch independently): each needs its own unwatch.
+   */
   watch(topic: string): void {
     assertPublishableTopic(topic);
-    if (this.watched.has(topic)) return;
-    this.watched.add(topic);
-    this.poll(topic); // don't wait for the next tick for the first value
+    const count = this.watched.get(topic) ?? 0;
+    this.watched.set(topic, count + 1);
+    if (count === 0) this.poll(topic); // don't wait for the next tick for the first value
   }
 
   unwatch(topic: string): void {
+    const count = this.watched.get(topic);
+    if (count === undefined) return;
+    if (count > 1) {
+      this.watched.set(topic, count - 1);
+      return;
+    }
     this.watched.delete(topic);
     this.pollSentAt.delete(topic);
   }
@@ -145,7 +154,7 @@ export class SimRailBridge extends EventEmitter<BridgeEvents> {
   private startPolling(): void {
     this.stopPolling();
     this.pollTimer = setInterval(() => {
-      for (const topic of this.watched) this.poll(topic);
+      for (const topic of this.watched.keys()) this.poll(topic);
     }, this.options.pollMs);
   }
 

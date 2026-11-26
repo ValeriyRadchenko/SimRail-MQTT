@@ -9,25 +9,26 @@ import {
   resolveAnalog,
   resolveButton,
 } from './axis-mapping.js';
+import { featureHint, featureOptionsHtml } from './features.js';
 
 const escapeHtml = (s) =>
   String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
 
 /** Empty or non-numeric fields read as NaN and are flagged; saving reports them. */
-function readNumber(input) {
+export function readNumber(input) {
   const raw = input.value.trim();
   const value = raw === '' ? NaN : Number(raw);
   input.toggleAttribute('aria-invalid', !Number.isFinite(value));
   return value;
 }
 
-const fieldValue = (n) => (Number.isFinite(n) ? String(n) : '');
+export const fieldValue = (n) => (Number.isFinite(n) ? String(n) : '');
 
 /**
  * A modal <dialog> holding a form: close buttons ([data-close]), an error line, and a Save that
  * waits for the server and only closes the dialog once the change is accepted.
  */
-class ModalForm {
+export class ModalForm {
   dialog;
   #busy = false;
 
@@ -327,35 +328,16 @@ export class ChannelDialog extends ModalForm {
   }
 
   #renderFeatureOptions() {
-    const groups = new Map();
-    for (const f of this.#ctx.features) {
-      if (!groups.has(f.groupTitle)) groups.set(f.groupTitle, []);
-      groups.get(f.groupTitle).push(f);
-    }
     const select = this.$('feature');
-    select.innerHTML =
-      '<option value="">Choose a feature…</option>' +
-      [...groups]
-        .map(
-          ([group, features]) =>
-            `<optgroup label="${escapeHtml(group)}">` +
-            features.map((f) => `<option value="${escapeHtml(f.topic)}">${escapeHtml(f.title)}</option>`).join('') +
-            '</optgroup>',
-        )
-        .join('');
+    select.innerHTML = featureOptionsHtml(this.#ctx.features);
     select.value = this.#draft.feature;
   }
 
   #renderFeature() {
     const feature = this.#feature();
-    const hint = this.$('feature-hint');
-    if (!feature) {
-      hint.textContent = 'The SimRail input this channel drives on this locomotive.';
-    } else {
-      const { range } = feature;
-      const values = range.documented ? `values from ${range.min} to ${range.max}` : 'range not documented';
-      hint.textContent = `${feature.topic} · ${values}`;
-    }
+    this.$('feature-hint').textContent = feature
+      ? featureHint(feature)
+      : 'The SimRail input this channel drives on this locomotive.';
     this.$('description-box').hidden = !feature?.description;
     this.$('description').textContent = feature?.description ?? '';
   }

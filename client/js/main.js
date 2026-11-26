@@ -1,4 +1,5 @@
 import { ServerConnection } from './connection.js';
+import { DevicesView } from './devices-view.js';
 import { InputsView } from './inputs-view.js';
 import { JoysticksView } from './joysticks-view.js';
 import { TestingPanel } from './testing-panel.js';
@@ -40,6 +41,45 @@ const joysticksView = new JoysticksView(
   },
   { onChange: (change) => connection.updateSettings(change) },
 );
+
+const devicesView = new DevicesView(
+  { list: $('devices-list'), count: $('devices-count'), dialog: $('device-dialog') },
+  { onChange: (change) => connection.updateSettings(change) },
+);
+
+setUpTabs([$('tab-joysticks'), $('tab-devices')], 'joysticks-tab');
+
+/** ARIA tabs: click or arrow keys switch; the choice is kept for the next visit. */
+function setUpTabs(tabs, storageKey) {
+  const select = (tab, focus = false) => {
+    for (const t of tabs) {
+      const selected = t === tab;
+      t.setAttribute('aria-selected', String(selected));
+      t.tabIndex = selected ? 0 : -1;
+      $(t.getAttribute('aria-controls')).hidden = !selected;
+    }
+    if (focus) tab.focus();
+    try {
+      localStorage.setItem(storageKey, tab.id);
+    } catch {
+      // Storage can be unavailable (private mode); the tab just isn't remembered.
+    }
+  };
+  for (const [i, tab] of tabs.entries()) {
+    tab.addEventListener('click', () => select(tab));
+    tab.addEventListener('keydown', (event) => {
+      const step = { ArrowRight: 1, ArrowLeft: -1 }[event.key];
+      if (!step) return;
+      event.preventDefault();
+      select(tabs[(i + step + tabs.length) % tabs.length], true);
+    });
+  }
+  let saved = null;
+  try {
+    saved = localStorage.getItem(storageKey);
+  } catch {}
+  select(tabs.find((t) => t.id === saved) ?? tabs[0]);
+}
 
 const refreshButton = $('refresh-topics');
 refreshButton.addEventListener('click', () => connection.requestTopics());
@@ -85,6 +125,7 @@ function render() {
     mqttConnected,
     vehicle: mqttConnected ? state.vehicle : null,
   });
+  devicesView.setContext({ serverOnline: state.serverOnline, mqttConnected });
 }
 
 connection.addEventListener('open', () => {
@@ -109,6 +150,7 @@ connection.addEventListener('message', ({ detail: message }) => {
       state.vehicle = message.inputs.vehicle ?? null;
       inputsView.setInputs(message.inputs);
       joysticksView.setInputs(message.inputs);
+      devicesView.setInputs(message.inputs);
       break;
     case 'value':
       // Frequent while the game moves a control: update the panel only, skip the full render.
@@ -116,16 +158,23 @@ connection.addEventListener('message', ({ detail: message }) => {
       return;
     case 'catalog':
       joysticksView.setCatalog(message.items);
+      devicesView.setCatalog(message.items);
       return;
     case 'settings':
       joysticksView.setSettings(message.settings);
+      devicesView.setSettings(message.settings);
       return;
     case 'joysticks':
       joysticksView.setJoysticks(message.joysticks);
+      devicesView.setJoysticks(message.joysticks);
       return;
     case 'joystick-input':
       // Many per second: update the joystick only.
       joysticksView.setInput(message.input);
+      devicesView.setInput(message.input);
+      return;
+    case 'device-state':
+      devicesView.setDeviceState(message.state);
       return;
   }
   render();

@@ -7,10 +7,11 @@
 //   { type: 'value', topic, value, receivedAt }   current value of the watched topic
 //   { type: 'publish-result', requestId, ok, topic, value, error? }
 //   { type: 'catalog', items: InputElement[] }    wiki catalogue (inputs per locomotive)
-//   { type: 'settings', settings }                settings/config.json: locomotive, joysticks, bindings
+//   { type: 'settings', settings }                settings/config.json: locomotive, joysticks, bindings, devices
 //   { type: 'joysticks', joysticks: [{ port, kind: 'serial' | 'controller', name, present, description,
 //                                       state, error?, channels, labels, layout? }] }
 //   { type: 'joystick-input', input: { port, line?, values: number[] | null, receivedAt } }
+//   { type: 'device-state', state: { id, value: number | null } }   a step switch's position
 //   { type: 'result', requestId, ok, error? }     answer to update-settings
 // Client -> server:
 //   { type: 'publish', requestId, topic, value }

@@ -2,13 +2,14 @@ import type { Server } from 'node:http';
 import open from 'open';
 import { coalesce } from './coalesce.js';
 import { config } from './config.js';
+import { DeviceEngine } from './devices/engine.js';
 import { createHttpServer } from './http.js';
 import { GameControllers, sdlControllers } from './joysticks/controllers.js';
-import { FAKE_PORT, fakeSerial } from './joysticks/fake.js';
+import { FAKE_BUTTONS_PORT, FAKE_PORT, fakeSerial } from './joysticks/fake.js';
 import { JoystickManager } from './joysticks/manager.js';
 import { JoystickSender } from './joysticks/sender.js';
 import { SerialJoysticks, systemSerial } from './joysticks/serial.js';
-import type { ClientMessage, InputList, JoystickInput, ServerMessage } from './protocol.js';
+import type { ClientMessage, DeviceState, InputList, JoystickInput, ServerMessage } from './protocol.js';
 import { parseSettingsChange } from './settings/schema.js';
 import { SettingsStore } from './settings/store.js';
 import { SimRailBridge } from './simrail/bridge.js';
@@ -47,6 +48,15 @@ async function main(): Promise<void> {
     intervalMs: config.joysticks.sendIntervalMs,
   });
   sender.setSettings(settings.get());
+  const devices = new DeviceEngine({
+    send: (topic, value, force) => sender.send(topic, value, force),
+    isActive: () => sender.isActive(),
+    channelsOf: (port) => joysticks.channelsOf(port),
+    watch: (topic) => bridge.watch(topic),
+    unwatch: (topic) => bridge.unwatch(topic),
+    settleMs: Math.max(400, 4 * config.mqtt.pollMs),
+  });
+  devices.setSettings(settings.get());
 
   const server = createHttpServer(config.paths.client);
   const { port } = config.http;
@@ -61,6 +71,7 @@ async function main(): Promise<void> {
       { type: 'settings', settings: settings.get() },
       { type: 'joysticks', joysticks: joysticks.getJoysticks() },
       ...joysticks.getLatest().map((input): ServerMessage => ({ type: 'joystick-input', input })),
+      ...devices.getStates().map((state): ServerMessage => ({ type: 'device-state', state })),
     ],
     onMessage: (message, client) => handleClientMessage({ bridge, values, settings }, message, client),
     onDisconnect: (client) => values.set(client, null),
@@ -69,10 +80,12 @@ async function main(): Promise<void> {
   settings.on('change', (next) => {
     joysticks.configure(next.joysticks); // first: the sender reads channel kinds from the masks
     sender.setSettings(next);
+    devices.setSettings(next); // after the sender: it sends through it, once it knows the settings
     hub.broadcast({ type: 'settings', settings: next });
   });
   joysticks.on('joysticks', (list) => {
     sender.onJoysticks(list);
+    devices.onJoysticks(list);
     hub.broadcast({ type: 'joysticks', joysticks: list });
   });
   const showInput = coalesce<string, JoystickInput>(JOYSTICK_UI_INTERVAL_MS, (input) =>
@@ -80,14 +93,21 @@ async function main(): Promise<void> {
   );
   joysticks.on('input', (input) => {
     sender.onInput(input);
+    devices.onInput(input);
     showInput(input.port, input);
   });
+  const showDeviceState = coalesce<string, DeviceState>(JOYSTICK_UI_INTERVAL_MS, (state) =>
+    hub.broadcast({ type: 'device-state', state }),
+  );
+  devices.on('state', (state) => showDeviceState(state.id, state));
 
   bridge.on('status', (status) => {
     sender.setConnected(status.state === 'connected');
+    devices.setConnected(status.state === 'connected');
     hub.broadcast({ type: 'mqtt-status', status });
   });
   bridge.on('trainset', (trainset) => hub.broadcast({ type: 'trainset', trainset }));
+  bridge.on('value', (topic, value) => devices.onGameValue(topic, value));
   bridge.on('topics', (topics) => {
     const { items, vehicle } = buildLiveInputs(topics, catalog);
     if (items.length === 0) {
@@ -99,6 +119,7 @@ async function main(): Promise<void> {
     hub.broadcast({ type: 'inputs', inputs });
     // Possibly another train (or the same one reloaded): give it the levers' positions.
     sender.resync();
+    devices.resync();
   });
 
   await listen(server, port, config.http.host);
@@ -110,7 +131,9 @@ async function main(): Promise<void> {
   console.log(`[mqtt] waiting for SimRail broker at ${bridge.getStatus().broker}`);
 
   joysticks.start();
-  if (config.joysticks.fake) console.log(`[joystick] simulated joystick on ${FAKE_PORT}; system COM ports are not used`);
+  if (config.joysticks.fake) {
+    console.log(`[joystick] simulated joysticks on ${FAKE_PORT} and ${FAKE_BUTTONS_PORT}; system COM ports are not used`);
+  }
 
   if (config.openBrowser) {
     open(url).catch((err: Error) => console.warn(`[http] could not open a browser (${err.message}); open ${url} manually`));
@@ -119,6 +142,7 @@ async function main(): Promise<void> {
   const shutdown = async () => {
     console.log('\nShutting down…');
     sender.stop();
+    devices.stop();
     hub.close();
     server.close();
     await Promise.all([bridge.stop().catch(() => {}), joysticks.stop().catch(() => {}), settings.flush()]);

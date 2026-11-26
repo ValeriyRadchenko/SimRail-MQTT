@@ -84,8 +84,13 @@
 
       <section class="panel column" aria-labelledby="joysticks-title">
         <header class="panel-header joysticks-header">
-          <h2 id="joysticks-title">Joysticks</h2>
-          <span class="count" id="joysticks-count">0</span>
+          <h2 class="sr-only" id="joysticks-title">Joysticks and virtual devices</h2>
+          <div class="tabs" role="tablist" aria-labelledby="joysticks-title">
+            <button type="button" class="tab" role="tab" id="tab-joysticks" aria-controls="joysticks-list"
+              aria-selected="true">Joysticks <span class="count" id="joysticks-count">0</span></button>
+            <button type="button" class="tab" role="tab" id="tab-devices" aria-controls="devices-list"
+              aria-selected="false" tabindex="-1">Virtual devices <span class="count" id="devices-count">0</span></button>
+          </div>
           <span class="sending" id="sending-status" data-state="unknown" role="status"></span>
           <button id="sending-toggle" class="btn btn-small btn-ghost" type="button" aria-pressed="false" disabled>
             Pause sending</button>
@@ -97,7 +102,8 @@
           </label>
           <p id="joysticks-notice" class="notice" role="status"></p>
         </div>
-        <div class="panel-body joysticks-list" id="joysticks-list"></div>
+        <div class="panel-body joysticks-list" id="joysticks-list" role="tabpanel" aria-labelledby="tab-joysticks"></div>
+        <div class="panel-body devices-list" id="devices-list" role="tabpanel" aria-labelledby="tab-devices" hidden></div>
       </section>
 
       <section class="panel column" aria-labelledby="inputs-title">
@@ -243,6 +249,134 @@
         </div>
         <footer class="dialog-footer">
           <button type="button" class="btn btn-ghost btn-danger" data-role="remove">Remove assignment</button>
+          <span class="spacer"></span>
+          <button type="button" class="btn btn-ghost" data-close>Cancel</button>
+          <button type="submit" class="btn btn-primary" data-role="save">Save</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <dialog id="device-dialog" class="dialog device-dialog" aria-labelledby="device-dialog-title">
+      <form class="dialog-form" novalidate autocomplete="off">
+        <header class="dialog-header">
+          <div>
+            <h2 id="device-dialog-title" data-role="title">Virtual device</h2>
+            <p class="muted" data-role="subtitle"></p>
+          </div>
+          <button type="button" class="icon-btn" data-close aria-label="Close">✕</button>
+        </header>
+        <div class="dialog-body">
+          <div class="live">
+            <p class="live-readout" data-role="readout" aria-live="polite"></p>
+          </div>
+
+          <div class="device-fields">
+            <label class="field">
+              <span class="label">Type</span>
+              <select data-role="type">
+                <option value="combo">Button combination</option>
+                <option value="stepper">Step switch</option>
+                <option value="pulse">Pulse</option>
+              </select>
+            </label>
+            <label class="field">
+              <span class="label">Name</span>
+              <input type="text" data-role="name" maxlength="60" placeholder="The feature's name" />
+            </label>
+          </div>
+          <p class="hint" data-role="type-hint"></p>
+
+          <label class="field">
+            <span class="label">Feature</span>
+            <select data-role="feature"></select>
+          </label>
+          <p class="hint" data-role="feature-hint"></p>
+          <details class="feature-description" data-role="description-box">
+            <summary>Description</summary>
+            <pre data-role="description"></pre>
+          </details>
+
+          <section class="mapping" aria-labelledby="device-inputs-title">
+            <header class="mapping-header">
+              <h3 id="device-inputs-title">Buttons</h3>
+              <button type="button" class="btn btn-small btn-ghost" data-role="add-input">Add button</button>
+            </header>
+            <table class="mapping-table device-inputs-table">
+              <tbody data-role="inputs"></tbody>
+            </table>
+            <p class="hint" data-role="inputs-hint" hidden></p>
+          </section>
+
+          <section class="mapping" data-role="combo" aria-labelledby="device-rules-title">
+            <header class="mapping-header">
+              <h3 id="device-rules-title">Rules</h3>
+              <span class="spacer"></span>
+              <button type="button" class="btn btn-small btn-ghost" data-role="all-combinations"
+                title="One rule for each combination of the buttons">All combinations</button>
+              <button type="button" class="btn btn-small btn-ghost" data-role="add-rule">Add rule</button>
+            </header>
+            <table class="mapping-table rules-table" data-role="rules-table">
+              <thead data-role="rules-head"></thead>
+              <tbody data-role="rules"></tbody>
+            </table>
+            <p class="hint" data-role="rules-empty">None. Add a rule, or one for each combination of the buttons.</p>
+            <p class="hint">
+              Checked from the top; the first rule that matches is sent when it changes. Leave a value empty to
+              send nothing for that combination: the game keeps its value.
+            </p>
+          </section>
+
+          <section class="mapping" data-role="stepper" aria-labelledby="device-positions-title">
+            <header class="mapping-header">
+              <h3 id="device-positions-title">Positions</h3>
+            </header>
+            <div class="capture">
+              <input type="text" data-role="positions" aria-labelledby="device-positions-title"
+                placeholder="e.g. 0, 1, 2 or 0..7" spellcheck="false" />
+              <button type="button" class="btn btn-small btn-ghost" data-role="positions-from-description"
+                title="The values the feature's description lists">From description</button>
+            </div>
+            <div class="positions" data-role="positions-preview"></div>
+            <p class="hint" data-role="position-game"></p>
+            <label class="toggle">
+              <input type="checkbox" data-role="wrap" />
+              <span>Wrap around: after the last position comes the first, and the other way round</span>
+            </label>
+            <label class="toggle">
+              <input type="checkbox" data-role="repeat" />
+              <span>Repeat while a button is held</span>
+            </label>
+          </section>
+
+          <section class="mapping" data-role="pulse" aria-label="Pulse">
+            <div class="pulse-values">
+              <label class="field">
+                <span class="label">On press, send</span>
+                <input type="number" step="any" data-role="on-press" placeholder="nothing" />
+              </label>
+              <label class="field">
+                <span class="label">On release, send</span>
+                <input type="number" step="any" data-role="on-release" placeholder="nothing" />
+              </label>
+              <label class="field">
+                <span class="label">For (ms)</span>
+                <input type="number" step="1" min="50" max="10000" data-role="duration" />
+              </label>
+              <label class="field">
+                <span class="label">Then send (rest)</span>
+                <input type="number" step="any" data-role="rest" />
+              </label>
+            </div>
+            <p class="hint">
+              A latching switch working an impulse button: send 1 on press and on release, rest −1. Working a pair of
+              on/off requests: 1 on press, −1 on release, rest 0.
+            </p>
+          </section>
+
+          <p class="form-error" data-role="error" role="alert" hidden></p>
+        </div>
+        <footer class="dialog-footer">
+          <button type="button" class="btn btn-ghost btn-danger" data-role="remove">Remove device</button>
           <span class="spacer"></span>
           <button type="button" class="btn btn-ghost" data-close>Cancel</button>
           <button type="submit" class="btn btn-primary" data-role="save">Save</button>

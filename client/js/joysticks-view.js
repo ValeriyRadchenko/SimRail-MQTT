@@ -1,8 +1,7 @@
 import { AxisMeter } from './axis-meter.js';
 import { channelLabel, formatValue, resolveAnalog, resolveButton } from './axis-mapping.js';
-import { groupLabel, humanize } from './humanize.js';
+import { featuresFor, featureTitle } from './features.js';
 import { ChannelDialog, PortDialog } from './joystick-dialogs.js';
-import { inferRange } from './value-range.js';
 
 /** Game controllers' ids start with this; mirrors CONTROLLER_PREFIX in server/src/settings/schema.ts. */
 const CONTROLLER_PREFIX = 'sdl:';
@@ -19,8 +18,6 @@ const plural = (n, one, many = `${one}s`) => `${n} ${n === 1 ? one : many}`;
 
 const escapeHtml = (s) =>
   String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
-
-const featureTitle = (topic) => humanize(topic.slice(topic.lastIndexOf('/') + 1));
 
 /**
  * The "Joysticks" column: serial ports and game controllers, whether they are read, their live
@@ -153,6 +150,15 @@ export class JoysticksView {
     );
   }
 
+  /** Virtual devices of the selected locomotive that read this channel. */
+  #devicesUsing(port, channel) {
+    const locomotive = this.#settings?.locomotive;
+    if (!locomotive) return [];
+    return this.#settings.devices.filter(
+      (d) => d.locomotive === locomotive && d.inputs.some((i) => i.joystick === port && i.channel === channel),
+    );
+  }
+
   #inputFor(joystick) {
     return joystick.state === 'open' ? (this.#inputs.get(joystick.port) ?? null) : null;
   }
@@ -182,39 +188,8 @@ export class JoysticksView {
     return this.#mqttConnected ? 'on' : 'offline';
   }
 
-  /**
-   * Features (SimRail inputs) a channel can drive on `locomotive`: those the wiki lists for it,
-   * plus everything the game reports when that locomotive is the one being driven.
-   */
   #featuresFor(locomotive, currentTopic) {
-    const features = new Map();
-    const add = (item) => {
-      const key = item.topic.toLowerCase();
-      if (features.has(key)) return;
-      const variants = item.variants ?? [];
-      const description = (variants.find((v) => v.vehicles.includes(locomotive)) ?? variants[0])?.description ?? '';
-      features.set(key, {
-        topic: item.topic,
-        title: humanize(item.name),
-        groupTitle: groupLabel(item.group),
-        description,
-        range: inferRange(description),
-      });
-    };
-    const live = this.#liveInputs;
-    if (live?.source === 'live' && live.vehicle === locomotive) live.items.forEach(add);
-    for (const item of this.#catalog) {
-      if (item.vehicles?.some((v) => v === locomotive || v.startsWith('Common'))) add(item);
-    }
-    if (currentTopic && !features.has(currentTopic.toLowerCase())) {
-      const slash = currentTopic.lastIndexOf('/');
-      add({ topic: currentTopic, name: currentTopic.slice(slash + 1), group: slash > 0 ? currentTopic.slice(0, slash) : 'Other' });
-    }
-    // Fields shared by most trains first, like the Inputs column.
-    const rank = (f) => (f.groupTitle === 'General' ? 0 : 1);
-    return [...features.values()].sort(
-      (a, b) => rank(a) - rank(b) || a.groupTitle.localeCompare(b.groupTitle) || a.title.localeCompare(b.title),
-    );
+    return featuresFor({ catalog: this.#catalog, liveInputs: this.#liveInputs }, locomotive, currentTopic);
   }
 
   // ---------- dialogs ----------
@@ -410,11 +385,14 @@ export class JoysticksView {
       paused: 'Not sent: sending is paused',
       offline: 'Not sent: SimRail is not connected',
     }[this.#sendingState()];
+    const devices = this.#devicesUsing(joystick.port, channel);
+    let unassigned = locomotive ? 'Not assigned' : 'No locomotive chosen';
+    if (devices.length) unassigned = `In ${devices.map((d) => `“${d.name}”`).join(', ')}`;
     const output = binding
       ? `<span class="feature-name" title="${escapeHtml(binding.feature)}">${escapeHtml(featureTitle(binding.feature))}</span>` +
         `<span class="output-value" data-role="value" title="${sent ?? ''}"></span>` +
         `<span class="output-detail" data-role="detail"></span>`
-      : `<span class="muted">${locomotive ? 'Not assigned' : 'No locomotive chosen'}</span>`;
+      : `<span class="muted" ${devices.length ? 'title="Used by a virtual device (Virtual devices tab)"' : ''}>${escapeHtml(unassigned)}</span>`;
     return `
       <li class="channel" data-channel="${channel}" data-kind="${kind}">
         <span class="channel-name">${label}</span>

@@ -105,6 +105,15 @@ export interface JoystickInput {
   receivedAt: number;
 }
 
+/**
+ * What only the server knows of a virtual device: a step switch's position, i.e. its value in
+ * game, or what was just sent while the game hasn't confirmed it yet. Null while not known.
+ */
+export interface DeviceState {
+  id: string;
+  value: number | null;
+}
+
 export type ServerMessage =
   | { type: 'mqtt-status'; status: MqttStatus }
   | { type: 'trainset'; trainset: Trainset }
@@ -115,6 +124,8 @@ export type ServerMessage =
   | { type: 'joysticks'; joysticks: JoystickInfo[] }
   /** Latest line of a joystick; sent at most ~25 times a second per joystick. */
   | { type: 'joystick-input'; input: JoystickInput }
+  /** A virtual device's state changed (step switches of the chosen locomotive). */
+  | { type: 'device-state'; state: DeviceState }
   /** Answer to a request that has nothing else to report. */
   | { type: 'result'; requestId: string; ok: boolean; error?: string }
   /** Current value of the watched topic, as reported by the game (polled). */

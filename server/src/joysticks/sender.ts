@@ -15,6 +15,8 @@ export interface SenderOptions {
 interface Slot {
   /** Value waiting for the interval to pass. */
   pending: number | null;
+  /** Send `pending` even if it is what the game was sent last. */
+  force: boolean;
   timer: NodeJS.Timeout | null;
   lastAt: number;
 }
@@ -70,10 +72,21 @@ export class JoystickSender {
     }
   }
 
+  /**
+   * Send a value to a SimRail input with the same rate limit as the levers (virtual devices use
+   * this). Unless `force`, a value the game was sent last is skipped. Dropped while not sending.
+   */
+  send(topic: string, value: number, force = false): void {
+    if (this.isActive()) this.queue(topic, Math.fround(value), force);
+  }
+
   /** Forget what was sent and send every lever's current value (e.g. a new train was loaded). */
   resync(): void {
     this.lastSent.clear();
-    for (const slot of this.slots.values()) slot.pending = null;
+    for (const slot of this.slots.values()) {
+      slot.pending = null;
+      slot.force = false;
+    }
     const active = this.isActive();
     if (active !== this.wasActive) {
       this.wasActive = active;
@@ -87,7 +100,8 @@ export class JoystickSender {
     this.slots.clear();
   }
 
-  private isActive(): boolean {
+  /** Values reach the game: SimRail is connected, sending isn't paused and a locomotive is chosen. */
+  isActive(): boolean {
     return this.connected && this.settings !== null && !this.settings.paused && this.settings.locomotive !== null;
   }
 
@@ -111,14 +125,15 @@ export class JoystickSender {
     }
   }
 
-  private queue(topic: string, value: number): void {
+  private queue(topic: string, value: number, force = false): void {
     let slot = this.slots.get(topic);
     if (!slot) {
-      slot = { pending: null, timer: null, lastAt: 0 };
+      slot = { pending: null, force: false, timer: null, lastAt: 0 };
       this.slots.set(topic, slot);
     }
-    if (slot.pending === null && this.lastSent.get(topic) === value) return; // the game has it
+    if (!force && slot.pending === null && this.lastSent.get(topic) === value) return; // the game has it
     slot.pending = value;
+    slot.force ||= force;
     if (slot.timer) return;
     const wait = this.options.intervalMs - (Date.now() - slot.lastAt);
     if (wait <= 0) this.flush(topic, slot);
@@ -128,8 +143,10 @@ export class JoystickSender {
   private flush(topic: string, slot: Slot): void {
     slot.timer = null;
     const value = slot.pending;
+    const force = slot.force;
     slot.pending = null;
-    if (value === null || !this.isActive() || this.lastSent.get(topic) === value) return;
+    slot.force = false;
+    if (value === null || !this.isActive() || (!force && this.lastSent.get(topic) === value)) return;
     slot.lastAt = Date.now();
     this.lastSent.set(topic, value);
     this.options.publish(topic, value).catch((err: Error) => {

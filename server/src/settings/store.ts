@@ -127,5 +127,11 @@ function describe(change: SettingsChange): string {
     }
     case 'remove-binding':
       return `${change.locomotive}: ${change.joystick} channel ${change.channel + 1} unassigned`;
+    case 'device': {
+      const d = change.device;
+      return `${d.locomotive}: device "${d.name}" (${d.type}, ${d.inputs.length} buttons) -> ${d.feature}`;
+    }
+    case 'remove-device':
+      return `device ${change.id} removed`;
   }
 }

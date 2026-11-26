@@ -51,6 +51,8 @@ session. Until then the app shows **Waiting for SimRail** and keeps retrying.
     (`physics_input_e6act/*` → Dragon 2), since `trainset/name` is just `trainset-Player`.
 - **Joysticks**: serial (COM) ports and game controllers, and what their channels do on the chosen
   locomotive, see below.
+- **Virtual devices** (second tab of the Joysticks panel): buttons combined into one control, see
+  [Virtual devices](#virtual-devices).
 - **Inputs**: every input field, titled from its snake_case name (`compressor_rq` → *Compressor
   Request*), grouped by vehicle category and filterable.
 
@@ -125,7 +127,48 @@ game.
 - To see what the game makes of it, pick the feature in **Inputs**: the Testing panel's
   *In game* value follows the lever.
 
-### Settings file
+## Virtual devices
+
+A virtual device turns joystick buttons (button channels of any joysticks, hats included) into one
+control that drives one feature. Like channel assignments, devices belong to a locomotive and only
+the chosen locomotive's devices are live. **Add device** on the *Virtual devices* tab opens the
+editor: pick the type, the feature and the buttons, either from the list or with **Detect** (then
+press the button). The top line previews what the buttons do right now, before anything is saved.
+
+- **Button combination**: each rule is a combination of the buttons (*Pressed*, *Released* or
+  *Any*) and the value it sends; the first matching rule wins. A rule without a value sends nothing,
+  and so does no matching rule: the game keeps its value. New devices start with one rule per
+  combination (**All combinations** makes them again). Like a lever, the value is sent when it
+  changes and again when sending (re)starts. For a 3-way switch wired as two buttons:
+
+  | A        | B        | Send    |
+  | -------- | -------- | ------- |
+  | Pressed  | Released | 1       |
+  | Released | Pressed  | 2       |
+  | Released | Released | -1      |
+  | Pressed  | Pressed  | nothing |
+
+- **Step switch**: **Up** moves a multi-position switch to the next position, **Down** (optional)
+  to the previous one, starting from **where it is in game**: the app polls the feature's value while
+  the device exists, so the mouse or keyboard can move the switch too. **Positions** are the values
+  the switch takes (`0, 1, 2`, `-1, 1` or `0..7`); **From description** fills them in from the wiki
+  (`0 = disabled / 1 = TL / 2 = PL` gives `0, 1, 2`). A value between positions steps to the
+  neighbouring one. **Wrap around** goes from the last position to the first (and back); with only
+  Up, one button cycles through the positions or toggles between two (`-1, 1`). **Repeat while
+  held** steps again after 0.4 s, then every 0.15 s. Presses while the value in game isn't known
+  (SimRail not connected, or the train has no such input) are ignored; the card shows the position.
+- **Pulse**: pressing the button sends *On press*, releasing it sends *On release* (either can be
+  empty: nothing), and *For* ms later the *rest* value is sent; the rest value is also sent when
+  sending (re)starts. A latching toggle switch working an impulse button: 1 on press and on release,
+  rest -1. Working a pair of on/off requests (`-1 = turn off, 0 = default, 1 = turn on`): 1 on press,
+  -1 on release, rest 0.
+
+A channel used by a device shows *In "device name"* on the Joysticks tab. A button can be in a
+device and assigned directly, or in several devices; everything it drives is sent, and the editor
+points it out. Sending works as for levers: nothing goes out while paused or SimRail isn't connected,
+and presses made meanwhile are dropped, not sent later.
+
+## Settings file
 
 Everything set up in the UI is saved to `settings/config.json` (created on first start, not in
 git: COM port names and controller ids are specific to the PC). It can be edited by hand while the app is stopped;
@@ -151,6 +194,45 @@ aside to `config.invalid-<time>.json`.
       "notches": [{ "position": 512, "value": 0 }],
       "areas": [{ "from": 0, "to": 490, "valueFrom": -1, "valueTo": 0 }]
     }
+  ],
+  "devices": [
+    {
+      "id": "mi2x7k9a",
+      "locomotive": "71E (CD163)",
+      "name": "Cabin light",
+      "type": "combo",
+      "feature": "physics_input_163/cabin_light",
+      "inputs": [{ "joystick": "COM3", "channel": 2 }, { "joystick": "COM3", "channel": 3 }],
+      "rules": [
+        { "when": ["pressed", "released"], "value": 1 },
+        { "when": ["released", "pressed"], "value": 2 },
+        { "when": ["released", "released"], "value": 0 },
+        { "when": ["pressed", "pressed"], "value": null }
+      ]
+    },
+    {
+      "id": "mi2x8p1c",
+      "locomotive": "71E (CD163)",
+      "name": "Relative power",
+      "type": "stepper",
+      "feature": "physics_input_163/relative_power_switch",
+      "inputs": [{ "joystick": "COM3", "channel": 4 }, { "joystick": "COM3", "channel": 5 }],
+      "positions": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      "wrap": false,
+      "repeat": true
+    },
+    {
+      "id": "mi2x9d4f",
+      "locomotive": "71E (CD163)",
+      "name": "Main switch",
+      "type": "pulse",
+      "feature": "physics_input_163/open_main_switch_rq",
+      "inputs": [{ "joystick": "COM3", "channel": 6 }],
+      "onPress": 1,
+      "onRelease": 1,
+      "rest": -1,
+      "durationMs": 200
+    }
   ]
 }
 ```
@@ -159,6 +241,13 @@ aside to `config.invalid-<time>.json`.
 For a controller it is the position in its channel list (axes, buttons, hats; *Button 1* of a
 controller with 5 axes is `5`). Button channels have `pressed` / `released` instead of
 `tolerance`, `notches` and `areas`.
+
+A device's `inputs` are button channels, numbered the same way. What they do depends on `type`:
+`combo` takes 1–6 and a rule per combination (`when` has one of `pressed` / `released` / `any` per
+input; `value` `null` sends nothing); `stepper` takes Up, then optionally Down, with `positions`
+(ascending, at least 2), `wrap` and `repeat`; `pulse` takes one, with `onPress` / `onRelease`
+(`null`: nothing), `rest` and `durationMs` (50–10000). `id` is any short unique name (letters,
+digits, `-`, `_`).
 
 ## How it talks to SimRail
 
@@ -174,6 +263,7 @@ Checked against the game (Dragon 2, 2026-11-24):
 - **The game does not publish input changes on the input topics.** The only way to read an input is
   `request_topics`. The app polls the selected input with its topic as the prefix (answered in about
   1 ms, ~200 bytes) every 100 ms; that is what moves the slider when the value changes in game.
+  The features of the chosen locomotive's step switches are polled the same way.
 - On connect the app asks for `all`; the answer replaces the input list (badge: *Live from SimRail*).
   Until then the list comes from the wiki catalogue in `server/data/simrail-inputs.json` (badge:
   *Wiki catalogue*). The last full answer is saved to `.runtime/request_topics_response.json`.
@@ -206,11 +296,15 @@ list brake              list inputs (optionally filtered)
 
 ### Without a joystick
 
-`npm run dev -- --fake-joystick` (or `FAKE_JOYSTICK=1`) lists a simulated joystick, `FAKE1`, instead
-of the PC's COM ports. Once read, it sends `{a,a}` lines 50 times a second: axis 1 sweeps from end
-to end every 8 s, axis 2 rests in one of five notches (60, 290, 512, 735, 960) at a time, with a
-little jitter. Its first line arrives cut off, like a real port opened mid-line. Game controllers
-are still listed (`--no-controllers` leaves them out).
+`npm run dev -- --fake-joystick` (or `FAKE_JOYSTICK=1`) lists two simulated joysticks instead of the
+PC's COM ports. Once read, they send lines 50 times a second; the first arrives cut off, like a real
+port opened mid-line. Game controllers are still listed (`--no-controllers` leaves them out).
+
+- `FAKE1`, `{a,a}`: axis 1 sweeps from end to end every 8 s, axis 2 rests in one of five notches
+  (60, 290, 512, 735, 960) at a time, with a little jitter.
+- `FAKE2`, four buttons: set its mask to `{b,b,b,b}`. Every 8 s: button 1 is held 0–1 s, button 2
+  2–3 s, both 4–5 s (for a button combination), then button 3 is tapped twice and button 4 once
+  (Up, Up, Down for a step switch).
 
 ## Layout
 
@@ -224,6 +318,10 @@ client/                          static frontend (served as-is)
   js/humanize.js                 snake_case → title
   js/joysticks-view.js           Joysticks column: ports, live channel values, locomotive
   js/joystick-dialogs.js         port settings and channel assignment dialogs
+  js/devices-view.js             Virtual devices tab: device cards, live button states
+  js/device-dialog.js            virtual device editor (Detect, rules, positions, pulse)
+  js/devices.js                  virtual device logic for previews (mirrors the server's)
+  js/features.js                 features a channel or device can drive on a locomotive
   js/axis-mapping.js             raw value → notch / area → value (previews; mirrors the server's)
   js/axis-meter.js               0–1023 track with notches, areas and the lever
 server/
@@ -235,9 +333,11 @@ server/
   src/joysticks/serial.ts        finds, opens and reads serial ports
   src/joysticks/controllers.ts   game controllers through SDL: list, read, report changes
   src/joysticks/mask.ts          line format ("{a,a}") parsing
-  src/joysticks/fake.ts          simulated joystick (--fake-joystick)
+  src/joysticks/fake.ts          simulated joysticks (--fake-joystick)
   src/joysticks/mapping.ts       raw value → notch / area → value (what is sent)
   src/joysticks/sender.ts        sends changed values to SimRail, pause, resync
+  src/devices/engine.ts          virtual devices: button edges -> values, step switch positions
+  src/devices/logic.ts           rule matching, next position (mirrored in client/js/devices.js)
   src/settings/schema.ts         settings/config.json shape, validation, changes
   src/settings/store.ts          loads and saves settings/config.json
   src/simrail/bridge.ts          MQTT connection to SimRail, polling of watched inputs
